@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Thompson Creek Trail</title>
+<meta name="description" content="Map, timeline and cost tracker for San José's Thompson Creek Trail in Evergreen: 1.7 paved miles from Lake Cunningham to Aborn Rd, and six unfunded miles to Heartland Way.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e5c4a'/><path d='M6 24c4-2 5-8 10-9s6-6 10-9' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="../../styles.css?v=202611210219">
+<script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../" title="All South Bay trails"><span class="brand-mark" aria-hidden="true"></span><span class="brand-hub">South Bay Trails</span></a><div class="trail-switch" id="trailSwitch"><button class="ts-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="tsMenu"><span class="ts-name">Thompson Creek Trail</span><svg class="ts-chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ts-menu" id="tsMenu" hidden></div></div>
+  <nav aria-label="Sections">
+    <a href="#intro">The trail</a><a href="#map">Map</a><a href="#timeline">Timeline</a><a href="#costs">Costs</a><a href="#documents">Documents</a><a href="#news">News</a><a href="#photos">Photos</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.92 3.04 12.46 3 12 3Z"/></svg>
+  </button>
+</header>
+
+<main id="top">
+  <section class="cover" aria-label="Introduction">
+    <img class="cover-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Lake%20Cunningham%201.2.jpg?width=2400" alt="Boat docks on Lake Cunningham with golden foothills behind">
+    <div class="cover-shade"></div>
+    <div class="cover-inner">
+      <p class="eyebrow">Evergreen, San José · <span class="js-updated">Updated</span></p>
+      <h1>Seven miles planned,<br>under two paved</h1>
+      <p class="cover-lede">San José planned a 7-mile trail up Thompson Creek in 2005, from Lake Cunningham to the Evergreen foothills. A gravel path opened in 2008. Paving came a mile at a time, in 2017 and 2023. The other six miles have a place on a grant list and no money.</p>
+      <a class="cover-cta" href="#intro">Meet the trail <span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="cover-credit">Lake Cunningham, near the trail's north end · Photo: Miles Gehm, CC BY 2.0</p>
+  </section>
+
+  <section id="intro" class="intro">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="eyebrow dark">Meet the trail</p>
+        <h2>A creek trail built a mile at a time</h2>
+        <p class="big">Thompson Creek drains Evergreen's foothills north to Lake Cunningham, mostly in a Valley Water flood channel. The City's 2005 master plan put a trail of about 7 miles beside it, from Tully Rd to Heartland Way at San Felipe Rd, and a gravel trail opened from Tully Rd to Aborn Rd in 2008.</p><p>About <strong>1.7 miles</strong> are paved: Tully Rd to Quimby Rd in 2017, and Quimby Rd to Aborn Ct in 2023 with a VTA Measure B grant. A 0.9-mile gravel path on the east bank makes a loop at the north end.</p><p>The remaining <strong>6.2 miles</strong>, south from Aborn Rd, are unfunded. The City asked VTA for $2.41M to design them in 2020; they're on VTA's 10-year list, still waiting.</p>
+        <div class="intro-legend"><span><i class="il-built"></i>Open today</span><span><i class="il-gap"></i>Not built yet</span></div>
+        <p class="intro-hint">Scroll on to travel the trail from Lake Cunningham to the foothills in three chapters <span aria-hidden="true">↓</span></p>
+        <div class="chapters" id="chapters"></div>
+      </div>
+      <figure class="intro-map-wrap">
+        <div id="introMap" aria-label="Map of the Thompson Creek Trail: built sections and gaps"></div>
+        <figcaption id="introMapCap"><strong>The whole trail</strong><span>Lake Cunningham to Heartland Way</span></figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <section class="quotes" aria-label="Why it matters">
+    <div class="quotes-inner" id="quotes"></div>
+  </section>
+
+  <section class="hero" id="numbers">
+    <div class="hero-inner">
+      <p class="eyebrow">By the numbers · <span class="js-updated">Updated</span></p>
+      <h2 class="numbers-h">Where things stand</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="hero-strip" aria-label="Trail status, north to south">
+      <div class="strip-head"><span>North · Tully Rd</span><span>South · Heartland Way</span></div>
+      <div class="strip" id="strip" role="img" aria-label="Proportional bar of trail reaches colored by status"></div>
+      <div class="legend" id="stripLegend"></div>
+    </div>
+  </section>
+
+  <section id="map" class="section">
+    <div class="section-head">
+      <h2>Map of every reach</h2>
+      <p>Trail lines come from the City of San José's <a href="https://data.sanjoseca.gov/dataset/trail-reach" target="_blank" rel="noopener">Trail Reach GIS dataset</a>. Click a line or a list item to see its status and history. Round pins are photos; square pins open a plan sheet or City photo for that stretch.</p>
+    </div>
+    <div class="map-wrap">
+      <div id="leaflet" aria-label="Interactive map of the Thompson Creek Trail"></div>
+      <aside class="map-side">
+        <div class="filters" id="mapFilters" role="group" aria-label="Filter by status"></div>
+        <div class="filters layer-filters" id="layerFilters" role="group" aria-label="Map layers"></div>
+        <ol class="reach-list" id="reachList"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="section-head">
+      <h2>Timeline, 1970–2026</h2>
+      <p>Scroll through 34 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
+    </div>
+    <div class="tl-sticky" id="tlSticky">
+      <div class="tl-sticky-row">
+        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1970</span></div>
+        <div class="filters" id="tlFilters" role="group" aria-label="Filter timeline"></div>
+      </div>
+      <div class="tl-overview" id="tlOverview"><div class="tl-cursor" id="tlCursor"></div></div>
+    </div>
+    <div class="tl-body">
+      <ol class="timeline" id="tlList"></ol>
+      <div class="tl-map-wrap" id="tlMapWrap">
+        <div id="tlMap" aria-label="Map showing the trail as of the selected event"></div>
+        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1970</strong><span id="tlMapSub"></span></div>
+        <div class="tl-map-legend">
+          <span><i class="ln ln-open"></i>Open by this date</span>
+          <span><i class="ln ln-future"></i>Not yet built</span>
+          <span><i class="ln ln-gap"></i>Still a gap today</span>
+          <span><i class="ln ln-hl"></i>This event</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="costs" class="section">
+    <div class="section-head">
+      <h2>What it has cost, and what's left</h2>
+      <p>The two paved stretches were budgeted at a few million dollars between them, but the City never published a final cost for either. The six miles to the south have one City estimate, from 2019, and a grant request that VTA listed but hasn't funded.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="card chart-card">
+        <figcaption><h3>Trail and creek projects</h3><span class="muted">$ millions</span></figcaption>
+        <div class="bars" id="costBars"></div>
+        <p class="footnote">Tully–Quimby is the sum of its design and construction baselines. Quimby–Aborn is the construction spending recorded in the City's park-fee reports, which appear to include the Measure B-reimbursed costs; its design had a separate $700K baseline. The outfall repair is creek work, not trail.</p>
+      </figure>
+      <figure class="card chart-card">
+        <figcaption><h3>Cost per mile</h3><span class="muted">$M / mile · hatched = estimate</span></figcaption>
+        <div class="bars" id="perMileBars"></div>
+        <p class="footnote">The City's 2019 figure covers Quimby Rd to the city limit (5.0 mi). The Coyote Creek Trail's recent average is shown for comparison.</p>
+      </figure>
+    </div>
+
+    <details class="card table-card">
+      <summary>Project table with funding sources</summary>
+      <div class="table-scroll"><table id="projTable"></table></div>
+    </details>
+
+    <div class="card mp-card">
+      <h3>Promises and what happened</h3>
+      <p class="muted" style="margin:8px 0 14px;font-size:.92rem;max-width:760px">Tully–Quimby finished about nine months after its first published date. Quimby–Aborn opened on time once money arrived, but its plans had waited six years. No contract amounts, bids or final costs turned up for either.</p>
+      <div class="table-scroll"><table id="deliveryTable"></table></div>
+    </div>
+
+    <div class="card mp-card">
+      <div class="mp-head">
+        <div>
+          <h3>The City's own numbers</h3>
+          <p class="muted">The 2005 master plan, and any estimate in it, is no longer online. Since then the City has priced the trail only in passing: <strong>$13.0M in 2019</strong> for Quimby Rd to the city limit, and a <strong>$2.41M</strong> Measure B request in 2020, of which $610,000 was awarded.</p>
+        </div>
+        <button class="mp-thumb" data-sch="ptf-2019" aria-label="View the 2019 table"><img src="img/schematics/ptf-2019_thumb.jpg" alt="Table of trail projects for Measure B from a 2019 City report"><span>View the original page</span></button>
+      </div>
+      <div class="table-scroll"><table id="mpTable"></table></div>
+    </div>
+
+    <div class="card estimator">
+      <div class="est-head">
+        <div>
+          <h3>Estimate the cost of closing the gaps</h3>
+          <p class="muted">The missing reaches run south from Aborn Rd along the creek, mostly on Valley Water land, with five footbridges to repair or replace. This calculator applies a cost-per-mile assumption to their length.</p>
+        </div>
+        <div class="est-total"><span class="est-label">Estimated cost</span><span class="est-num" id="estNum">$0M</span><span class="muted" id="estSub"></span></div>
+      </div>
+      <label class="slider-row">
+        <span>Assumed cost per mile: <strong id="perMileVal"></strong></span>
+        <input type="range" id="perMile" min="1" max="15" step="0.1" value="2.6">
+        <span class="slider-scale"><span>$1M (path on a creek road)</span><span>$15M (bridges &amp; walls)</span></span>
+      </label>
+      <div class="presets" id="presets"></div>
+      <div class="table-scroll"><table id="gapTable"></table></div>
+      <p class="footnote">This is our estimate, not an official figure, except for the City's 2019 rate. That 2019 figure covered 5.0 mi; GIS maps 6.2 mi of planned reaches, and the 2020 request counted 6.55 mi from Quimby Rd.</p>
+    </div>
+
+    <div class="grid-3 context">
+      <div class="card mini"><span class="mini-num">$200K</span><span>Added to Tully–Quimby by the county Habitat Plan permit fee, the first City trail to pay it</span><a href="https://material-civet.files.svdcdn.com/production/images/documents/StrategicPlan.pdf?dm=1627321644" target="_blank" rel="noopener">Trail Strategic Plan</a></div>
+      <div class="card mini"><span class="mini-num">15 years</span><span>Quimby Rd to Aborn Ct stayed a gravel path, from 2008 until it was paved in 2023</span><a href="https://legistar.granicus.com/sanjose/attachments/ad15677b-33e2-4a44-861c-eb6aec773fa0.pdf" target="_blank" rel="noopener">T&amp;E update (2024)</a></div>
+      <div class="card mini"><span class="mini-num">$300–400M</span><span>The City's estimate for finishing every trail in its network, with no defined funding</span><a href="https://legistar.granicus.com/sanjose/attachments/d84f6ba6-1e7b-4d7e-898c-5fb9f3fb990c.pdf" target="_blank" rel="noopener">T&amp;E report (2026)</a></div>
+    </div>
+  </section>
+  <section id="documents" class="section">
+    <div class="section-head">
+      <h2>Plans, schematics &amp; official documents</h2>
+      <p>Each document is pinned to the stretch of trail it covers. The bar under each title shows its place on the trail from north to south. Hover over or tap a document to see it on the map.</p>
+    </div>
+    <div class="docs-layout">
+      <div class="doc-map-wrap">
+        <div id="docMap" aria-label="Locator map for documents"></div>
+        <div class="doc-map-cap" id="docMapCap"><strong>Hover over a document</strong><span>to see the stretch of trail it covers</span></div>
+      </div>
+      <div class="docs-col">
+        <h3 class="sub first">Plan sheets &amp; location maps</h3>
+        <p class="muted small">12 figures from the City's annual trail reports and presentations, capital-program reports, the 2020 Measure B request and a 2019 outfall memo. The 2005 master plan and its reach maps aren't online. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <div class="sch-grid" id="schGrid"></div>
+        <div id="docGrid"></div>
+        <p class="footnote"><span class="code">sanjoseca.gov</span> blocks downloads that don't come from a regular web browser; older City trail pages are linked through Internet Archive copies. The 2002 feasibility study, the 2005 master plan and its reach maps were never archived.</p>
+      </div>
+    </div>
+    <h3 class="sub">Interactive maps &amp; open data</h3>
+    <div class="link-grid" id="mapLinks"></div>
+  </section>
+
+  <section id="news" class="section">
+    <div class="section-head">
+      <h2>In the news</h2>
+      <p>Little coverage names the trail itself; only two of these stories mention Thompson Creek. The rest cover Lake Cunningham, Valley Water's creek work and its encampment policy, 2021–2025.</p>
+    </div>
+    <div class="news-controls">
+      <input type="search" id="newsSearch" placeholder="Search headlines, outlets, topics…" aria-label="Search news">
+      <span class="muted" id="newsCount"></span>
+    </div>
+    <ol class="news" id="newsList"></ol>
+  </section>
+
+  <section id="photos" class="section">
+    <div class="section-head">
+      <h2>Photographs</h2>
+      <p>Openly licensed images from <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. Commons has no photo taken on the Thompson Creek Trail itself; these show Lake Cunningham at the north end, Lower Silver Creek downstream, and the Evergreen neighborhoods and foothills around the route. City photos of the trail are among the plan sheets above.</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="section about">
+    <h2>About this page</h2>
+    <div class="grid-2">
+      <div>
+        <p>This page brings together San José council memos, capital-program and park-fee reports, the City's annual trail reports, City GIS data, the 2004 environmental filing, VTA's Measure B records and local journalism. Each event and figure links to its source.</p>
+        <p>An independent project, not affiliated with the City of San José, Valley Water or VTA. Part of <a href="../../">South Bay Trails</a>.</p>
+      </div>
+      <ul class="caveats">
+        <li>Where the 2023 paving ends isn't consistent: City reports say Aborn Ct, later reports say Westgrove Ln, and GIS ends it at Chesapeake Cir. This page follows the GIS lines.</li><li>GIS gives October 2023 as the Quimby–Aborn opening; City reports say August 2023. This page follows the reports. The timeline map shows Tully–Aborn open from the 2008 gravel trail; which bank that trail used isn't documented.</li><li>No contract award, bid or final cost was found for either paving project. Tully–Quimby's figure is two budget baselines; Quimby–Aborn's is our tally of reported spending, which may double-count.</li><li>The 2005 master plan isn't online, so its own estimate and the date the Council adopted it are unknown.</li><li>The gap-cost range is our extrapolation, not an official estimate, except for the City's 2019 figure.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Basemap © Esri and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors; trail reaches: City of San José Open Data; photos: Wikimedia Commons contributors.</span>
+  <span><span class="js-updated">Updated</span> · <a href="https://github.com/alexstorer/south-bay-trails" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">×</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="../../data/hub.js?v=202611210219"></script>
+<script src="data/reaches.js?v=202611210219"></script>
+<script src="data/data.js?v=202611210219"></script>
+<script src="data/geo.js?v=202611210219"></script>
+<script src="../../app.js?v=202611210219"></script>
+</body>
+</html>

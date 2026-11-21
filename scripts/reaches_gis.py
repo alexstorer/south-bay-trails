@@ -21,6 +21,9 @@ TRAILS = {
     "silver-creek": ("NAME IN ('Lower Silver Creek (North)', 'Upper Silver Creek')", "silver_creek_reaches_sjgis.geojson"),
     "guadalupe-river": ("NAME = 'Guadalupe River'", "guadalupe_river_reaches_sjgis.geojson"),
     "three-creeks": ("NAME = 'Three Creeks'", "three_creeks_reaches_sjgis.geojson"),
+    "thompson-creek": ("NAME = 'Thompson Creek'", "thompson_creek_reaches_sjgis.geojson"),
+    "almaden": ("NAME IN ('Los Alamitos Creek', 'Guadalupe Creek')", "almaden_reaches_sjgis.geojson"),
+    "bay-trail": ("NAME = 'Bay Trail'", "bay_trail_reaches_sjgis.geojson"),
 }
 UA = {"User-Agent": "south-bay-trails-site (github.com/alexstorer/south-bay-trails)"}
 HERE = os.path.dirname(os.path.abspath(__file__))

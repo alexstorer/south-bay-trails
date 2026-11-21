@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Alamitos & Guadalupe Creek Trails</title>
+<meta name="description" content="Map, timeline and cost tracker for San José's Los Alamitos Creek and Guadalupe Creek trails in the Almaden Valley, which meet at Almaden Lake, and the unbuilt route to Almaden Quicksilver County Park.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e5c4a'/><path d='M6 24c4-2 5-8 10-9s6-6 10-9' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="../../styles.css?v=202611210219">
+<script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../" title="All South Bay trails"><span class="brand-mark" aria-hidden="true"></span><span class="brand-hub">South Bay Trails</span></a><div class="trail-switch" id="trailSwitch"><button class="ts-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="tsMenu"><span class="ts-name">Los Alamitos & Guadalupe Creek Trails</span><svg class="ts-chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ts-menu" id="tsMenu" hidden></div></div>
+  <nav aria-label="Sections">
+    <a href="#intro">The trail</a><a href="#map">Map</a><a href="#timeline">Timeline</a><a href="#costs">Costs</a><a href="#documents">Documents</a><a href="#news">News</a><a href="#photos">Photos</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.92 3.04 12.46 3 12 3Z"/></svg>
+  </button>
+</header>
+
+<main id="top">
+  <section class="cover" aria-label="Introduction">
+    <img class="cover-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/LosAlamitosCreekTrail%20AlmadenValley.jpg?width=2400" alt="A paved trail running beside a tree-lined creek in the Almaden Valley">
+    <div class="cover-shade"></div>
+    <div class="cover-inner">
+      <p class="eyebrow">Almaden Valley, San José · <span class="js-updated">Updated</span></p>
+      <h1>Two creeks, one lake,<br>and half a trail to Quicksilver</h1>
+      <p class="cover-lede">Los Alamitos and Guadalupe creeks meet at Almaden Lake to form the Guadalupe River. A paved trail runs four miles up Los Alamitos Creek on old flood levees and a railroad grade. Guadalupe Creek got a gravel trail to Singletree Way in 2008–09; the rest of a 2004 plan to reach Almaden Quicksilver is waiting on bridges, money and a landfill that won't close until the 2040s.</p>
+      <a class="cover-cta" href="#intro">Meet the trail <span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="cover-credit">The Los Alamitos Creek Trail · Photo: Bunty4, CC0</p>
+  </section>
+
+  <section id="intro" class="intro">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="eyebrow dark">Meet the trail</p>
+        <h2>A finished trail and a stalled one</h2>
+        <p class="big">In 1967 the County and City proposed a chain of creekside parks instead of a concrete flood channel. The water district built its levees to fit, and a 1987 plan put trails on them. Los Alamitos Creek Trail was paved from Winfield Blvd to Harry Rd by 2007; we couldn't find when.</p><p>About <strong>5.9 miles</strong> are open: 4.2 paved on Los Alamitos Creek and 1.8 of gravel levee road on Guadalupe Creek, from Almaden Expwy past Masson Dam to Singletree Way.</p><p>The other <strong>3.1 miles</strong> are all on Guadalupe Creek: two creek bridges above Masson Dam, Guadalupe Mines Rd, and a landfill haul road the City can't use until the landfill closes, now expected at the end of 2044. Two crossings, at Meridian Ave and Almaden Expwy, are also unbuilt.</p>
+        <div class="intro-legend"><span><i class="il-built"></i>Open today</span><span><i class="il-gap"></i>Not built yet</span></div>
+        <p class="intro-hint">Scroll on: start at Almaden Lake, follow Los Alamitos Creek up to Harry Rd, then Guadalupe Creek toward Almaden Quicksilver <span aria-hidden="true">↓</span></p>
+        <div class="chapters" id="chapters"></div>
+      </div>
+      <figure class="intro-map-wrap">
+        <div id="introMap" aria-label="Map of the Los Alamitos & Guadalupe Creek Trails: built sections and gaps"></div>
+        <figcaption id="introMapCap"><strong>The whole trail</strong><span>Almaden Quicksilver to Harry Rd, by way of Almaden Lake</span></figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <section class="quotes" aria-label="Why it matters">
+    <div class="quotes-inner" id="quotes"></div>
+  </section>
+
+  <section class="hero" id="numbers">
+    <div class="hero-inner">
+      <p class="eyebrow">By the numbers · <span class="js-updated">Updated</span></p>
+      <h2 class="numbers-h">Where things stand</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="hero-strip" aria-label="Trail status, north to south">
+      <div class="strip-head"><span>Almaden Quicksilver · down Guadalupe Creek</span><span>Almaden Lake · up Los Alamitos Creek to Harry Rd</span></div>
+      <div class="strip" id="strip" role="img" aria-label="Proportional bar of trail reaches colored by status"></div>
+      <div class="legend" id="stripLegend"></div>
+    </div>
+  </section>
+
+  <section id="map" class="section">
+    <div class="section-head">
+      <h2>Map of every reach</h2>
+      <p>Trail lines come from the City of San José's <a href="https://data.sanjoseca.gov/dataset/trail-reach" target="_blank" rel="noopener">Trail Reach GIS dataset</a>. The list and the strip above run down Guadalupe Creek from Almaden Quicksilver to Almaden Expwy, then up Los Alamitos Creek from Winfield Blvd to Harry Rd; the two ends are linked through Almaden Lake Park by the Guadalupe River Trail, which has <a href="../guadalupe-river/">its own page</a>. Click a line or a list item to see its status and history. Round pins are photos; square pins open a plan sheet for that stretch.</p>
+    </div>
+    <div class="map-wrap">
+      <div id="leaflet" aria-label="Interactive map of the Los Alamitos & Guadalupe Creek Trails"></div>
+      <aside class="map-side">
+        <div class="filters" id="mapFilters" role="group" aria-label="Filter by status"></div>
+        <div class="filters layer-filters" id="layerFilters" role="group" aria-label="Map layers"></div>
+        <ol class="reach-list" id="reachList"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="section-head">
+      <h2>Timeline, 1886–2026</h2>
+      <p>Scroll through 46 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
+    </div>
+    <div class="tl-sticky" id="tlSticky">
+      <div class="tl-sticky-row">
+        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1886</span></div>
+        <div class="filters" id="tlFilters" role="group" aria-label="Filter timeline"></div>
+      </div>
+      <div class="tl-overview" id="tlOverview"><div class="tl-cursor" id="tlCursor"></div></div>
+    </div>
+    <div class="tl-body">
+      <ol class="timeline" id="tlList"></ol>
+      <div class="tl-map-wrap" id="tlMapWrap">
+        <div id="tlMap" aria-label="Map showing the trail as of the selected event"></div>
+        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1886</strong><span id="tlMapSub"></span></div>
+        <div class="tl-map-legend">
+          <span><i class="ln ln-open"></i>Open by this date</span>
+          <span><i class="ln ln-future"></i>Not yet built</span>
+          <span><i class="ln ln-gap"></i>Still a gap today</span>
+          <span><i class="ln ln-hl"></i>This event</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="costs" class="section">
+    <div class="section-head">
+      <h2>What it has cost, and what's left</h2>
+      <p>The paper trail on money here is thin. We found no construction cost for either creek trail, only plan estimates: $3.0M for the Los Alamitos Creek park chain in 1987 and $9.9M for the Guadalupe Creek Trail in 2004. The biggest documented spending nearby went into planning a lake project that was never built.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="card chart-card">
+        <figcaption><h3>Documented spending</h3><span class="muted">$ millions</span></figcaption>
+        <div class="bars" id="costBars"></div>
+        <p class="footnote">Valley Water's actual spending on Almaden Lake planning and design through June 2020, from its capital plan, and the City's 1982–83 budget for the park's first phase. Neither is trail construction.</p>
+      </figure>
+      <figure class="card chart-card">
+        <figcaption><h3>Cost per mile in the plans</h3><span class="muted">$M / mile · hatched = estimate</span></figcaption>
+        <div class="bars" id="perMileBars"></div>
+        <p class="footnote">Plan estimates in the dollars of their year. The 1987 figure includes neighborhood parks. The Coyote Creek Trail's recent average is shown for comparison.</p>
+      </figure>
+    </div>
+
+    <details class="card table-card">
+      <summary>Project table with funding sources</summary>
+      <div class="table-scroll"><table id="projTable"></table></div>
+    </details>
+
+    <div class="card mp-card">
+      <h3>Promises and what happened</h3>
+      <p class="muted" style="margin:8px 0 14px;font-size:.92rem;max-width:760px">Los Alamitos Creek got its trail, though we found no record of when. On Guadalupe Creek only the 2004 plan's first, gravel phase was built. Valley Water's lake project went from approval to the unfunded list in under three years.</p>
+      <div class="table-scroll"><table id="deliveryTable"></table></div>
+    </div>
+
+    <div class="card mp-card">
+      <div class="mp-head">
+        <div>
+          <h3>The 2004 Guadalupe Creek plan's estimate</h3>
+          <p class="muted">Callander Associates priced the whole 3.9-mile trail at <strong>$9.9M in 2004 dollars</strong>, including design, contingency and inflation. Almost 40% of it was one item: a bridge over Almaden Expwy that the City now calls no longer feasible. The segments still missing add up to $8.62M.</p>
+        </div>
+        <button class="mp-thumb" data-sch="gc-cost" aria-label="View the cost table"><img src="img/schematics/gc-cost_thumb.jpg" alt="Cost table from the 2004 Guadalupe Creek Trail Master Plan"><span>View the original page</span></button>
+      </div>
+      <div class="table-scroll"><table id="mpTable"></table></div>
+    </div>
+
+    <div class="card estimator">
+      <div class="est-head">
+        <div>
+          <h3>Estimate the cost of closing the gaps</h3>
+          <p class="muted">Everything missing is on Guadalupe Creek, above Masson Dam and at two street crossings. This calculator applies a cost-per-mile assumption to the length. The default is the 2004 plan's own figure for these segments, in 2004 dollars, so today's cost would be higher.</p>
+        </div>
+        <div class="est-total"><span class="est-label">Estimated cost</span><span class="est-num" id="estNum">$0M</span><span class="muted" id="estSub"></span></div>
+      </div>
+      <label class="slider-row">
+        <span>Assumed cost per mile: <strong id="perMileVal"></strong></span>
+        <input type="range" id="perMile" min="0.5" max="15" step="0.1" value="2.8">
+        <span class="slider-scale"><span>$0.5M (gravel path)</span><span>$15M (bridges and structures)</span></span>
+      </label>
+      <div class="presets" id="presets"></div>
+      <div class="table-scroll"><table id="gapTable"></table></div>
+      <p class="footnote">This is our estimate, not an official figure. A flat per-mile rate understates short, bridge-heavy pieces like the expressway crossing, which the 2004 plan alone priced at $3.93M. Land and the landfill easement aren't included.</p>
+    </div>
+
+    <div class="grid-3 context">
+      <div class="card mini"><span class="mini-num">$5.3M</span><span>Spent by Valley Water planning and designing the Almaden Lake separation by mid-2020, before it was shelved</span><a href="https://assets.valleywater.org/files/2021-03/CIP_Tab-04_021221_BA.pdf" target="_blank" rel="noopener">Capital plan FY2022–26</a></div>
+      <div class="card mini"><span class="mini-num">~$50M</span><span>Moved from the Almaden Lake project back to Valley Water reserves in 2023, after construction estimates nearly tripled</span><a href="https://webapi.legistar.com/v1/scvwd/matters/10187/texts/11834" target="_blank" rel="noopener">Board memo</a></div>
+      <div class="card mini"><span class="mini-num">$197K</span><span>Yearly upkeep the 1987 plan projected for the finished Los Alamitos park chain, trails and parks together</span><a href="https://web.archive.org/web/20120504234716/http://www.sjparks.org/Trails/documents/Los%20Alamitos%20Calero%20Creek%20Park%20Chain%20Master%20Plan.pdf" target="_blank" rel="noopener">1987 master plan</a></div>
+    </div>
+  </section>
+  <section id="documents" class="section">
+    <div class="section-head">
+      <h2>Plans, schematics &amp; official documents</h2>
+      <p>Each document is pinned to the stretch of trail it covers. The bar under each title shows its place on the trail from north to south. Hover over or tap a document to see it on the map.</p>
+    </div>
+    <div class="docs-layout">
+      <div class="doc-map-wrap">
+        <div id="docMap" aria-label="Locator map for documents"></div>
+        <div class="doc-map-cap" id="docMapCap"><strong>Hover over a document</strong><span>to see the stretch of trail it covers</span></div>
+      </div>
+      <div class="docs-col">
+        <h3 class="sub first">Plan sheets &amp; location maps</h3>
+        <p class="muted small">18 figures from the 1967 park chain report, the 1987 and 2004 master plans, City trail maps and Valley Water's Almaden Lake project. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <div class="sch-grid" id="schGrid"></div>
+        <div id="docGrid"></div>
+        <p class="footnote"><span class="code">sanjoseca.gov</span> and <span class="code">valleywater.org</span> block downloads that don't come from a regular web browser; several documents are linked through Internet Archive copies of the City's old sjparks.org site.</p>
+      </div>
+    </div>
+    <h3 class="sub">Interactive maps &amp; open data</h3>
+    <div class="link-grid" id="mapLinks"></div>
+  </section>
+
+  <section id="news" class="section">
+    <div class="section-head">
+      <h2>In the news</h2>
+      <p>Coverage of the two creeks and Almaden Lake, 2010–2026. Most of it is about the lake's mercury, algae and fireworks; we found no news coverage of either trail opening.</p>
+    </div>
+    <div class="news-controls">
+      <input type="search" id="newsSearch" placeholder="Search headlines, outlets, topics…" aria-label="Search news">
+      <span class="muted" id="newsCount"></span>
+    </div>
+    <ol class="news" id="newsList"></ol>
+  </section>
+
+  <section id="photos" class="section">
+    <div class="section-head">
+      <h2>Photographs</h2>
+      <p>Openly licensed images from <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. Commons has no photo labeled as the Guadalupe Creek Trail or Masson Dam, so that creek is shown through Guadalupe Oak Grove Park and Almaden Quicksilver. Several Los Alamitos Creek photos have no location and aren't on the map.</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="section about">
+    <h2>About this page</h2>
+    <div class="grid-2">
+      <div>
+        <p>This page brings together the 1967, 1987 and 2004 City plans, old City trail reports and maps, Valley Water's capital plans, board memos and environmental reports, State environmental filings, City GIS data and local journalism. Each event and figure links to its source.</p>
+        <p>An independent project, not affiliated with the City of San José, Valley Water, Santa Clara County Parks or the Bay Area Ridge Trail Council. Part of <a href="../../">South Bay Trails</a>.</p>
+      </div>
+      <ul class="caveats">
+        <li>City GIS has no opening dates for these trails. We found no record of when Los Alamitos Creek was paved; the timeline map shows it from mid-2006, the earliest record of the whole trail, though parts are probably older. Guadalupe Creek's dates come from 2008 and 2009 City documents; the short private path GUC07B has no date and stays grey on the timeline map.</li><li>No construction cost has been found for either trail. The cost chart shows only Valley Water's documented spending on the Almaden Lake project and a 1982 park budget.</li><li>The 2004 estimate covers 3.9 plan miles; today's GIS maps 4.84 miles of Guadalupe Creek reaches. Per-mile figures for the plans divide by GIS miles where noted.</li><li>Valley Water's January 2023 decision says construction estimates "nearly tripled" but gives no new figure.</li><li>The gap-cost range is our extrapolation, in mixed-year dollars, not an official estimate.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Basemap © Esri and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors; trail reaches: City of San José Open Data; photos: Wikimedia Commons contributors.</span>
+  <span><span class="js-updated">Updated</span> · <a href="https://github.com/alexstorer/south-bay-trails" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">×</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="../../data/hub.js?v=202611210219"></script>
+<script src="data/reaches.js?v=202611210219"></script>
+<script src="data/data.js?v=202611210219"></script>
+<script src="data/geo.js?v=202611210219"></script>
+<script src="../../app.js?v=202611210219"></script>
+</body>
+</html>

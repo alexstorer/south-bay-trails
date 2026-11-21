@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>San Francisco Bay Trail in San José</title>
+<meta name="description" content="Map, timeline and cost tracker for the San Francisco Bay Trail in San José, from Hwy 237 at the Guadalupe River through Alviso to Coyote Creek and Dixon Landing, on the City's map and the regional one.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e5c4a'/><path d='M6 24c4-2 5-8 10-9s6-6 10-9' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="../../styles.css?v=202611210219">
+<script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../" title="All South Bay trails"><span class="brand-mark" aria-hidden="true"></span><span class="brand-hub">South Bay Trails</span></a><div class="trail-switch" id="trailSwitch"><button class="ts-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="tsMenu"><span class="ts-name">San Francisco Bay Trail in San José</span><svg class="ts-chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ts-menu" id="tsMenu" hidden></div></div>
+  <nav aria-label="Sections">
+    <a href="#intro">The trail</a><a href="#map">Map</a><a href="#timeline">Timeline</a><a href="#costs">Costs</a><a href="#documents">Documents</a><a href="#news">News</a><a href="#photos">Photos</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.92 3.04 12.46 3 12 3Z"/></svg>
+  </button>
+</header>
+
+<main id="top">
+  <section class="cover" aria-label="Introduction">
+    <img class="cover-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Alviso%20Marina%20County%20Park%20View%20At%20Sunset.jpg?width=2400" alt="A wooden boardwalk overlook above marsh grasses at Alviso Marina County Park under evening clouds">
+    <div class="cover-shade"></div>
+    <div class="cover-inner">
+      <p class="eyebrow">Alviso, San José · <span class="js-updated">Updated</span></p>
+      <h1>Under a mile, or seventeen?<br>It depends whose map</h1>
+      <p class="cover-lede">San José's Bay Trail runs from Hwy 237 through Alviso to Coyote Creek. The City's map shows less than a mile of it open. The regional map counts about 17 miles of levee, marina and creek trail. Most of the City's route is waiting on a $512 million levee that is half built.</p>
+      <a class="cover-cta" href="#intro">Meet the trail <span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="cover-credit">Alviso Marina County Park · Photo: Wanderenvy, CC BY-SA 3.0</p>
+  </section>
+
+  <section id="intro" class="intro">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="eyebrow dark">Meet the trail</p>
+        <h2>Two maps of the same shoreline</h2>
+        <p class="big">The Bay Trail is meant to ring the whole Bay. In San José it crosses the Guadalupe River into Alviso, a village below sea level that flooded in 1983, then heads east past the wastewater plant to Coyote Creek. San José adopted a plan for a 13.3-mile section in 2002.</p><p>On the City's own map, <strong>0.96 miles</strong> are open: a path along Hwy 237 that a neighboring city owns, and a short piece near Gold St. The other <strong>10.8 miles</strong>, including the Gold St river crossing studied since 2010, are planned or in design.</p><p>MTC's regional map counts <strong>about 17 miles</strong> of existing trail in and along San José that the City leaves out: dirt levees on the wildlife refuge, the County's marina park, a Valley Water levee, the Hwy 237 trail and Milpitas's Coyote Creek trail. Both are drawn here; the regional segments appear as side routes. The refuge loop will shrink as salt ponds are opened to the tides.</p>
+        <div class="intro-legend"><span><i class="il-built"></i>Open today</span><span><i class="il-gap"></i>Not built yet</span></div>
+        <p class="intro-hint">Scroll on to travel the shoreline from the Guadalupe to Coyote Creek in three chapters <span aria-hidden="true">↓</span></p>
+        <div class="chapters" id="chapters"></div>
+      </div>
+      <figure class="intro-map-wrap">
+        <div id="introMap" aria-label="Map of the San Francisco Bay Trail in San José: built sections and gaps"></div>
+        <figcaption id="introMapCap"><strong>The whole trail</strong><span>Hwy 237 at the Guadalupe to Dixon Landing</span></figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <section class="quotes" aria-label="Why it matters">
+    <div class="quotes-inner" id="quotes"></div>
+  </section>
+
+  <section class="hero" id="numbers">
+    <div class="hero-inner">
+      <p class="eyebrow">By the numbers · <span class="js-updated">Updated</span></p>
+      <h2 class="numbers-h">Where things stand</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="hero-strip" aria-label="Trail status, north to south">
+      <div class="strip-head"><span>West · Alviso / Guadalupe River</span><span>East · Coyote Creek / Dixon Landing</span></div>
+      <div class="strip" id="strip" role="img" aria-label="Proportional bar of trail reaches colored by status"></div>
+      <div class="legend" id="stripLegend"></div>
+    </div>
+  </section>
+
+  <section id="map" class="section">
+    <div class="section-head">
+      <h2>Map of every reach</h2>
+      <p>Main-line reaches come from the City of San José's <a href="https://data.sanjoseca.gov/dataset/trail-reach" target="_blank" rel="noopener">Trail Reach GIS dataset</a>; side routes marked "Regional Bay Trail (MTC)" are existing segments from MTC's <a href="https://www.arcgis.com/home/item.html?id=7555b7dd7da546db8196241292e58144" target="_blank" rel="noopener">Bay Trail layer</a> that the City's map leaves out. Dashed blue lines are dirt or gravel. Click a line or a list item to see its status and history. Round pins are photos; square pins open a plan sheet for that stretch.</p>
+    </div>
+    <div class="map-wrap">
+      <div id="leaflet" aria-label="Interactive map of the San Francisco Bay Trail in San José"></div>
+      <aside class="map-side">
+        <div class="filters" id="mapFilters" role="group" aria-label="Filter by status"></div>
+        <div class="filters layer-filters" id="layerFilters" role="group" aria-label="Map layers"></div>
+        <ol class="reach-list" id="reachList"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="section-head">
+      <h2>Timeline, 1876–2026</h2>
+      <p>Scroll through 44 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
+    </div>
+    <div class="tl-sticky" id="tlSticky">
+      <div class="tl-sticky-row">
+        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1876</span></div>
+        <div class="filters" id="tlFilters" role="group" aria-label="Filter timeline"></div>
+      </div>
+      <div class="tl-overview" id="tlOverview"><div class="tl-cursor" id="tlCursor"></div></div>
+    </div>
+    <div class="tl-body">
+      <ol class="timeline" id="tlList"></ol>
+      <div class="tl-map-wrap" id="tlMapWrap">
+        <div id="tlMap" aria-label="Map showing the trail as of the selected event"></div>
+        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1876</strong><span id="tlMapSub"></span></div>
+        <div class="tl-map-legend">
+          <span><i class="ln ln-open"></i>Open by this date</span>
+          <span><i class="ln ln-future"></i>Not yet built</span>
+          <span><i class="ln ln-gap"></i>Still a gap today</span>
+          <span><i class="ln ln-hl"></i>This event</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="costs" class="section">
+    <div class="section-head">
+      <h2>What it has cost, and what's left</h2>
+      <p>Almost all the money spent on San José's shoreline has gone to flood control and marsh restoration, not trail. The Bay Trail rides along: on the old salt-pond levees today, and on the new shoreline levee once it's finished. The City's own reaches have had studies but no construction budget.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="card chart-card">
+        <figcaption><h3>Levee, land, park and plan</h3><span class="muted">$ millions</span></figcaption>
+        <div class="bars" id="costBars"></div>
+        <p class="footnote">The levee figure is the June 2026 funding plan for all five reaches, of which $59.4M isn't raised yet. The salt-pond purchase covered ponds around the whole South Bay. The levee's trail share isn't broken out anywhere.</p>
+      </figure>
+      <figure class="card chart-card">
+        <figcaption><h3>Cost per mile</h3><span class="muted">$M / mile · hatched = estimate</span></figcaption>
+        <div class="bars" id="perMileBars"></div>
+        <p class="footnote">No Bay Trail reach in San José has a published construction cost, so every bar here is an estimate or a benchmark: MTC's 2005 and 2024 figures and the Coyote Creek Trail's recent average.</p>
+      </figure>
+    </div>
+
+    <details class="card table-card">
+      <summary>Project table with funding sources</summary>
+      <div class="table-scroll"><table id="projTable"></table></div>
+    </details>
+
+    <div class="card mp-card">
+      <h3>Promises and what happened</h3>
+      <p class="muted" style="margin:8px 0 14px;font-size:.92rem;max-width:760px">The 2005 study expected San José's short-term gaps closed within five years. Twenty-one years later most remain. The levee was to be done by January 2023 for $177.2M; half is built, and the estimate has passed $500M.</p>
+      <div class="table-scroll"><table id="deliveryTable"></table></div>
+    </div>
+
+    <div class="card mp-card">
+      <div class="mp-head">
+        <div>
+          <h3>The 2005 regional estimate</h3>
+          <p class="muted">The Bay Trail gap study priced San José's 14 gaps at <strong>$16.1M in 2005 dollars</strong>, about $1M a mile, as a planning-level estimate. MTC's 2024 plan replaced figures like these with cost ranges, and put the Gold St crossing alone at $5M–$25M.</p>
+        </div>
+        <button class="mp-thumb" data-sch="gap05-short" aria-label="View the cost table"><img src="img/schematics/gap05-short_thumb.jpg" alt="Short-term gap cost table from the 2005 study"><span>View the original page</span></button>
+      </div>
+      <div class="table-scroll"><table id="mpTable"></table></div>
+    </div>
+
+    <div class="card estimator">
+      <div class="est-head">
+        <div>
+          <h3>Estimate the cost of closing the City's gaps</h3>
+          <p class="muted">This applies a cost-per-mile assumption to the City's unbuilt reaches. The stretch east of Alviso depends on the levee, whose cost isn't included; the Gold St crossing needs a bridge and undercrossings, which pushes it toward the top of the range.</p>
+        </div>
+        <div class="est-total"><span class="est-label">Estimated cost</span><span class="est-num" id="estNum">$0M</span><span class="muted" id="estSub"></span></div>
+      </div>
+      <label class="slider-row">
+        <span>Assumed cost per mile: <strong id="perMileVal"></strong></span>
+        <input type="range" id="perMile" min="0.5" max="30" step="0.1" value="5.2">
+        <span class="slider-scale"><span>$0.5M (2005 study)</span><span>$30M (bridges, structures)</span></span>
+      </label>
+      <div class="presets" id="presets"></div>
+      <div class="table-scroll"><table id="gapTable"></table></div>
+      <p class="footnote">This is our estimate, not an official figure, except the $10M rail crossing, which is the City's. Land and the levee aren't included. The Hwy 237 – Dixon Landing reach is counted even though the Milpitas trail already covers that trip.</p>
+    </div>
+
+    <div class="grid-3 context">
+      <div class="card mini"><span class="mini-num">$545M</span><span>The Army Corps' 2021 estimate for the shoreline levee, nearly triple the 2015 authorization</span><a href="https://legistar.granicus.com/sanjose/attachments/d3a09fe5-a0a2-49a9-8ded-f59746f01fa9.pdf" target="_blank" rel="noopener">Joint memo, 2023</a></div>
+      <div class="card mini"><span class="mini-num">~2.2 mi</span><span>Net loss of levee trail the Conservancy expected once ponds are breached, even after adding trail at Pond A18 and along Hwy 237</span><a href="https://scc.ca.gov/webmaster/ftp/pdf/sccbb/2019/1910/20191017Board03H_South_SF_Bay_Shoreline_Project_Ex3.pdf" target="_blank" rel="noopener">Coastal Conservancy, 2018</a></div>
+      <div class="card mini"><span class="mini-num">354</span><span>Trail users counted in one day in 2024 at the Hwy 237 rail crossing, where the trail detours onto a road with 10,000 cars a day</span><a href="https://legistar.granicus.com/sanjose/attachments/065984ff-8206-46c7-bfb3-4eb6385592f6.pdf" target="_blank" rel="noopener">Council memo, 2026</a></div>
+    </div>
+  </section>
+  <section id="documents" class="section">
+    <div class="section-head">
+      <h2>Plans, schematics &amp; official documents</h2>
+      <p>Each document is pinned to the stretch of trail it covers. The bar under each title shows its place on the trail from north to south. Hover over or tap a document to see it on the map.</p>
+    </div>
+    <div class="docs-layout">
+      <div class="doc-map-wrap">
+        <div id="docMap" aria-label="Locator map for documents"></div>
+        <div class="doc-map-cap" id="docMapCap"><strong>Hover over a document</strong><span>to see the stretch of trail it covers</span></div>
+      </div>
+      <div class="docs-col">
+        <h3 class="sub first">Plan sheets &amp; location maps</h3>
+        <p class="muted small">18 figures from the 1998 Alviso Master Plan, the 2005 and 2024 regional gap studies, Valley Water, City and Coastal Conservancy records on the shoreline levee, and a 2026 City memo. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <div class="sch-grid" id="schGrid"></div>
+        <div id="docGrid"></div>
+        <p class="footnote"><span class="code">sanjoseca.gov</span> blocks downloads that don't come from a regular web browser; older City documents are linked through Internet Archive copies. We couldn't find the 2002 Bay Trail Master Plan itself or the 2010 Reach 9/9B study online.</p>
+      </div>
+    </div>
+    <h3 class="sub">Interactive maps &amp; open data</h3>
+    <div class="link-grid" id="mapLinks"></div>
+  </section>
+
+  <section id="news" class="section">
+    <div class="section-head">
+      <h2>In the news</h2>
+      <p>Coverage of Alviso, the salt ponds and the shoreline levee, 2003–2026. We found no news story about the City's Bay Trail reaches themselves.</p>
+    </div>
+    <div class="news-controls">
+      <input type="search" id="newsSearch" placeholder="Search headlines, outlets, topics…" aria-label="Search news">
+      <span class="muted" id="newsCount"></span>
+    </div>
+    <ol class="news" id="newsList"></ol>
+  </section>
+
+  <section id="photos" class="section">
+    <div class="section-head">
+      <h2>Photographs</h2>
+      <p>Openly licensed images from <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. Commons has no photos of the Gold St crossing or the Dixon Landing end; several marina photos have approximate locations.</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="section about">
+    <h2>About this page</h2>
+    <div class="grid-2">
+      <div>
+        <p>This page brings together the City's and MTC's trail maps, San José council memos, Valley Water and Coastal Conservancy records, the 2005 and 2024 regional gap studies, and local journalism. Each event and figure links to its source.</p>
+        <p>An independent project, not affiliated with the City of San José, MTC and the Bay Trail Project, Valley Water, the U.S. Fish and Wildlife Service or the Coastal Conservancy. Part of <a href="../../">South Bay Trails</a>.</p>
+      </div>
+      <ul class="caveats">
+        <li>The two maps disagree. The City's layer (our main line, 11.7 mi) shows 0.96 mi open; MTC's regional layer counts about 17 mi of existing trail in and along San José. We drew MTC segments whose city field includes San José, minus two that duplicate City reaches and those run by Sunnyvale or Fremont. Some (the refuge loop's west side, the Milpitas trail) lie partly outside the city.</li><li>MTC marks most refuge and levee segments "Natural" surface; the map shows them as "Open (gravel)". They are dirt levee tops, open in the dry season, and parts are closed on and off for construction through 2028.</li><li>MTC dates many segments only "pre-1989"; the timeline map draws them from 1989. The City gives no opening date for BAY09D; we show it from its January 2023 record.</li><li>The new levee's Reaches 1–3 carry a 16-ft aggregate trail, but neither map shows it yet and we found no opening date.</li><li>Sources disagree on the levee's original authorization ($177.2M or $194M) and its finish (2035 or 2038), and on the 2003 salt-pond acreage (16,500 or 15,100).</li><li>Matching 2005 gap numbers to today's reaches is our inference; MTC reused some numbers. The gap-cost range is our extrapolation, not an official estimate.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Basemap © Esri and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors; trail reaches: City of San José Open Data and MTC San Francisco Bay Trail layer; photos: Wikimedia Commons contributors.</span>
+  <span><span class="js-updated">Updated</span> · <a href="https://github.com/alexstorer/south-bay-trails" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">×</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="../../data/hub.js?v=202611210219"></script>
+<script src="data/reaches.js?v=202611210219"></script>
+<script src="data/data.js?v=202611210219"></script>
+<script src="data/geo.js?v=202611210219"></script>
+<script src="../../app.js?v=202611210219"></script>
+</body>
+</html>

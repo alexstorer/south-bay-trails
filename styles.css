@@ -523,3 +523,5 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .ms-gap { background: repeating-linear-gradient(90deg, var(--planned) 0 3px, transparent 3px 5px); }
 .ts-all { display: flex; align-items: center; gap: 6px; margin-top: 4px; padding: 10px; border-top: 1px solid var(--line); font-size: .85rem; font-weight: 600; text-decoration: none; }
 @media (max-width: 720px) { .brand-hub { display: none; } .trail-switch { margin-left: 0; } .trail-switch::before { display: none; } .ts-menu { position: fixed; top: 58px; left: 12px; right: 12px; width: auto; } }
+.ts-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+@media (max-width: 480px) { .ts-btn { max-width: 52vw; } }

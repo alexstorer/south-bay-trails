@@ -10,6 +10,16 @@
   }
  },
  {
+  "slug": "almaden",
+  "name": "Los Alamitos & Guadalupe Creek Trails",
+  "tagline": "Paved up Los Alamitos Creek to Harry Rd; Guadalupe Creek's trail stops at Singletree, waiting on bridges and a landfill.",
+  "cover": {
+   "f": "LosAlamitosCreekTrail AlmadenValley.jpg",
+   "a": "Bunty4",
+   "l": "CC0"
+  }
+ },
+ {
   "slug": "coyote-creek",
   "name": "Coyote Creek Trail",
   "tagline": "Bay to Anderson Dam. 21 miles connect; the north end is still in pieces.",
@@ -17,6 +27,16 @@
    "f": "Kluft-photo-2019-06-16-Coyote-Creek-Trail-Bailey-turn.jpg",
    "a": "Ikluft",
    "l": "CC BY-SA 4.0"
+  }
+ },
+ {
+  "slug": "bay-trail",
+  "name": "San Francisco Bay Trail in San José",
+  "tagline": "Under a mile open on the City's map, 17 on the regional one; the rest waits on Alviso's new shoreline levee.",
+  "cover": {
+   "f": "Alviso Marina County Park View At Sunset.jpg",
+   "a": "Wanderenvy",
+   "l": "CC BY-SA 3.0"
   }
  },
  {
@@ -37,6 +57,16 @@
    "f": "Five Wounds Portuguese National Church, Little Portugal, Santa Clara Street, San Jose 06.jpg",
    "a": "GualdimG",
    "l": "CC BY-SA 4.0"
+  }
+ },
+ {
+  "slug": "thompson-creek",
+  "name": "Thompson Creek Trail",
+  "tagline": "Evergreen's creek trail: 1.7 paved miles from Lake Cunningham to Aborn Rd, six unfunded to the hills.",
+  "cover": {
+   "f": "Lake Cunningham 1.2.jpg",
+   "a": "Miles Gehm",
+   "l": "CC BY 2.0"
   }
  },
  {
