@@ -33,9 +33,16 @@
     [sum("docs"), "documents"],
   ].map(([n, l]) => `<div><strong>${n}</strong><span>${l}</span></div>`).join("");
 
-  /* ---------- Strip: the trail north → south, open vs not ---------- */
-  const stripHTML = t => `<span class="mini-strip" aria-hidden="true">${t.strip.map(([s, mi]) =>
-    `<i class="${isOpen(s) ? "ms-open" : "ms-gap"}" style="flex:${mi} 0 0"></i>`).join("")}</span>`;
+  /* ---------- Strip: the trail end to end, open vs not, to scale ---------- */
+  // Adjacent reaches with the same state merge into one run, so the gaps between
+  // runs don't add length to trails the City splits into many short reaches.
+  const runs = t => t.strip.reduce((a, [s, mi]) => {
+    const o = isOpen(s), last = a[a.length - 1];
+    if (last && last.o === o) last.mi += mi; else a.push({ o, mi });
+    return a;
+  }, []);
+  const stripHTML = t => `<span class="mini-strip" aria-hidden="true">${runs(t).map(r =>
+    `<i class="${r.o ? "ms-open" : "ms-gap"}" style="flex:${r.mi.toFixed(2)} 0 0"></i>`).join("")}</span>`;
 
   /* ---------- Map ---------- */
   const map = L.map("hubMap", { zoomSnap: 0.25, scrollWheelZoom: false, zoomControl: true });
@@ -133,7 +140,7 @@
 
   /* ---------- Comparison table ---------- */
   const maxMi = Math.max(...T.map(t => t.mainMi));
-  $("#compareTable").innerHTML = `<thead><tr><th>Trail</th><th class="num">Mapped</th><th class="num">Open</th><th class="num">Missing</th><th>North → south</th><th class="num">Documents</th><th class="num">Timeline</th><th></th></tr></thead><tbody>` +
+  $("#compareTable").innerHTML = `<thead><tr><th>Trail</th><th class="num">Mapped</th><th class="num">Open</th><th class="num">Missing</th><th>End to end, to scale</th><th class="num">Documents</th><th class="num">Timeline</th><th></th></tr></thead><tbody>` +
     T.slice().sort((a, b) => b.mainMi - a.mainMi).map(t => `<tr>
       <td><strong>${esc(t.name)}</strong></td><td class="num">${t.mainMi.toFixed(1)} mi</td><td class="num">${t.openMi.toFixed(1)} mi</td>
       <td class="num">${t.gapMi.toFixed(1)} mi</td>

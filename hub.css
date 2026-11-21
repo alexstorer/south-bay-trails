@@ -51,7 +51,7 @@
 
 .open-table table { width: 100%; }
 .cmp-strip { min-width: 220px; }
-.cmp-strip > span { display: block; }
+.cmp-strip > span { display: block; overflow: hidden; }
 .cmp-strip .mini-strip { height: 10px; margin: 0; }
 
 @media (max-width: 900px) {
