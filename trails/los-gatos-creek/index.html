@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Los Gatos Creek Trail</title>
+<meta name="description" content="An interactive map, timeline and cost tracker for the Los Gatos Creek Trail, from Lexington Dam through Los Gatos and Campbell to downtown San José.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e5c4a'/><path d='M6 24c4-2 5-8 10-9s6-6 10-9' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="../../styles.css?v=202611201756">
+<script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../" title="All South Bay trails"><span class="brand-mark" aria-hidden="true"></span><span class="brand-hub">South Bay Trails</span></a><label class="trail-switch"><span class="sr-only">Trail</span><select id="trailSwitch" aria-label="Choose a trail"><option>Los Gatos Creek Trail</option></select></label>
+  <nav aria-label="Sections">
+    <a href="#intro">The trail</a><a href="#map">Map</a><a href="#timeline">Timeline</a><a href="#costs">Costs</a><a href="#documents">Documents</a><a href="#news">News</a><a href="#photos">Photos</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.92 3.04 12.46 3 12 3Z"/></svg>
+  </button>
+</header>
+
+<main id="top">
+  <section class="cover" aria-label="Introduction">
+    <img class="cover-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Vasona%20Reservoir%20-%20panoramio%20(1).jpg?width=2400" alt="Golden-hour view across Vasona Lake, framed by reeds, in Los Gatos">
+    <div class="cover-shade"></div>
+    <div class="cover-inner">
+      <p class="eyebrow">Los Gatos, Campbell &amp; San José · <span class="js-updated">Updated</span></p>
+      <h1>The trail along<br>Los Gatos Creek</h1>
+      <p class="cover-lede">From the foot of Lexington Dam, a path follows Los Gatos Creek down the canyon, past Vasona Lake and the Campbell ponds, into Willow Glen. For ten miles it never stops. Then, about two miles short of downtown San José, it starts to come apart.</p>
+      <a class="cover-cta" href="#intro">Meet the trail <span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="cover-credit">Vasona Lake, Los Gatos · Photo: Alexey Komarov, CC BY 3.0</p>
+  </section>
+
+  <section id="intro" class="intro">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="eyebrow dark">Meet the trail</p>
+        <h2>Four cities, one creek, one path (mostly)</h2>
+        <p class="big">Los Gatos Creek rises in the Santa Cruz Mountains, fills Lexington Reservoir, and runs north to meet the Guadalupe River beside SAP Center. Four agencies share the trail beside it: the Town of Los Gatos, County Parks, Campbell and San José. In Campbell, San José's 2018 count found more than 1,000 users a day.</p>
+        <p>Much of the southern part dates from the late 1970s, and it's finished. Today about <strong>10.2 miles</strong> connect without a break, from Lexington Dam north to Meridian Ave in San José.</p>
+        <p>North of Meridian, the trail breaks up. About <strong>1.5 miles</strong> are still missing, in two places: a stretch of Willow Glen where back yards run to the middle of the creek, and the last half-mile to the Guadalupe River, around Diridon Station, where the creek runs in culverts and the plan depends on Google's paused campus.</p>
+        <div class="intro-legend"><span><i class="il-built"></i>Open today</span><span><i class="il-gap"></i>Not built yet</span></div>
+        <p class="intro-hint">Scroll on to travel the trail from north to south in three chapters <span aria-hidden="true">↓</span></p>
+        <div class="chapters" id="chapters"></div>
+      </div>
+      <figure class="intro-map-wrap">
+        <div id="introMap" aria-label="Map of the Los Gatos Creek Trail: built sections and gaps"></div>
+        <figcaption id="introMapCap"><strong>The whole trail</strong><span>Guadalupe River to Lexington Dam</span></figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <section class="quotes" aria-label="Why it matters">
+    <div class="quotes-inner" id="quotes"></div>
+  </section>
+
+  <section class="hero" id="numbers">
+    <div class="hero-inner">
+      <p class="eyebrow">By the numbers · <span class="js-updated">Updated</span></p>
+      <h2 class="numbers-h">Where things stand</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="hero-strip" aria-label="Trail status, north to south">
+      <div class="strip-head"><span>North · Guadalupe River (downtown San José)</span><span>South · Lexington Dam (trail ends)</span></div>
+      <div class="strip" id="strip" role="img" aria-label="Proportional bar of trail reaches colored by status"></div>
+      <div class="legend" id="stripLegend"></div>
+    </div>
+  </section>
+
+  <section id="map" class="section">
+    <div class="section-head">
+      <h2>Map of every reach</h2>
+      <p>Trail lines in San José and Campbell come from the City of San José's <a href="https://data.sanjoseca.gov/dataset/trail-reach" target="_blank" rel="noopener">Trail Reach GIS dataset</a>; the Los Gatos section, which the City layer doesn't cover, comes from <a href="https://www.openstreetmap.org/relation/5335571" target="_blank" rel="noopener">OpenStreetMap</a>. Click a line or a list item to see its status and history. Round pins are photos taken at that spot; square pins open a plan sheet for that stretch.</p>
+    </div>
+    <div class="map-wrap">
+      <div id="leaflet" aria-label="Interactive map of the Los Gatos Creek Trail"></div>
+      <aside class="map-side">
+        <div class="filters" id="mapFilters" role="group" aria-label="Filter by status"></div>
+        <div class="filters layer-filters" id="layerFilters" role="group" aria-label="Map layers"></div>
+        <ol class="reach-list" id="reachList"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="section-head">
+      <h2>Timeline, 1935–2028</h2>
+      <p>Scroll through 61 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
+    </div>
+    <div class="tl-sticky" id="tlSticky">
+      <div class="tl-sticky-row">
+        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1935</span></div>
+        <div class="filters" id="tlFilters" role="group" aria-label="Filter timeline"></div>
+      </div>
+      <div class="tl-overview" id="tlOverview"><div class="tl-cursor" id="tlCursor"></div></div>
+    </div>
+    <div class="tl-body">
+      <ol class="timeline" id="tlList"></ol>
+      <div class="tl-map-wrap" id="tlMapWrap">
+        <div id="tlMap" aria-label="Map showing the trail as of the selected event"></div>
+        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1935</strong><span id="tlMapSub"></span></div>
+        <div class="tl-map-legend">
+          <span><i class="ln ln-open"></i>Open by this date</span>
+          <span><i class="ln ln-future"></i>Not yet built</span>
+          <span><i class="ln ln-gap"></i>Still a gap today</span>
+          <span><i class="ln ln-hl"></i>This event</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="costs" class="section">
+    <div class="section-head">
+      <h2>What it has cost, and what's left</h2>
+      <p>Most of the trail was built decades ago, and what it cost isn't online. These are the recent projects with published numbers: total project costs (design, construction, contingency and staff time) from council reports.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="card chart-card">
+        <figcaption><h3>Total project cost</h3><span class="muted">$ millions</span></figcaption>
+        <div class="bars" id="costBars"></div>
+        <p class="footnote">Recent spending has gone to bridges and connectors, not new miles of trail. The Pruneyard spur bar shows its budget at award; the final cost hasn't been published.</p>
+      </figure>
+      <figure class="card chart-card">
+        <figcaption><h3>Cost per mile</h3><span class="muted">$M / mile · hatched = estimate</span></figcaption>
+        <div class="bars" id="perMileBars"></div>
+        <p class="footnote">Only one recent San José segment has both a length and a cost. The City's own estimates for the two downtown gaps run about twice that per mile, because both need undercrossings. The Coyote Creek Trail's 2021–25 projects are shown for comparison.</p>
+      </figure>
+    </div>
+
+    <details class="card table-card">
+      <summary>Project table with contracts and funding sources</summary>
+      <div class="table-scroll"><table id="projTable"></table></div>
+    </details>
+
+    <div class="card mp-card">
+      <h3>Did they deliver? On time and on budget</h3>
+      <p class="muted" style="margin:8px 0 14px;font-size:.92rem;max-width:760px">For each recent project, the finish date planned when the contract was awarded, compared with when it actually opened. The Three Creeks bridge was four years late after a lawsuit over the trestle it replaced. The Hwy 9 connector finished a few months late and within its contingency, but its construction bill ran about 20% above the 2022 estimate.</p>
+      <div class="table-scroll"><table id="deliveryTable"></table></div>
+    </div>
+
+    <div class="card mp-card">
+      <div class="mp-head">
+        <div>
+          <h3>San José's own estimate, from 1985</h3>
+          <p class="muted">The 1985 master plan priced the whole 3.5-mile San José trail, Bascom Ave to the Guadalupe River, at <strong>$2.21 million</strong> in 1985 dollars, including contingency and design. The two phases that were never built, Lincoln–Lonus and Park Ave–Guadalupe, were budgeted at under $700,000 between them. Today the City's and VTA's estimates for the downtown pieces alone come to <strong>$13.9M</strong>.</p>
+        </div>
+        <button class="mp-thumb" data-sch="mp85-cost" aria-label="View the estimate page"><img src="img/schematics/mp85-cost_thumb.jpg" alt="Cost Estimate page from the 1985 master plan"><span>View the original page</span></button>
+      </div>
+      <div class="table-scroll"><table id="mpTable"></table></div>
+    </div>
+
+    <div class="card estimator">
+      <div class="est-head">
+        <div>
+          <h3>Estimate the cost of closing the gaps</h3>
+          <p class="muted">There's no official estimate for the whole job. The Willow Glen gap has never been designed or priced. This calculator applies a cost-per-mile assumption, in today's total project dollars, to the remaining mainline gaps.</p>
+        </div>
+        <div class="est-total"><span class="est-label">Estimated cost</span><span class="est-num" id="estNum">$0M</span><span class="muted" id="estSub"></span></div>
+      </div>
+      <label class="slider-row">
+        <span>Assumed cost per mile: <strong id="perMileVal"></strong></span>
+        <input type="range" id="perMile" min="0.5" max="25" step="0.1" value="8">
+        <span class="slider-scale"><span>$0.5M (1985 dollars)</span><span>$25M (bridges &amp; undercrossings)</span></span>
+      </label>
+      <div class="presets" id="presets"></div>
+      <div class="table-scroll"><table id="gapTable"></table></div>
+      <p class="footnote">This is our estimate, not an official figure. Gap lengths come from the City's GIS. The Lincoln–Lonus stretch of creek, which has no planned trail alignment at all, isn't counted. Right-of-way is the real obstacle in Willow Glen, and no per-mile figure captures it.</p>
+    </div>
+
+    <div class="grid-3 context">
+      <div class="card mini"><span class="mini-num">$39M</span><span>Planned Hwy 17 wildlife and trail crossing near Lexington, linking to the Bay Area Ridge Trail</span><a href="https://www.openspace.org/about/press/midpen-open-space-reaches-major-milestone-highway-17-wildlife-and-trail-crossings" target="_blank" rel="noopener">Midpen</a></div>
+      <div class="card mini"><span class="mini-num">$26.6M</span><span>Planned Hwy 17 bike/pedestrian bridge at Blossom Hill Rd, Los Gatos (2026 estimate)</span><a href="https://mccmeetingspublic.blob.core.usgovcloudapi.net/losgatos-meet-38433177efc94a699543b79d1415b082/ITEM-Attachment-001-1e0630b5598f45c7b48bede8e985038d.pdf" target="_blank" rel="noopener">Town staff report</a></div>
+      <div class="card mini"><span class="mini-num">$4.5M</span><span>Value of the creek-trail work Google agreed to build in Downtown West, now on hold</span><a href="https://legistar.granicus.com/sanjose/attachments/0eb2a75e-4aea-49f4-af9e-6c153efe0a4a.pdf" target="_blank" rel="noopener">Development Agreement, Exh. E1</a></div>
+    </div>
+  </section>
+
+  <section id="documents" class="section">
+    <div class="section-head">
+      <h2>Plans, schematics &amp; official documents</h2>
+      <p>Each document is pinned to the stretch of trail it covers. The bar under each title shows its place on the trail from north to south. Hover over or tap a document to see it on the map.</p>
+    </div>
+    <div class="docs-layout">
+      <div class="doc-map-wrap">
+        <div id="docMap" aria-label="Locator map for documents"></div>
+        <div class="doc-map-cap" id="docMapCap"><strong>Hover over a document</strong><span>to see the stretch of trail it covers</span></div>
+      </div>
+      <div class="docs-col">
+        <h3 class="sub first">Plan sheets &amp; location maps</h3>
+        <p class="muted small">19 figures taken from master plans, construction plans, County Parks maps and project documents, organized north to south. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <div class="sch-grid" id="schGrid"></div>
+        <div id="docGrid"></div>
+        <p class="footnote">Several PDFs are very large. Older County Parks documents are linked through the Internet Archive because the County has taken them down.</p>
+      </div>
+    </div>
+    <h3 class="sub">Interactive maps &amp; open data</h3>
+    <div class="link-grid" id="mapLinks"></div>
+  </section>
+
+  <section id="news" class="section">
+    <div class="section-head">
+      <h2>In the news</h2>
+      <p>Local coverage, 2007–2026. Many Mercury News stories are paywalled; for those, the summary goes no further than the headline.</p>
+    </div>
+    <div class="news-controls">
+      <input type="search" id="newsSearch" placeholder="Search headlines, outlets, topics…" aria-label="Search news">
+      <span class="muted" id="newsCount"></span>
+    </div>
+    <ol class="news" id="newsList"></ol>
+  </section>
+
+  <section id="photos" class="section">
+    <div class="section-head">
+      <h2>Photographs</h2>
+      <p>Openly licensed images from <a href="https://commons.wikimedia.org/wiki/Category:Los_Gatos_Creek_Trail" target="_blank" rel="noopener">Wikimedia Commons</a>, ordered north to south. Each one is pinned on the map at the spot where it was taken. Click a photo to enlarge it, or click the pin icon to jump to it on the map.</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="section about">
+    <h2>About this page</h2>
+    <div class="grid-2">
+      <div>
+        <p>This explorer brings together public records: San José, Campbell and Los Gatos council reports, City of San José GIS data, County Parks plans and maps, Valley Water reports, and local journalism. Each event and figure links to its source. A sister page covers the <a href="https://alexstorer.github.io/coyote-creek-trail/" target="_blank" rel="noopener">Coyote Creek Trail</a>.</p>
+        <p>It's an independent project and is not affiliated with the City of San José, the City of Campbell, the Town of Los Gatos, Santa Clara County or Valley Water.</p>
+      </div>
+      <ul class="caveats">
+        <li>Official lengths disagree: 9, 9.5, 9.7, 11.9 and 14 miles all appear, mostly because of where the north end is counted. This site measures 12.4 mapped mainline miles from the Guadalupe River to Lexington Dam.</li>
+        <li>Opening years for the Campbell and Los Gatos sections aren't documented online; the timeline map treats them as approximate ("late 1970s").</li>
+        <li>The Los Gatos section's lines come from OpenStreetMap, not an official source.</li>
+        <li>The gap-cost range is our extrapolation, not an official estimate.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Basemap © Esri and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors; trail reaches: City of San José Open Data and OpenStreetMap (ODbL); photos: Wikimedia Commons contributors.</span>
+  <span><span class="js-updated">Updated</span> · <a href="https://github.com/alexstorer/south-bay-trails" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">×</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="../../data/hub.js?v=202611201756"></script>
+<script src="data/reaches.js?v=202611201756"></script>
+<script src="data/data.js?v=202611201756"></script>
+<script src="data/geo.js?v=202611201756"></script>
+<script src="../../app.js?v=202611201756"></script>
+</body>
+</html>

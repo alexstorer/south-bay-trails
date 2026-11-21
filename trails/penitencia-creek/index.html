@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Penitencia Creek Trail</title>
+<meta name="description" content="Map, timeline and cost tracker for San José's Penitencia Creek Trail, from Berryessa BART through Penitencia Creek County Park to Alum Rock Park.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e5c4a'/><path d='M6 24c4-2 5-8 10-9s6-6 10-9' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="../../styles.css?v=202611201756">
+<script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../" title="All South Bay trails"><span class="brand-mark" aria-hidden="true"></span><span class="brand-hub">South Bay Trails</span></a><label class="trail-switch"><span class="sr-only">Trail</span><select id="trailSwitch" aria-label="Choose a trail"><option>Penitencia Creek Trail</option></select></label>
+  <nav aria-label="Sections">
+    <a href="#intro">The trail</a><a href="#map">Map</a><a href="#timeline">Timeline</a><a href="#costs">Costs</a><a href="#documents">Documents</a><a href="#news">News</a><a href="#photos">Photos</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.92 3.04 12.46 3 12 3Z"/></svg>
+  </button>
+</header>
+
+<main id="top">
+  <section class="cover" aria-label="Introduction">
+    <img class="cover-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Alum%20Rock%20Park%20Bridge.jpg?width=2400" alt="A stone arch bridge over Penitencia Creek in Alum Rock Park">
+    <div class="cover-shade"></div>
+    <div class="cover-inner">
+      <p class="eyebrow">Berryessa &amp; Alum Rock, San José · <span class="js-updated">Updated</span></p>
+      <h1>The trail along<br>Penitencia Creek</h1>
+      <p class="cover-lede">Penitencia Creek tumbles out of Alum Rock Park and runs west to Coyote Creek. Beside it, a trail links San José's oldest park to a BART station: the first direct transit connection in the Bay Area Ridge Trail's history. Both ends are still a few hundred yards short.</p>
+      <a class="cover-cta" href="#intro">Meet the trail <span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="cover-credit">Stone bridge over Penitencia Creek, Alum Rock Park · Photo: Dawn Ellner, CC BY 2.0</p>
+  </section>
+
+  <section id="intro" class="intro">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="eyebrow dark">Meet the trail</p>
+        <h2>From the train to the canyon</h2>
+        <p class="big">The Penitencia Creek Trail is a chain of short pieces built by the City, the County and Valley Water since the 1970s: along Mabury Rd, through Penitencia Creek County Park, past the percolation ponds, and on boardwalks into the foothills. Since 2020 it starts at the Berryessa/North San José BART station.</p><p>About <strong>4.2 miles</strong> are open, from BART to Dorel Dr, roughly 0.9 of them gravel.</p><p>Two short pieces are missing: <strong>0.5 mile</strong> from BART across the flea market to Coyote Creek, which waits on Valley Water's flood project, and <strong>0.17 mile</strong> from Dorel Dr to the Alum Rock Park gate, which needs an easement a neighbor wouldn't give.</p>
+        <div class="intro-legend"><span><i class="il-built"></i>Open today</span><span><i class="il-gap"></i>Not built yet</span></div>
+        <p class="intro-hint">Scroll on to travel the creek from Coyote Creek up to Alum Rock in three chapters <span aria-hidden="true">↓</span></p>
+        <div class="chapters" id="chapters"></div>
+      </div>
+      <figure class="intro-map-wrap">
+        <div id="introMap" aria-label="Map of the Penitencia Creek Trail: built sections and gaps"></div>
+        <figcaption id="introMapCap"><strong>The whole trail</strong><span>Coyote Creek to Alum Rock Park</span></figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <section class="quotes" aria-label="Why it matters">
+    <div class="quotes-inner" id="quotes"></div>
+  </section>
+
+  <section class="hero" id="numbers">
+    <div class="hero-inner">
+      <p class="eyebrow">By the numbers · <span class="js-updated">Updated</span></p>
+      <h2 class="numbers-h">Where things stand</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="hero-strip" aria-label="Trail status, north to south">
+      <div class="strip-head"><span>Downstream · Coyote Creek</span><span>Upstream · Alum Rock Park</span></div>
+      <div class="strip" id="strip" role="img" aria-label="Proportional bar of trail reaches colored by status"></div>
+      <div class="legend" id="stripLegend"></div>
+    </div>
+  </section>
+
+  <section id="map" class="section">
+    <div class="section-head">
+      <h2>Map of every reach</h2>
+      <p>Trail lines come from the City of San José's <a href="https://data.sanjoseca.gov/dataset/trail-reach" target="_blank" rel="noopener">Trail Reach GIS dataset</a>. Click a line or a list item to see its status and history. Round pins are photos; square pins open a plan sheet for that stretch.</p>
+    </div>
+    <div class="map-wrap">
+      <div id="leaflet" aria-label="Interactive map of the Penitencia Creek Trail"></div>
+      <aside class="map-side">
+        <div class="filters" id="mapFilters" role="group" aria-label="Filter by status"></div>
+        <div class="filters layer-filters" id="layerFilters" role="group" aria-label="Map layers"></div>
+        <ol class="reach-list" id="reachList"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="section-head">
+      <h2>Timeline, 1911–2027</h2>
+      <p>Scroll through 34 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
+    </div>
+    <div class="tl-sticky" id="tlSticky">
+      <div class="tl-sticky-row">
+        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1911</span></div>
+        <div class="filters" id="tlFilters" role="group" aria-label="Filter timeline"></div>
+      </div>
+      <div class="tl-overview" id="tlOverview"><div class="tl-cursor" id="tlCursor"></div></div>
+    </div>
+    <div class="tl-body">
+      <ol class="timeline" id="tlList"></ol>
+      <div class="tl-map-wrap" id="tlMapWrap">
+        <div id="tlMap" aria-label="Map showing the trail as of the selected event"></div>
+        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1911</strong><span id="tlMapSub"></span></div>
+        <div class="tl-map-legend">
+          <span><i class="ln ln-open"></i>Open by this date</span>
+          <span><i class="ln ln-future"></i>Not yet built</span>
+          <span><i class="ln ln-gap"></i>Still a gap today</span>
+          <span><i class="ln ln-hl"></i>This event</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="costs" class="section">
+    <div class="section-head">
+      <h2>What it has cost, and what's left</h2>
+      <p>Most of the trail was built cheaply on water-district and county land in the 1990s and 2000s. The recent pieces cost far more per mile, and the missing link to Coyote Creek is tied to a flood project with no construction money.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="card chart-card">
+        <figcaption><h3>Recent projects</h3><span class="muted">$ millions</span></figcaption>
+        <div class="bars" id="costBars"></div>
+        <p class="footnote">The BART link bar is the federal grant amount; VTA built it and its final cost hasn't been published. The Reach 1B total includes $1.23M in design and staff time.</p>
+      </figure>
+      <figure class="card chart-card">
+        <figcaption><h3>Cost per mile</h3><span class="muted">$M / mile · hatched = estimate</span></figcaption>
+        <div class="bars" id="perMileBars"></div>
+        <p class="footnote">Reach 1B's boardwalks around the sycamores made it expensive for a creekside path; the Coyote Creek Trail's recent average is shown for comparison.</p>
+      </figure>
+    </div>
+
+    <details class="card table-card">
+      <summary>Project table with contracts and funding sources</summary>
+      <div class="table-scroll"><table id="projTable"></table></div>
+    </details>
+
+    <div class="card mp-card">
+      <h3>Promises and what happened</h3>
+      <p class="muted" style="margin:8px 0 14px;font-size:.92rem;max-width:760px">Reach 1B took three bid rounds and came in 59% over its 2013 budget. The BART link opened two years late, because BART did. The flood project that would finish the trail lost its construction money in 2023.</p>
+      <div class="table-scroll"><table id="deliveryTable"></table></div>
+    </div>
+
+    <div class="card mp-card">
+      <div class="mp-head">
+        <div>
+          <h3>Valley Water's flood project, phase by phase</h3>
+          <p class="muted">The trail's missing half mile to Coyote Creek is part of Phase I. Valley Water picked this plan in 2019 at <strong>$24M for Phases I–II</strong> (2019 dollars), then removed the construction money in January 2023 and is now re-planning it for targeted fixes.</p>
+        </div>
+        <button class="mp-thumb" data-sch="psr-cost" aria-label="View the cost table"><img src="img/schematics/psr-cost_thumb.jpg" alt="Cost table from the 2022 planning study"><span>View the original page</span></button>
+      </div>
+      <div class="table-scroll"><table id="mpTable"></table></div>
+    </div>
+
+    <div class="card estimator">
+      <div class="est-head">
+        <div>
+          <h3>Estimate the cost of closing the gaps</h3>
+          <p class="muted">Two short pieces are missing. The real obstacles are land and the flood project, not construction; this calculator applies a cost-per-mile assumption to their length.</p>
+        </div>
+        <div class="est-total"><span class="est-label">Estimated cost</span><span class="est-num" id="estNum">$0M</span><span class="muted" id="estSub"></span></div>
+      </div>
+      <label class="slider-row">
+        <span>Assumed cost per mile: <strong id="perMileVal"></strong></span>
+        <input type="range" id="perMile" min="1" max="25" step="0.1" value="6.2">
+        <span class="slider-scale"><span>$1M (simple path)</span><span>$25M (bridges &amp; undercrossings)</span></span>
+      </label>
+      <div class="presets" id="presets"></div>
+      <div class="table-scroll"><table id="gapTable"></table></div>
+      <p class="footnote">This is our estimate, not an official figure. It leaves out land costs at the flea market site and any undercrossing at Berryessa Rd.</p>
+    </div>
+
+    <div class="grid-3 context">
+      <div class="card mini"><span class="mini-num">$43M</span><span>Valley Water's estimate for flood Phase III (Capitol Ave to Dorel Dr), deferred</span><a href="https://assets.valleywater.org/files/Upper%20Pen%20PSR%20final%202022.pdf" target="_blank" rel="noopener">Planning study</a></div>
+      <div class="card mini"><span class="mini-num">$455M</span><span>Estimated damage from a 1% (100-year) flood along Upper Penitencia, in 2004 dollars</span><a href="https://www.valleywater.org/project-updates/e4-upper-penitencia-creek-flood-protection-0" target="_blank" rel="noopener">Valley Water</a></div>
+      <div class="card mini"><span class="mini-num">$19M</span><span>Unfunded permanent repairs to the Alum Rock Park road after the 2023 storms</span><a href="https://www.cbsnews.com/sanfrancisco/news/san-jose-alum-rock-park-reopens-areas-easter-weekend/" target="_blank" rel="noopener">CBS News</a></div>
+    </div>
+  </section>
+
+  <section id="documents" class="section">
+    <div class="section-head">
+      <h2>Plans, schematics &amp; official documents</h2>
+      <p>Each document is pinned to the stretch of trail it covers. The bar under each title shows its place on the trail from north to south. Hover over or tap a document to see it on the map.</p>
+    </div>
+    <div class="docs-layout">
+      <div class="doc-map-wrap">
+        <div id="docMap" aria-label="Locator map for documents"></div>
+        <div class="doc-map-cap" id="docMapCap"><strong>Hover over a document</strong><span>to see the stretch of trail it covers</span></div>
+      </div>
+      <div class="docs-col">
+        <h3 class="sub first">Plan sheets &amp; location maps</h3>
+        <p class="muted small">11 figures from Valley Water's 2022 flood planning study, VTA's trail connector fact sheet, City memos and the Bay Area Ridge Trail map. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <div class="sch-grid" id="schGrid"></div>
+        <div id="docGrid"></div>
+        <p class="footnote"><span class="code">sanjoseca.gov</span> and County Parks block some downloads that don't come from a regular web browser; those documents are cited by link.</p>
+      </div>
+    </div>
+    <h3 class="sub">Interactive maps &amp; open data</h3>
+    <div class="link-grid" id="mapLinks"></div>
+  </section>
+
+  <section id="news" class="section">
+    <div class="section-head">
+      <h2>In the news</h2>
+      <p>Coverage of the trail, the creek and the BART station, 2011–2025. Much of it is about floods and Alum Rock Park's storm damage.</p>
+    </div>
+    <div class="news-controls">
+      <input type="search" id="newsSearch" placeholder="Search headlines, outlets, topics…" aria-label="Search news">
+      <span class="muted" id="newsCount"></span>
+    </div>
+    <ol class="news" id="newsList"></ol>
+  </section>
+
+  <section id="photos" class="section">
+    <div class="section-head">
+      <h2>Photographs</h2>
+      <p>Openly licensed images from <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. Commons has almost nothing of the creek between BART and Alum Rock; the light-rail station photos show the Capitol Ave crossing, and the Miguelita Creek photo is a neighboring creek, not pinned on the map.</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="section about">
+    <h2>About this page</h2>
+    <div class="grid-2">
+      <div>
+        <p>This page brings together San José council memos and GIS data, Valley Water's flood-project studies, State Coastal Conservancy grants, VTA documents and local journalism. Each event and figure links to its source.</p>
+        <p>An independent project, not affiliated with the City of San José, Santa Clara County, Valley Water or VTA. Part of <a href="../../">South Bay Trails</a>.</p>
+      </div>
+      <ul class="caveats">
+        <li>City master plans number reaches from the east (Reach 1 = Noble to Alum Rock Park); City GIS IDs run from the west. This page uses the GIS IDs.</li><li>Opening years for the county park and pond stretches aren't documented online; the timeline map treats them as approximate.</li><li>The BART link's cost shown is its federal grant; VTA's final cost isn't published.</li><li>The gap-cost range is our extrapolation, not an official estimate.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Basemap © Esri and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors; trail reaches: City of San José Open Data; photos: Wikimedia Commons contributors.</span>
+  <span><span class="js-updated">Updated</span> · <a href="https://github.com/alexstorer/south-bay-trails" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">×</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="../../data/hub.js?v=202611201756"></script>
+<script src="data/reaches.js?v=202611201756"></script>
+<script src="data/data.js?v=202611201756"></script>
+<script src="data/geo.js?v=202611201756"></script>
+<script src="../../app.js?v=202611201756"></script>
+</body>
+</html>

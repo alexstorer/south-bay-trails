@@ -1,0 +1,62 @@
+[
+ {
+  "slug": "guadalupe-river",
+  "name": "Guadalupe River Trail",
+  "tagline": "Twelve paved miles from the Bay into downtown, then a five-mile gap waiting on an unfinished flood project.",
+  "cover": {
+   "f": "Guadalupe River trail (23835759271).jpg",
+   "a": "Sandip Bhattacharya",
+   "l": "CC BY 2.0"
+  }
+ },
+ {
+  "slug": "coyote-creek",
+  "name": "Coyote Creek Trail",
+  "tagline": "Bay to Anderson Dam. 21 miles connect; the north end is still in pieces.",
+  "cover": {
+   "f": "Kluft-photo-2019-06-16-Coyote-Creek-Trail-Bailey-turn.jpg",
+   "a": "Ikluft",
+   "l": "CC BY-SA 4.0"
+  }
+ },
+ {
+  "slug": "los-gatos-creek",
+  "name": "Los Gatos Creek Trail",
+  "tagline": "Lexington Dam to Willow Glen without a break, then it comes apart short of downtown.",
+  "cover": {
+   "f": "Vasona Reservoir - panoramio (1).jpg",
+   "a": "Alexey Komarov",
+   "l": "CC BY 3.0"
+  }
+ },
+ {
+  "slug": "five-wounds",
+  "name": "Five Wounds Trail",
+  "tagline": "A rail-trail through Little Portugal, waiting on BART, soil cleanup and a 1922 trestle.",
+  "cover": {
+   "f": "Five Wounds Portuguese National Church, Little Portugal, Santa Clara Street, San Jose 06.jpg",
+   "a": "GualdimG",
+   "l": "CC BY-SA 4.0"
+  }
+ },
+ {
+  "slug": "silver-creek",
+  "name": "Silver Creek Trail",
+  "tagline": "Valley Water rebuilt the creek and left levee roads; 19 years after the trail plan, under two miles are open.",
+  "cover": {
+   "f": "Lower Silver Creek, San Jose, California, US.jpg",
+   "a": "Clyde Charles Brown",
+   "l": "CC BY-SA 4.0"
+  }
+ },
+ {
+  "slug": "penitencia-creek",
+  "name": "Penitencia Creek Trail",
+  "tagline": "From Berryessa BART to the edge of Alum Rock Park; both ends are a few hundred yards short.",
+  "cover": {
+   "f": "Alum Rock Park Bridge.jpg",
+   "a": "Dawn Ellner",
+   "l": "CC BY 2.0"
+  }
+ }
+]

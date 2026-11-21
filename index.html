@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>South Bay Trails</title>
+<meta name="description" content="Interactive maps, timelines and cost trackers for the creek and rail trails of San José and the South Bay: what's built, what's missing, and why.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e5c4a'/><path d='M6 24c4-2 5-8 10-9s6-6 10-9' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="styles.css?v=202611201756">
+<link rel="stylesheet" href="hub.css?v=202611201756">
+<script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body class="hub">
+<header class="topbar">
+  <a class="brand" href="./"><span class="brand-mark" aria-hidden="true"></span>South Bay Trails</a>
+  <nav aria-label="Sections"><a href="#trails">Trails</a><a href="#compare">Compare</a><a href="#about">About</a></nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.92 3.04 12.46 3 12 3Z"/></svg>
+  </button>
+</header>
+
+<main id="top" class="hub-main">
+  <section class="hub-split" id="trails">
+    <div class="hub-panel">
+      <p class="eyebrow dark">San José &amp; Santa Clara County · <span id="hubUpdated"></span></p>
+      <h1 class="hub-title">The creek trails of the South Bay</h1>
+      <p class="hub-lede">Paths follow the creeks and old rail lines of San José from the mountains toward the Bay. Most of the mileage is open. The gaps are short, expensive and stubborn: a trestle, a culvert, a back yard, a BART station. Pick a trail to see what's built, what's missing, what it has cost, and every document and news story behind it.</p>
+      <div class="hub-totals" id="hubTotals"></div>
+      <div class="hub-key"><span><i class="k-open"></i>Open</span><span><i class="k-gap"></i>Not built yet</span><span class="muted">Hover a trail to find it on the map</span></div>
+      <ol class="trail-cards" id="trailCards"></ol>
+    </div>
+    <div class="hub-map-wrap">
+      <div id="hubMap" aria-label="Map of South Bay creek trails"></div>
+      <div class="hub-map-card" id="hubMapCard" hidden></div>
+    </div>
+  </section>
+
+  <section class="section" id="compare">
+    <div class="section-head">
+      <h2>The trails side by side</h2>
+      <p>Mapped mainline miles from the City of San José's trail GIS (plus OpenStreetMap for the Los Gatos stretch). Each bar runs from the trail's north end to its south end; hatched pieces are unbuilt.</p>
+    </div>
+    <div class="card table-card open-table"><div class="table-scroll"><table id="compareTable"></table></div></div>
+  </section>
+
+  <section class="section about" id="about">
+    <h2>About these pages</h2>
+    <div class="grid-2">
+      <div>
+        <p>Each trail page brings together public records: city council memos and GIS data, Valley Water and County Parks documents, environmental filings, and local journalism. Every event, cost and figure links to its source, and each page lists what we couldn't verify.</p>
+        <p>An independent project, not affiliated with the City of San José, Santa Clara County, Valley Water, VTA or any of the other agencies involved.</p>
+      </div>
+      <ul class="caveats">
+        <li>Gap-cost figures on the trail pages are our extrapolations unless marked as official estimates.</li>
+        <li>GIS status can lag what's on the ground. Each trail page notes where we know it does.</li>
+        <li>Photos are openly licensed images from Wikimedia Commons; where Commons has none of a place, the page says so.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Basemap © Esri and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors; trail reaches: City of San José Open Data and OpenStreetMap (ODbL); photos: Wikimedia Commons contributors.</span>
+  <span><a href="https://github.com/alexstorer/south-bay-trails" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="data/hub.js?v=202611201756"></script>
+<script src="hub.js?v=202611201756"></script>
+</body>
+</html>
