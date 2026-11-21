@@ -6,7 +6,7 @@ Interactive maps, timelines and cost trackers for the creek and rail trails of S
 
 | Trail | Page | Mapped | Open | Missing |
 |---|---|---|---|---|
-| Guadalupe River Trail | `trails/guadalupe-river/` | 19.4 mi | 14.0 mi | 5.4 mi |
+| Guadalupe River Trail | `trails/guadalupe-river/` | 19.4 mi | 14.0 mi | 5.3 mi |
 | Coyote Creek Trail | `trails/coyote-creek/` | 32.9 mi | 28.0 mi | 4.9 mi |
 | Los Gatos Creek Trail | `trails/los-gatos-creek/` | 12.4 mi | 10.9 mi | 1.5 mi |
 | Silver Creek Trail (Lower & Upper) | `trails/silver-creek/` | 7.0 mi | 2.6 mi | 4.3 mi |

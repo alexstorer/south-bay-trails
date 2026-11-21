@@ -114,12 +114,28 @@
     const ph = e.target.closest("[data-photo]"); if (ph) { e.preventDefault(); openPhoto(PHOTO_BY_F[ph.dataset.photo]); }
   });
 
+  const pinSvg = `<svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>`;
   /* ---------- Trail switcher (all trails live in data/hub.js at the site root) ---------- */
   const sw = $("#trailSwitch");
   if (sw && typeof HUB !== "undefined") {
     const here = location.pathname.split("/").filter(Boolean).slice(-1)[0];
-    sw.innerHTML = HUB.trails.map(t => `<option value="${t.slug}"${t.slug === here ? " selected" : ""}>${esc(t.name)}</option>`).join("");
-    sw.addEventListener("change", () => { location.href = `../${sw.value}/`; });
+    const btn = $(".ts-btn", sw), menu = $(".ts-menu", sw);
+    const strip = t => `<span class="ts-strip" aria-hidden="true">${t.strip.map(([st, mi]) => `<i class="${st.startsWith("Open") ? "ms-open" : "ms-gap"}" style="flex:${mi} 0 0"></i>`).join("")}</span>`;
+    menu.innerHTML = HUB.trails.map(t => `<a class="ts-item${t.slug === here ? " current" : ""}" href="../${t.slug}/"${t.slug === here ? ' aria-current="page"' : ""}>
+        <span class="ts-row"><strong>${esc(t.name)}</strong><span class="ts-mi">${t.openMi.toFixed(1)} mi open · <span class="gap-t">${t.gapMi.toFixed(1)} missing</span></span></span>${strip(t)}</a>`).join("") +
+      `<a class="ts-all" href="../../">${pinSvg} All trails on one map</a>`;
+    const open = on => { menu.hidden = !on; btn.setAttribute("aria-expanded", String(on)); if (on) (menu.querySelector(".current") || menu.querySelector("a")).focus(); };
+    btn.addEventListener("click", e => { e.stopPropagation(); open(menu.hidden); });
+    document.addEventListener("click", e => { if (!sw.contains(e.target)) open(false); });
+    sw.addEventListener("keydown", e => {
+      if (e.key === "Escape") { open(false); btn.focus(); }
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault(); const items = [...menu.querySelectorAll("a")];
+        if (menu.hidden) return open(true);
+        const i = items.indexOf(document.activeElement);
+        items[(i + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length].focus();
+      }
+    });
   }
 
   /* ---------- Last-updated stamp ---------- */
@@ -180,7 +196,6 @@
   const featsFor = ids => feats.filter(f => ids.includes(f.properties.id));
   const boundsFor = ids => L.geoJSON({ type: "FeatureCollection", features: featsFor(ids) }).getBounds();
   const allBounds = L.geoJSON(REACHES).getBounds();
-  const pinSvg = `<svg width="12" height="12" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7Zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5Z"/></svg>`;
 
   /* ---------- Intro: two-tone map + chapters ---------- */
   const isGap = p => UNBUILT.includes(p.status) && !NOT_GAP.includes(p.id);

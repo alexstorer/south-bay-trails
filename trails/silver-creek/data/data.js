@@ -1,5 +1,5 @@
 // When the site's facts were last checked. Bump this (scripts/stamp.py does it) on every content update.
-const SITE_UPDATED = "2026-11-20";
+const SITE_UPDATED = "2026-11-21";
 
 // Curated research data for the Silver Creek Trail page (Lower and Upper Silver Creek).
 // Every entry carries at least one source URL.

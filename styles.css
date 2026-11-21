@@ -503,11 +503,23 @@ td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; white-sp
 .brand-hub { font-weight: 600; color: var(--muted); }
 .brand:hover .brand-hub { color: var(--text); }
 .trail-switch { position: relative; display: inline-flex; align-items: center; margin-left: -12px; }
-.trail-switch::before { content: "/"; color: var(--muted); margin-right: 8px; }
-.trail-switch select { appearance: none; -webkit-appearance: none; font: inherit; font-weight: 700; color: var(--text); background: transparent;
-  border: 1px solid transparent; border-radius: 8px; padding: 4px 26px 4px 8px; cursor: pointer;
-  background-image: linear-gradient(45deg, transparent 50%, currentColor 50%), linear-gradient(135deg, currentColor 50%, transparent 50%);
-  background-position: calc(100% - 13px) 55%, calc(100% - 8px) 55%; background-size: 5px 5px; background-repeat: no-repeat; }
-.trail-switch select:hover, .trail-switch select:focus-visible { border-color: var(--line); background-color: var(--surface); }
-.trail-switch select option { color: #111; }
-@media (max-width: 720px) { .brand-hub { display: none; } .trail-switch { margin-left: 0; } .trail-switch::before { display: none; } }
+.trail-switch::before { content: "/"; color: var(--muted); margin-right: 6px; }
+.ts-btn { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-weight: 700; color: var(--text); background: transparent;
+  border: 1px solid transparent; border-radius: 8px; padding: 5px 8px; cursor: pointer; white-space: nowrap; }
+.ts-btn:hover, .ts-btn[aria-expanded="true"], .ts-btn:focus-visible { background: var(--surface); border-color: var(--line); }
+.ts-chev { color: var(--muted); transition: transform .15s; }
+.ts-btn[aria-expanded="true"] .ts-chev { transform: rotate(180deg); }
+.ts-menu { position: absolute; top: calc(100% + 8px); left: 0; z-index: 1200; width: 380px; max-width: calc(100vw - 24px); padding: 6px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 16px 40px rgba(0,0,0,.16); }
+.ts-item { display: block; padding: 9px 10px 10px; border-radius: 10px; color: var(--text); text-decoration: none; }
+.ts-item:hover, .ts-item:focus-visible { background: var(--surface-2); outline: none; }
+.ts-item.current { background: var(--accent-soft); }
+.ts-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.ts-row strong { font-size: .92rem; font-weight: 600; }
+.ts-mi { font-size: .74rem; color: var(--muted); white-space: nowrap; }
+.ts-strip { display: flex; gap: 2px; height: 5px; margin-top: 7px; }
+.ts-strip i { display: block; min-width: 2px; border-radius: 2px; }
+.ms-open { background: var(--open); }
+.ms-gap { background: repeating-linear-gradient(90deg, var(--planned) 0 3px, transparent 3px 5px); }
+.ts-all { display: flex; align-items: center; gap: 6px; margin-top: 4px; padding: 10px; border-top: 1px solid var(--line); font-size: .85rem; font-weight: 600; text-decoration: none; }
+@media (max-width: 720px) { .brand-hub { display: none; } .trail-switch { margin-left: 0; } .trail-switch::before { display: none; } .ts-menu { position: fixed; top: 58px; left: 12px; right: 12px; width: auto; } }
