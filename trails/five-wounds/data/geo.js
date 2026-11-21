@@ -15,12 +15,17 @@ const BUILT = { FIV10: { y: 2006.9, approx: true } };
 const HRE = "Historic Resources Evaluation (TreanorHL, July 2023)";
 const BTS = "Bridge Type Selection Report (GHD, Aug 2023)";
 const MP26 = "Master plan community meeting (City/BKF, July 2026)";
+const FEAS = "Feasibility Study (RRM, Aug 2022)";
+const GHD = "Structural Evaluation (GHD, Aug 2023)";
+const SOI = "Secretary of the Interior's Standards review (TreanorHL, July 2023)";
 const SCHEMATICS = [
   // The whole corridor
   { k: "mp26-segments", t: "The trail in four segments, as the City split it in July 2026", d: MP26, r: WHOLE, src: SRC.mp2026, short: "Segment map" },
   { k: "cc10-overview", t: "2010 community concept: the rail-to-trail corridor", d: "BART Station Area Community Concept Plan, Fig. 44 (2010)", r: VTA_LAND, src: SRC.concept2010, short: "Concept plan" },
   { k: "psa-parcels", t: "Who owns what: the parcels VTA is handing over", d: "City memo on the VTA purchase agreement, Aug 2023", r: VTA_LAND, src: SRC.psa2023, short: "Parcel map" },
   { k: "atp18-map", t: "Proposed alignment in the 2018 state grant bid", d: "City ATP grant memo, Nov 2018", r: WHOLE, src: SRC.atp2018, short: "Grant map" },
+  { k: "city-map", t: "City trail map: the alignment north to Mabury Rd", d: "City Trail Program map, July 2018", r: WHOLE, src: SRC.cityMap, short: "City map" },
+  { k: "feas-cost", t: "Phase 1 rough estimate: $14.8–19.7M", d: FEAS + ", Fig. 24", r: SOUTH_PLAN, src: SRC.feas2022, short: "Cost estimate" },
   { k: "atp20-cost", t: "What $34M would buy: the 2020 itemized estimate", d: "City ATP grant memo, Aug 2020", r: R("FIV02", "FIV11a"), src: SRC.atp2020, short: "Cost estimate" },
   // North: BART and Little Portugal
   { k: "bart-station", t: "28th St/Little Portugal station plan, with the \"Future Five Wounds Trail\"", d: "VTA station fact sheet, Jan 2026", r: ["FIV01", "FIV02"], src: SRC.vtaStation, short: "Station plan" },
@@ -28,21 +33,28 @@ const SCHEMATICS = [
   // Middle: the rail line and 22nd St
   { k: "mp26-seg2", t: "Segment 2: 22nd St and the old railbed to Santa Clara St", d: MP26, r: SEG2, src: SRC.mp2026, short: "Master plan" },
   { k: "mp26-william", t: "Planned crossing at William St and 23rd St", d: MP26, r: ["FIV09", "FIV10"], src: SRC.mp2026, short: "Master plan" },
+  { k: "feas-north", t: "2022 preferred route: 22nd St to Whitton Ave", d: FEAS + ", Fig. 10", r: R("FIV06", "FIV10"), src: SRC.feas2022, short: "Feasibility" },
+  { k: "feas-23rd", t: "Two options at William and 23rd St, compared", d: FEAS + ", Fig. 19", r: ["FIV09"], src: SRC.feas2022, short: "23rd St options" },
   { k: "mp26-22nd", t: "Planned bike boulevard and path along 22nd St", d: MP26, r: ["FIV10"], src: SRC.mp2026, short: "Master plan" },
   // South: the trestle
   { k: "hre-photos", t: "The trestle today, from below and from the Coyote Creek Trail", d: HRE + ", Figs. 6–9", r: ["FIV11a"], src: SRC.hre, short: "Trestle photos" },
   { k: "hre-aerial", t: "Aerial views of the trestle block", d: HRE + ", Figs. 1–2", r: SEG1, src: SRC.hre, short: "Aerial" },
   { k: "hre-train", t: "A Western Pacific train in the William Street Yard, c. 1978, looking toward the trestle", d: HRE + ", Fig. 21", r: ["FIV10", "FIV11b", "FIV11a"], src: SRC.hre, short: "Rail history" },
   { k: "hre-wpmap", t: "The Western Pacific's San Jose Branch, c. 1950", d: HRE + ", Fig. 10", r: WHOLE, src: SRC.hre, short: "Rail map" },
+  { k: "feas-south", t: "2022 preferred route: Story Rd across the creek and the old landfill", d: FEAS + ", Fig. 10", r: SEG1, src: SRC.feas2022, short: "Feasibility" },
+  { k: "soi-aerial", t: "The trestle, the Coyote Creek Trail and the planned route from above", d: SOI + ", Fig. 1", r: ["FIV11a"], src: SRC.soi, short: "Aerial" },
+  { k: "ghd-scan", t: "3D scan of the trestle and a typical bent", d: GHD + ", Figs. 1–2", r: ["FIV11a"], src: SRC.structural, short: "Scan" },
+  { k: "ghd-fire", t: "A typical bent, and one damaged by the 2021 fire", d: GHD + ", Figs. 4–5", r: ["FIV11a"], src: SRC.structural, short: "Fire damage" },
   { k: "bts-retrofit", t: "Option 1: retrofit the trestle with steel bents", d: BTS + ", Fig. 4", r: ["FIV11a"], src: SRC.bts, short: "Option 1" },
   { k: "bts-truss", t: "Option 2: a steel truss bridge in its place", d: BTS + ", Figs. 6–7", r: ["FIV11a"], src: SRC.bts, short: "Option 2" },
+  { k: "soi-alt3", t: "Option 3: a new truss beside the stabilized trestle", d: SOI + ", Alternative 3 elevation", r: ["FIV11a"], src: SRC.soi, short: "Option 3" },
   { k: "bts-options", t: "The three options compared: cost, permits, schedule", d: BTS + ", Sec. 6", r: ["FIV11a"], src: SRC.bts, short: "Comparison" },
 ];
 const SCH_GROUPS = [
-  ["The whole corridor", ["mp26-segments", "cc10-overview", "psa-parcels", "atp18-map", "atp20-cost", "hre-wpmap"]],
+  ["The whole corridor", ["mp26-segments", "cc10-overview", "psa-parcels", "atp18-map", "city-map", "atp20-cost", "feas-cost", "hre-wpmap"]],
   ["North: BART and Little Portugal", ["bart-station", "cc10-north"]],
-  ["Middle: 22nd St and the old railbed", ["mp26-seg2", "mp26-william", "mp26-22nd", "hre-train"]],
-  ["South: the Coyote Creek trestle", ["hre-photos", "hre-aerial", "bts-retrofit", "bts-truss", "bts-options"]],
+  ["Middle: 22nd St and the old railbed", ["mp26-seg2", "feas-north", "mp26-william", "feas-23rd", "mp26-22nd", "hre-train"]],
+  ["South: the Coyote Creek trestle", ["feas-south", "hre-photos", "hre-aerial", "soi-aerial", "ghd-scan", "ghd-fire", "bts-retrofit", "bts-truss", "soi-alt3", "bts-options"]],
 ];
 
 // Per-event extras, keyed by the event's date string in TIMELINE.
@@ -70,11 +82,11 @@ const EVENT_GEO = {
   "2020-06": { r: WHOLE },
   "2020-06-18": { r: SOUTH_PLAN },
   "2020-09-01": { r: R("FIV02", "FIV11a"), sch: "atp20-cost" },
-  "2021-03": { pt: TRESTLE, r: ["FIV11a"], sch: "hre-photos" },
+  "2021-03": { pt: TRESTLE, r: ["FIV11a"], sch: ["ghd-fire", "hre-photos"] },
   "2022-06": { r: VTA_LAND, sch: "psa-parcels" },
-  "2022-08-30": { r: SOUTH_PLAN },
+  "2022-08-30": { r: SOUTH_PLAN, sch: ["feas-cost", "feas-south", "feas-north", "feas-23rd"] },
   "2023-06": { pt: TRESTLE, r: ["FIV11a"], sch: "hre-photos" },
-  "2023-08-02": { pt: TRESTLE, r: ["FIV11a"], sch: ["bts-options", "bts-retrofit", "bts-truss"] },
+  "2023-08-02": { pt: TRESTLE, r: ["FIV11a"], sch: ["bts-options", "bts-retrofit", "bts-truss", "soi-alt3", "ghd-scan"] },
   "2023-09-12": { r: VTA_LAND, sch: "psa-parcels" },
   "2023-10-31": { r: WHOLE },
   "2024-02-08": { r: VTA_LAND },
@@ -82,7 +94,7 @@ const EVENT_GEO = {
   "2024-06-14": { pt: STATION, w: "28th St/Little Portugal station site", r: ["FIV02"] },
   "2025-07": { r: R("FIV03", "FIV11a") },
   "2026-01-17": { pt: TRESTLE, r: ["FIV11a"] },
-  "2026-03-04": { pt: TRESTLE, r: ["FIV11a"], sch: "bts-truss" },
+  "2026-03-04": { pt: TRESTLE, r: ["FIV11a"], sch: ["bts-truss", "soi-alt3"] },
   "2026-04-14": { pt: TRESTLE, r: ["FIV11a"], ph: ["ThreeCreeksTrail TrestleBridge.JPG"] },
   "2026-06": { pt: STATION, w: "28th St/Little Portugal station site", r: ["FIV02"], sch: "bart-station", ph: ["USA-San Jose-Church of the Five Wounds-1.jpg"] },
   "2026-07-09": { r: SEG2, sch: ["mp26-segments", "mp26-seg2"] },
@@ -136,14 +148,15 @@ const REACH_ENDS = {
 const DOC_DATES = {
   "Neighborhood Improvement Plan Amendment, 2nd draft (2006)": ["2006-12", "printed"],
   "BART Station Area Community Concept Plan (2010)": ["2010-09", "printed"],
-  "Feasibility Study: Story Rd to Whitton Ave (2022)": ["2022-08-30", "unverified"],
+  "Feasibility Study: Story Rd to Whitton Ave (2022)": ["2022-08-30", "printed"],
   "Master plan community meeting presentation (July 2026)": ["2026-07-09", "printed"],
   "Community meeting flyer (July 2026)": ["2026-07", "printed"],
   "Historic Resources Evaluation (TreanorHL, 2023)": ["2023-07-13", "printed"],
-  "Secretary of the Interior's Standards report (2023)": ["2023-07-21", "unverified"],
-  "Structural Evaluation (GHD, 2023)": ["2023-07-26", "unverified"],
+  "Secretary of the Interior's Standards report (2023)": ["2023-07-21", "printed"],
+  "Structural Evaluation (GHD, 2023)": ["2023-08-02", "printed"],
   "Bridge Type Selection Report (GHD, 2023)": ["2023-08-02", "printed"],
   "City summary of information on the trestle (2026)": ["2026-03-09", "file"],
+  "City Five Wounds Trail map": ["2018-07-18", "printed"],
   "Council minutes: floating park designation (2003)": ["2003-08-19", "printed"],
   "VTA letter supporting the trail (2011)": ["2011-09-02", "printed"],
   "ATP grant application memo (2018)": ["2018-11-26", "printed"],

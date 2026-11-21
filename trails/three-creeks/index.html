@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Three Creeks Trail</title>
+<meta name="description" content="Map, timeline and cost tracker for San José's Three Creeks Trail, the Willow Glen rail-trail from Los Gatos Creek to the Guadalupe River, and its unbuilt route to Coyote Creek.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230e5c4a'/><path d='M6 24c4-2 5-8 10-9s6-6 10-9' stroke='%23fff' stroke-width='3' fill='none' stroke-linecap='round'/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="stylesheet" href="../../styles.css?v=202611210119">
+<script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="../../" title="All South Bay trails"><span class="brand-mark" aria-hidden="true"></span><span class="brand-hub">South Bay Trails</span></a><div class="trail-switch" id="trailSwitch"><button class="ts-btn" type="button" aria-haspopup="true" aria-expanded="false" aria-controls="tsMenu"><span class="ts-name">Three Creeks Trail</span><svg class="ts-chev" viewBox="0 0 12 12" width="12" height="12" aria-hidden="true"><path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><div class="ts-menu" id="tsMenu" hidden></div></div>
+  <nav aria-label="Sections">
+    <a href="#intro">The trail</a><a href="#map">Map</a><a href="#timeline">Timeline</a><a href="#costs">Costs</a><a href="#documents">Documents</a><a href="#news">News</a><a href="#photos">Photos</a>
+  </nav>
+  <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+    <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.39 5.39 0 0 1-4.4 2.26 5.4 5.4 0 0 1-3.14-9.8C12.92 3.04 12.46 3 12 3Z"/></svg>
+  </button>
+</header>
+
+<main id="top">
+  <section class="cover" aria-label="Introduction">
+    <img class="cover-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Three%20Creeks%20Trail%20decorative%20water%20tower.jpg?width=2400" alt="A small water tower painted with a large 3 beside the Three Creeks Trail at Willow Street">
+    <div class="cover-shade"></div>
+    <div class="cover-inner">
+      <p class="eyebrow">Willow Glen, San José · <span class="js-updated">Updated</span></p>
+      <h1>The trail that connects<br>two of its three creeks</h1>
+      <p class="cover-lede">An old Western Pacific spur through Willow Glen became a trail in pieces: bought in 2011, paved in 2018, bridged in 2021 after a six-year fight over a 1922 trestle. It now links Los Gatos Creek to the Guadalupe River. The third creek, Coyote, is still two miles away on a route nobody has drawn.</p>
+      <a class="cover-cta" href="#intro">Meet the trail <span aria-hidden="true">↓</span></a>
+    </div>
+    <p class="cover-credit">The trail's water tower at Willow St · Photo: Ikluft, CC BY-SA 3.0</p>
+  </section>
+
+  <section id="intro" class="intro">
+    <div class="intro-grid">
+      <div class="intro-text">
+        <p class="eyebrow dark">Meet the trail</p>
+        <h2>Two creeks down, one to go</h2>
+        <p class="big">The Three Creeks Trail follows the Western Pacific's Willow Glen branch, which carried fruit from the canneries from 1922 until Union Pacific stopped running trains in 2000. San José bought the western mile in 2011, mostly with Open Space Authority and County money, and planned the trail around its railroad history.</p><p>About <strong>1.2 miles</strong> are open, from the Los Gatos Creek Trail at Lonus St to the Guadalupe River at Minnesota Ave, broken once by a sidewalk detour at Willow St and Bird Ave.</p><p>The other <strong>2.2 miles</strong>, east across Hwy 87, Monterey Rd and the rail lines to Coyote Creek, are mostly private land. Focus groups in 2008 called a continuous trail there unlikely, and the 2015 vision study's elevated "SKY Lane" has no budget.</p>
+        <div class="intro-legend"><span><i class="il-built"></i>Open today</span><span><i class="il-gap"></i>Not built yet</span></div>
+        <p class="intro-hint">Scroll on to travel the trail from Los Gatos Creek to Coyote Creek in three chapters <span aria-hidden="true">↓</span></p>
+        <div class="chapters" id="chapters"></div>
+      </div>
+      <figure class="intro-map-wrap">
+        <div id="introMap" aria-label="Map of the Three Creeks Trail: built sections and gaps"></div>
+        <figcaption id="introMapCap"><strong>The whole trail</strong><span>Los Gatos Creek to Coyote Creek</span></figcaption>
+      </figure>
+    </div>
+
+  </section>
+
+  <section class="quotes" aria-label="Why it matters">
+    <div class="quotes-inner" id="quotes"></div>
+  </section>
+
+  <section class="hero" id="numbers">
+    <div class="hero-inner">
+      <p class="eyebrow">By the numbers · <span class="js-updated">Updated</span></p>
+      <h2 class="numbers-h">Where things stand</h2>
+      <div class="stats" id="stats"></div>
+    </div>
+    <div class="hero-strip" aria-label="Trail status, north to south">
+      <div class="strip-head"><span>West · Los Gatos Creek</span><span>East · Coyote Creek</span></div>
+      <div class="strip" id="strip" role="img" aria-label="Proportional bar of trail reaches colored by status"></div>
+      <div class="legend" id="stripLegend"></div>
+    </div>
+  </section>
+
+  <section id="map" class="section">
+    <div class="section-head">
+      <h2>Map of every reach</h2>
+      <p>Trail lines come from the City of San José's <a href="https://data.sanjoseca.gov/dataset/trail-reach" target="_blank" rel="noopener">Trail Reach GIS dataset</a>. Click a line or a list item to see its status and history. Round pins are photos; square pins open a plan sheet for that stretch.</p>
+    </div>
+    <div class="map-wrap">
+      <div id="leaflet" aria-label="Interactive map of the Three Creeks Trail"></div>
+      <aside class="map-side">
+        <div class="filters" id="mapFilters" role="group" aria-label="Filter by status"></div>
+        <div class="filters layer-filters" id="layerFilters" role="group" aria-label="Map layers"></div>
+        <ol class="reach-list" id="reachList"></ol>
+      </aside>
+    </div>
+  </section>
+
+  <section id="timeline" class="section">
+    <div class="section-head">
+      <h2>Timeline, 1922–2026</h2>
+      <p>Scroll through 38 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
+    </div>
+    <div class="tl-sticky" id="tlSticky">
+      <div class="tl-sticky-row">
+        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1922</span></div>
+        <div class="filters" id="tlFilters" role="group" aria-label="Filter timeline"></div>
+      </div>
+      <div class="tl-overview" id="tlOverview"><div class="tl-cursor" id="tlCursor"></div></div>
+    </div>
+    <div class="tl-body">
+      <ol class="timeline" id="tlList"></ol>
+      <div class="tl-map-wrap" id="tlMapWrap">
+        <div id="tlMap" aria-label="Map showing the trail as of the selected event"></div>
+        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1922</strong><span id="tlMapSub"></span></div>
+        <div class="tl-map-legend">
+          <span><i class="ln ln-open"></i>Open by this date</span>
+          <span><i class="ln ln-future"></i>Not yet built</span>
+          <span><i class="ln ln-gap"></i>Still a gap today</span>
+          <span><i class="ln ln-hl"></i>This event</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="costs" class="section">
+    <div class="section-head">
+      <h2>What it has cost, and what's left</h2>
+      <p>The western mile was bought with grants and built in three pieces. The bridge cost the most, mostly because of the six years it spent in court. The eastern half has no cost estimate at all, because no one has chosen a route.</p>
+    </div>
+    <div class="grid-2">
+      <figure class="card chart-card">
+        <figcaption><h3>Land, bridge and trail</h3><span class="muted">$ millions</span></figcaption>
+        <div class="bars" id="costBars"></div>
+        <p class="footnote">The land price is as reported by the district councilmember. Coe–Minnesota is the project budget at award and Lonus–Coe the amount set aside; neither final cost has been published.</p>
+      </figure>
+      <figure class="card chart-card">
+        <figcaption><h3>Cost per mile</h3><span class="muted">$M / mile · hatched = estimate</span></figcaption>
+        <div class="bars" id="perMileBars"></div>
+        <p class="footnote">The master plan's estimate covers the whole western mile, including a playground. The Coyote Creek Trail's recent average is shown for comparison.</p>
+      </figure>
+    </div>
+
+    <details class="card table-card">
+      <summary>Project table with contracts and funding sources</summary>
+      <div class="table-scroll"><table id="projTable"></table></div>
+    </details>
+
+    <div class="card mp-card">
+      <h3>Promises and what happened</h3>
+      <p class="muted" style="margin:8px 0 14px;font-size:.92rem;max-width:760px">The bridge was supposed to be built by April 2015, before a state grant ran out. Six years of lawsuits later, its contract had grown 53%. The paving projects ran about six months late each.</p>
+      <div class="table-scroll"><table id="deliveryTable"></table></div>
+    </div>
+
+    <div class="card mp-card">
+      <div class="mp-head">
+        <div>
+          <h3>The 2014 master plan's estimate</h3>
+          <p class="muted">The City's master plan priced the whole western trail, Lonus St to the Guadalupe River, at <strong>$5.92M in 2013 dollars</strong>. More than half of that was contingency, City management and design fees; the trail itself was about $1.1M.</p>
+        </div>
+        <button class="mp-thumb" data-sch="mp-cost" aria-label="View the cost table"><img src="img/schematics/mp-cost_thumb.jpg" alt="Cost table from the 2014 master plan"><span>View the original page</span></button>
+      </div>
+      <div class="table-scroll"><table id="mpTable"></table></div>
+    </div>
+
+    <div class="card estimator">
+      <div class="est-head">
+        <div>
+          <h3>Estimate the cost of closing the gaps</h3>
+          <p class="muted">Most of what's missing is east of the Guadalupe, on private land and across rail lines and busy roads. This calculator applies a cost-per-mile assumption to the length; an elevated route like SKY Lane would sit at the top of the range or beyond it.</p>
+        </div>
+        <div class="est-total"><span class="est-label">Estimated cost</span><span class="est-num" id="estNum">$0M</span><span class="muted" id="estSub"></span></div>
+      </div>
+      <label class="slider-row">
+        <span>Assumed cost per mile: <strong id="perMileVal"></strong></span>
+        <input type="range" id="perMile" min="1" max="40" step="0.1" value="5.5">
+        <span class="slider-scale"><span>$1M (simple path)</span><span>$40M (elevated structure)</span></span>
+      </label>
+      <div class="presets" id="presets"></div>
+      <div class="table-scroll"><table id="gapTable"></table></div>
+      <p class="footnote">This is our estimate, not an official figure. The "elevated structure" preset is a placeholder: the SKY Lane study gave no cost. Land acquisition isn't included.</p>
+    </div>
+
+    <div class="grid-3 context">
+      <div class="card mini"><span class="mini-num">$6M</span><span>Reported price of the Union Pacific corridor in 2011, paid mostly by the Open Space Authority ($3.2M) and the County ($2M)</span><a href="https://www.sanjoseinside.com/opinion/10_03_11_railroads_trails_grant_three_creeks_trail_san_jose_city_council/" target="_blank" rel="noopener">San Jose Inside</a></div>
+      <div class="card mini"><span class="mini-num">$0.96–1.09M</span><span>What engineers estimated in 2012 it would cost to rehabilitate the trestle, against $1.64M to replace it</span><a href="http://web.archive.org/web/20150908111028/http://www.sanjoseca.gov:80/DocumentCenter/View/11898" target="_blank" rel="noopener">CH2M HILL study</a></div>
+      <div class="card mini"><span class="mini-num">~$80K</span><span>Storing the finished steel bridge from 2015 until the trestle came down in 2020</span><a href="https://legistar.granicus.com/sanjose/attachments/a9afb1b9-e32d-45da-881c-8eefa1e1d656.pdf" target="_blank" rel="noopener">Council memo</a></div>
+    </div>
+  </section>
+  <section id="documents" class="section">
+    <div class="section-head">
+      <h2>Plans, schematics &amp; official documents</h2>
+      <p>Each document is pinned to the stretch of trail it covers. The bar under each title shows its place on the trail from north to south. Hover over or tap a document to see it on the map.</p>
+    </div>
+    <div class="docs-layout">
+      <div class="doc-map-wrap">
+        <div id="docMap" aria-label="Locator map for documents"></div>
+        <div class="doc-map-cap" id="docMapCap"><strong>Hover over a document</strong><span>to see the stretch of trail it covers</span></div>
+      </div>
+      <div class="docs-col">
+        <h3 class="sub first">Plan sheets &amp; location maps</h3>
+        <p class="muted small">27 figures from the 2014 master plan, the 2016 construction plans, the 2015 SKY Lane study, an advocate's 2012 maps, City maps and memos, and the City's annual trail reports. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <div class="sch-grid" id="schGrid"></div>
+        <div id="docGrid"></div>
+        <p class="footnote"><span class="code">sanjoseca.gov</span> blocks downloads that don't come from a regular web browser; several City documents are linked through Internet Archive copies.</p>
+      </div>
+    </div>
+    <h3 class="sub">Interactive maps &amp; open data</h3>
+    <div class="link-grid" id="mapLinks"></div>
+  </section>
+
+  <section id="news" class="section">
+    <div class="section-head">
+      <h2>In the news</h2>
+      <p>Coverage of the trail, 2011–2026. Most of it is about the Willow Glen Trestle.</p>
+    </div>
+    <div class="news-controls">
+      <input type="search" id="newsSearch" placeholder="Search headlines, outlets, topics…" aria-label="Search news">
+      <span class="muted" id="newsCount"></span>
+    </div>
+    <ol class="news" id="newsList"></ol>
+  </section>
+
+  <section id="photos" class="section">
+    <div class="section-head">
+      <h2>Photographs</h2>
+      <p>Openly licensed images from <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">Wikimedia Commons</a>. Commons has one photo of the trestle and none of the 2021 bridge; the City's photo of the bridge is among the plan sheets above.</p>
+    </div>
+    <div class="gallery" id="gallery"></div>
+  </section>
+
+  <section class="section about">
+    <h2>About this page</h2>
+    <div class="grid-2">
+      <div>
+        <p>This page brings together San José council memos and GIS data, the 2014 master plan and 2015 vision study, court opinions in the trestle cases, and local journalism. Each event and figure links to its source.</p>
+        <p>An independent project, not affiliated with the City of San José, the Open Space Authority, Valley Water or Friends of the Willow Glen Trestle. Part of <a href="../../">South Bay Trails</a>.</p>
+      </div>
+      <ul class="caveats">
+        <li>City GIS gives 2020 as the bridge's opening year and April 2022 for Lonus–Coe; City reports say January 2021 and summer 2022. This page follows the reports.</li><li>The $6M land price comes from the district councilmember's column; only the Open Space Authority ($3.2M) and County ($2M) shares are documented.</li><li>Final costs for the two paving projects haven't been published; the chart shows the budget at award and the amount set aside.</li><li>The gap-cost range is our extrapolation, not an official estimate.</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <span>Basemap © Esri and <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap</a> contributors; trail reaches: City of San José Open Data; photos: Wikimedia Commons contributors.</span>
+  <span><span class="js-updated">Updated</span> · <a href="https://github.com/alexstorer/south-bay-trails" target="_blank" rel="noopener">Source on GitHub</a></span>
+</footer>
+
+<div class="lightbox" id="lightbox" hidden>
+  <button class="lb-close" aria-label="Close">×</button>
+  <figure><img id="lbImg" alt=""><figcaption id="lbCap"></figcaption></figure>
+</div>
+<div class="tooltip" id="tooltip" role="tooltip" hidden></div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script src="../../data/hub.js?v=202611210119"></script>
+<script src="data/reaches.js?v=202611210119"></script>
+<script src="data/data.js?v=202611210119"></script>
+<script src="data/geo.js?v=202611210119"></script>
+<script src="../../app.js?v=202611210119"></script>
+</body>
+</html>

@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-<link rel="stylesheet" href="../../styles.css?v=202611210037">
+<link rel="stylesheet" href="../../styles.css?v=202611210119">
 <script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
@@ -91,12 +91,12 @@
 
   <section id="timeline" class="section">
     <div class="section-head">
-      <h2>Timeline, 1990–2035</h2>
-      <p>Scroll through 40 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
+      <h2>Timeline, 1972–2035</h2>
+      <p>Scroll through 50 events. The map follows along, showing where each one happened and how much trail existed on that date. Future milestones are shown dashed.</p>
     </div>
     <div class="tl-sticky" id="tlSticky">
       <div class="tl-sticky-row">
-        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1990</span></div>
+        <div class="tl-now"><span class="tl-now-label">Now viewing</span><span class="tl-now-date" id="tlNowDate">1972</span></div>
         <div class="filters" id="tlFilters" role="group" aria-label="Filter timeline"></div>
       </div>
       <div class="tl-overview" id="tlOverview"><div class="tl-cursor" id="tlCursor"></div></div>
@@ -105,7 +105,7 @@
       <ol class="timeline" id="tlList"></ol>
       <div class="tl-map-wrap" id="tlMapWrap">
         <div id="tlMap" aria-label="Map showing the trail as of the selected event"></div>
-        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1990</strong><span id="tlMapSub"></span></div>
+        <div class="tl-map-cap"><strong id="tlMapTitle">Trail as of 1972</strong><span id="tlMapSub"></span></div>
         <div class="tl-map-legend">
           <span><i class="ln ln-open"></i>Open by this date</span>
           <span><i class="ln ln-future"></i>Not yet built</span>
@@ -192,7 +192,7 @@
       </div>
       <div class="docs-col">
         <h3 class="sub first">Plan sheets &amp; location maps</h3>
-        <p class="muted small">35 figures taken from the City's master plans, construction plan sets, feasibility studies and Council memos, organized north to south. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <p class="muted small">44 figures taken from the City's master plans, construction plan sets, feasibility studies and Council memos, organized north to south. Click one to enlarge it, or hover over it to find it on the map.</p>
         <div class="sch-grid" id="schGrid"></div>
         <div id="docGrid"></div>
         <p class="footnote">Several City PDFs are very large, and <span class="code">sanjoseca.gov</span> may block downloads that don't come from a regular web browser.</p>
@@ -251,10 +251,10 @@
 <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script src="../../data/hub.js?v=202611210037"></script>
-<script src="data/reaches.js?v=202611210037"></script>
-<script src="data/data.js?v=202611210037"></script>
-<script src="data/geo.js?v=202611210037"></script>
-<script src="../../app.js?v=202611210037"></script>
+<script src="../../data/hub.js?v=202611210119"></script>
+<script src="data/reaches.js?v=202611210119"></script>
+<script src="data/data.js?v=202611210119"></script>
+<script src="data/geo.js?v=202611210119"></script>
+<script src="../../app.js?v=202611210119"></script>
 </body>
 </html>

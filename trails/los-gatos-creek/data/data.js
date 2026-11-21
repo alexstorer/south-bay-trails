@@ -51,6 +51,7 @@ const SRC = {
   lgFinalPlans: "https://www.losgatosca.gov/DocumentCenter/View/32486/Final-Los-Gatos-Creek-Trail-Trailhead-Plans-2022-12-01",
   lgBids2023: "https://www.losgatosca.gov/DocumentCenter/View/33321/Bid-Results-LGCT-Hwy9-Trailhead-Connector-project",
   lgCIP2023: "https://mccmeetingspublic.blob.core.usgovcloudapi.net/losgatos-meet-c7c0a52896384be8803dbd22d940a4db/ITEM-Attachment-012-4f6902294e93479cac5adfa369188bcd.pdf",
+  lgAward2023: "https://mccmeetingspublic.blob.core.usgovcloudapi.net/losgatos-meet-66aa049eca654a5e89b4ce2e0e705f80/ITEM-Attachment-010-147d3ab11abe4ae6bd012a4055ad40b5.pdf",
   lgCloseout2025: "https://mccmeetingspublic.blob.core.usgovcloudapi.net/losgatos-meet-88d6357a03194ca9bfb4dacf516e8760/ITEM-Attachment-009-678f275299b04342b48429793d2a7d7b.pdf",
   lgHwy9Page: "https://www.losgatosca.gov/2557/Los-Gatos-Creek-Trailhead-Connector-to-H",
   lgOpening2025: "https://www.losgatosca.gov/CivicAlerts.aspx?AID=2719",
@@ -180,7 +181,7 @@ const TIMELINE = [
   { d: "2023-01-09", cat: "flood", t: "Storms flood Campbell's trail", x: "Campbell closes the east-side path from Campbell Park to Camden Ave. A week later Lexington Reservoir crests its spillway again.", s: [["City of Campbell", SRC.campFlood2023], ["NBC Bay Area", "https://www.nbcbayarea.com/news/local/south-bay/south-bay-reservoirs-filled/3131102/"]] },
   { d: "2023-04-21", cat: "plan", t: "Google pauses Downtown West", x: "Construction is put on hold with no restart date. Because the creek-trail obligations are tied to building milestones, they stall too.", s: [["CNBC", "https://www.cnbc.com/2023/04/21/googles-80-acre-san-jose-mega-campus-on-hold-amid-economic-slowdown-.html"], ["Press Democrat, 2026", "https://www.pressdemocrat.com/2026/03/12/google-san-jose-campus-downtown/"]] },
   { d: "2023-06", cat: "fund", t: "Last-minute grant saves the Hwy 9 connector", x: "All five bids come in over budget. Los Gatos adds $2.84M in reallocated federal grants to keep the project alive.", s: [["Mercury News", "https://www.mercurynews.com/2023/06/14/last-minute-funding-saves-los-gatos-creek-trail-connector-project/"], ["Staff report", SRC.lgCIP2023]] },
-  { d: "2023-08-01", cat: "build", t: "Hwy 9 connector contract: $6.53M", x: "Granite Construction is awarded the job with a 10% contingency. Ground is broken October 12, 2023.", s: [["Bid results", SRC.lgBids2023], ["Closeout report", SRC.lgCloseout2025]] },
+  { d: "2023-08-01", cat: "build", t: "Hwy 9 connector contract: $6.53M", x: "The apparent low bidder, A&B Construction (read aloud at $5.87M), left out the tree-removal line item and added its total wrong, so its bid is thrown out after Granite protests. Granite, the next lowest of five, gets the job with a 10% contingency; with design, construction management and staff the budget is $9.48M. Ground is broken October 12, 2023.", s: [["Staff report", SRC.lgAward2023], ["Bid results", SRC.lgBids2023], ["Closeout report", SRC.lgCloseout2025]] },
   { d: "2023-08-21", cat: "camp", t: "Nine tons of trash out of the creek", x: "A three-day Valley Water cleanup between Leigh and Bascom avenues hauls out 9 tons.", s: [["San José Inside", "https://www.sanjoseinside.com/news/valley-water-spends-2-4m-to-collect-trash-in-local-waterways/"]] },
   { d: "2024-03", cat: "flood", t: "Vasona Lake drained", x: "Valley Water empties the reservoir for the first time since 2005 to clear debris from the dam and outlet pipes. That fall it replaces a failing retaining wall beside the trail, with a detour.", s: [["NBC Bay Area", "https://www.nbcbayarea.com/news/local/vasona-reservoir-los-gatos-drained-repairs/3494386/"], ["Town of Los Gatos", SRC.lgDetour2024]] },
   { d: "2024-04-08", cat: "camp", t: "Encampment fencing at Lonus St and Del Monte Park", x: "San José lists new encampment-deterrent sites on the trail. Valley Water and the City had cleared camps from Bascom to Meridian and San Carlos to Santa Clara that spring.", s: [["T&E presentation", SRC.te2024pres], ["Valley Water update", SRC.vwCleanup2024]] },
@@ -192,7 +193,7 @@ const TIMELINE = [
   { d: "2025-06-17", cat: "fund", t: "Money banked for a Hwy 17 bike bridge", x: "Los Gatos accepts $2.47M toward a 20-ft-wide bridge over Hwy 17 just south of Blossom Hill Rd, reaching the trail at Roberts Rd.", s: [["Staff report", SRC.lgTDA2025]] },
   { d: "2025-08-16", cat: "camp", t: "E-bike complaints at Vasona", x: "Los Gatos residents complain about teens on high-powered, non-street-legal e-bikes on the trail and in Vasona park. The mayor later writes that most of the danger comes from e-motorcycles.", s: [["San José Spotlight", "https://sanjosespotlight.com/los-gatos-residents-upset-over-reckless-e-bike-riders/"], ["Los Gatan", "https://losgatan.com/mayors-message-the-path-toward-a-safer-e-bike-landscape/"]] },
   { d: "2026-02-03", cat: "plan", t: "Campbell studies a bike bridge at Hamilton Ave", x: "Campbell accepts a feasibility study for a bike crossing of Hwy 17 at Hamilton Ave, near the trail. Next step: a Caltrans project document.", s: [["City of Campbell", SRC.campHamilton]] },
-  { d: "2026-03-03", cat: "build", t: "Pruneyard spur finished (reported)", x: "Campbell reportedly accepts the paved path from the trail to E. Campbell Ave. This date comes from a summary of a City document we couldn't open.", s: [["City of Campbell (notice of completion)", SRC.campDone], ["Resolution 13253", SRC.campReso]] },
+  { d: "2026-03-04", cat: "build", t: "Pruneyard spur finished", x: "Campbell accepts the paved path from the trail to E. Campbell Ave, built by Silicon Valley Paving. The final contract is $281,515, about 5% over the low bid.", s: [["City of Campbell notice of completion", SRC.campDone], ["Resolution 13253", SRC.campReso]] },
   { d: "2026-03-23", cat: "flood", t: "Collapsed bank repaired near Meridian", x: "San José repairs bank erosion and reopens the trail between Meridian Ave and St. Elizabeth Dr. Neither the closure date nor the cost is reported.", s: [["T&E annual report 2026", SRC.te2026]] },
   { d: "2026-05-19", cat: "fund", t: "Los Gatos seeks $20M for the Hwy 17 bridge", x: "The Council applies for state and regional grants. The bridge is now estimated at $26.6M for 2028 construction.", s: [["Staff report", SRC.lgATP2026], ["Project page", SRC.lgBPOC]] },
   { d: "2027", cat: "plan", future: true, t: "Hwy 17 trail overcrossing construction", x: "Construction near Lexington is scheduled to start in mid-2027 if about $17M more is found.", s: [["Bay Area Ridge Trail", SRC.ridge17], ["Midpen", SRC.midpen2024]] },
@@ -204,7 +205,7 @@ const PROJECTS = [
   { name: "Lonus St → Auzerais Ave", id: "San José", year: 2007, mi: 0.49, cost: 4.0, contract: null, funding: "About $4M assembled over 10 years; award memo not online", src: SRC.merc2007, note: "Approximate total, 2007 dollars" },
   { name: "Three Creeks bridge at Lonus St", id: "SJ #7232", year: 2021, mi: null, kind: "bridge", cost: 3.906, contract: 2.486, funding: "Subdivision Park Trust Fund", src: SRC.memoBridge2020 },
   { name: "Hwy 9 trailhead connector", id: "Los Gatos", year: 2025, mi: null, kind: "bridge + ramps", cost: 9.267, contract: 6.897, funding: "Federal OBAG $6.5M, air-district TFCA $0.76M, 2016 Measure B $0.69M, Town $1.43M", src: SRC.lgCloseout2025 },
-  { name: "Pruneyard spur to E. Campbell Ave", id: "Campbell 23-LL", year: 2026, mi: null, kind: "spur", cost: 0.704, contract: 0.269, funding: "Pruneyard owner $250K, parkland fees $353K, TDA $62K, TFCA $40K", src: SRC.campReso, note: "Budget at award; final cost not published" },
+  { name: "Pruneyard spur to E. Campbell Ave", id: "Campbell 23-LL", year: 2026, mi: null, kind: "spur", cost: 0.704, contract: 0.269, funding: "Pruneyard owner $250K, parkland fees $353K, TDA $62K, TFCA $40K", src: SRC.campReso, note: "Budget at award; final contract $281,515 (Mar 2026); total project cost not published" },
 ];
 // Per-mile estimates and benchmarks shown beside the built projects (not money spent).
 const PM_EST = [
@@ -234,7 +235,7 @@ const GAPS = [
 
 // The headline numbers on the page.
 const STATS = ({ gapMi }) => [
-  ["10.2 mi", "continuous trail from Lexington Dam north to Meridian Ave in San José"],
+  ["10.2 mi", "continuous trail from Lexington Dam north to Meridian Ave in San José, by our GIS measurement (County Parks' map counts about 9.5)"],
   [gapMi.toFixed(1) + " mi", "of mainline gaps left, all in San José: Willow Glen and the Diridon area"],
   ["$9.3M", "for Los Gatos's Hwy 9 trailhead connector, a single bridge and ramps opened in 2025"],
   ["$13.9M", "official estimates for just the two downtown gaps (2017–18). The Willow Glen gap has none."],
@@ -245,7 +246,7 @@ const STATS = ({ gapMi }) => [
 const DELIVERY = [
   ["Three Creeks bridge at Lonus St (San José)", "Dec 2016", "Jan 2021", "bad", "$1.63M contract; $2.95M project", "$2.49M contract (+53%); $3.91M project (+32%)", "bad", SRC.memoBridge2020],
   ["Hwy 9 trailhead connector (Los Gatos)", "End of 2024", "Apr 2025", "warn", "$6.53M contract + 10% contingency", "$6.90M (+5.6%, within contingency); $9.27M project", "warn", SRC.lgCloseout2025],
-  ["Pruneyard spur (Campbell)", "Not stated", "2026 (reported)", "unk", "$704K budget; $269K low bid", "Not published", "unk", SRC.campReso],
+  ["Pruneyard spur (Campbell)", "Not stated", "Accepted March 2026", "unk", "$704K budget; $269K low bid", "Contract $282K (+5%); total not published", "warn", SRC.campDone],
 ];
 
 // The City's 1985 estimate, phase by phase. [phase, description, miles, $M, what happened]
@@ -286,7 +287,7 @@ const DOCS = [
     ["County Parks: Los Gatos Creek County Park map", "https://web.archive.org/web/20211209002810/https://parks.sccgov.org/sites/g/files/exjcpb961/files/332563los-gatos.pdf"],
     ["County Parks: Vasona Lake County Park map", "https://web.archive.org/web/20231206221022/https://parks.sccgov.org/sites/g/files/exjcpb961/files/33462vasona.pdf"],
     ["County Parks: Lexington Reservoir guide map", "https://files.santaclaracounty.gov/exjcpb1516/2024-10/lexington-reservoir-guide-map.pdf"],
-    ["County Parks: Los Gatos Creek Trail guide map (2024)", "https://files.santaclaracounty.gov/exjcpb1516/2024-11/los-gatos-creek-trail-guide-map.pdf?VersionId=t8_Ck4XKPOtDeSIxyYehmMb0H9qpKp6N"],
+    ["County Parks: Los Gatos Creek Trail guide map (2026)", "https://files.santaclaracounty.gov/exjcpb1516/2024-11/los-gatos-creek-trail-guide-map.pdf"],
     ["Bay Area Ridge Trail: Sierra Azul & Lexington Reservoir", "https://ridgetrail.org/wp-content/uploads/2017/07/2019_SantaClara_SierraAzulandLexingtonReservoir.pdf"],
     ["VTA fact sheet: SR 17 wildlife and trail crossing", SRC.vtaSR17],
   ]},
@@ -324,12 +325,14 @@ const DOCS = [
     ["Los Gatos: Hwy 9 connector design contract (2019)", SRC.lgDesign2019],
     ["Los Gatos: Hwy 9 connector preliminary design (2020)", SRC.lgPrelim2020],
     ["Los Gatos: Hwy 9 connector bid results (2023)", SRC.lgBids2023],
+    ["Los Gatos: Hwy 9 connector award staff report (Aug 2023)", SRC.lgAward2023],
     ["Los Gatos: capital funding reallocation (June 2023)", SRC.lgCIP2023],
     ["Los Gatos: Hwy 9 connector closeout & final budget (Dec 2025)", SRC.lgCloseout2025],
     ["Los Gatos: TDA funds for Hwy 17 bike bridge (2025)", SRC.lgTDA2025],
     ["Los Gatos: grant applications for Hwy 17 bike bridge (2026)", SRC.lgATP2026],
     ["Campbell: Resolution 13253, Pruneyard spur (2025)", SRC.campReso],
     ["Campbell: Pruneyard spur bid summary (2025)", SRC.campBids],
+    ["Campbell: Pruneyard spur notice of completion (2026)", SRC.campDone],
     ["MTC TIP revision: Reach 5 underpass funding (2021)", SRC.tip2021],
     ["VTA 2016 Measure B program manual (2021)", SRC.measureB],
     ["Valley Water: encampment cleanup update (2024)", SRC.vwCleanup2024],
@@ -469,7 +472,7 @@ const OUTCOMES = {
   ],
   "2023-08-01": [
     ["Completed", "good", "Yes: construction finished April 5, 2025; ribbon cutting April 17."],
-    ["Schedule", "warn", "About 3–4 months late against the end-of-2024 plan. Winter weather slowed work and the bridge lift slipped from September to November 2024."],
+    ["Schedule", "warn", "About 3–4 months late against the August 2023 plan (start September 2023, 14 months, done by end of 2024). Winter weather slowed work and the bridge lift slipped from September to November 2024."],
     ["Budget", "warn", "Granite's final bill was $6.90M: 5.6% over the contract but inside its 10% contingency, and about 20% above the February 2022 construction estimate (~$5.8M). The total project came to $9.27M."],
   ],
   "2024-10-01": [

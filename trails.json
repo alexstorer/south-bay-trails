@@ -40,6 +40,16 @@
   }
  },
  {
+  "slug": "three-creeks",
+  "name": "Three Creeks Trail",
+  "tagline": "Willow Glen's rail-trail links Los Gatos Creek to the Guadalupe after a six-year trestle fight; Coyote Creek is still off the map.",
+  "cover": {
+   "f": "Three Creeks Trail decorative water tower.jpg",
+   "a": "Ikluft",
+   "l": "CC BY-SA 3.0"
+  }
+ },
+ {
   "slug": "silver-creek",
   "name": "Silver Creek Trail",
   "tagline": "Valley Water rebuilt the creek and left levee roads; 19 years after the trail plan, under two miles are open.",

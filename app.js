@@ -211,7 +211,7 @@
   INTRO_MARKS
     .forEach(([n, ll, dir]) => L.marker(ll, { icon: L.divIcon({ className: "", html: '<div class="lm-icon"></div>', iconSize: [12, 12], iconAnchor: [6, 6] }), interactive: false })
       .bindTooltip(n, { permanent: true, direction: dir, className: "lm-label", offset: [dir === "left" ? -6 : 6, 0] }).addTo(introMap));
-  const INTRO_PAD = { paddingTopLeft: [24, 40], paddingBottomRight: [120, 24] };
+  const INTRO_PAD = typeof INTRO_FIT !== "undefined" ? INTRO_FIT : { paddingTopLeft: [24, 40], paddingBottomRight: [120, 24] };
   const introFit = () => introMap.fitBounds(allBounds, INTRO_PAD);
   introFit();
   const introShow = ch => {
@@ -646,7 +646,7 @@
   });
   function renderGapTable() {
     const pm = +slider.value;
-    $("#gapTable").innerHTML = `<thead><tr><th>Gap (north → south)</th><th class="num">Miles</th><th>Status &amp; notes</th><th class="num">Est. cost</th></tr></thead><tbody>` +
+    $("#gapTable").innerHTML = `<thead><tr><th>Gap</th><th class="num">Miles</th><th>Status &amp; notes</th><th class="num">Est. cost</th></tr></thead><tbody>` +
       GAPS.map(g => `<tr><td><span class="gname"><span class="pill" style="background:${statusColor(g.status)}">${g.status}</span>${esc(g.name)}</span></td><td class="num">${g.mi.toFixed(2)}</td><td>${esc(g.hard)}</td><td class="num">$${(g.mi * pm).toFixed(1)}M</td></tr>`).join("") +
       EST_EXTRAS.map(x => `<tr><td>${esc(x.name)}</td><td class="num">–</td><td>${esc(x.note)}</td><td class="num">$${x.cost.toFixed(1)}M</td></tr>`).join("") +
       `<tr><td><strong>Total</strong></td><td class="num"><strong>${gapMi.toFixed(2)}</strong></td><td></td><td class="num"><strong>$${estimate(pm).toFixed(1)}M</strong></td></tr></tbody>`;
@@ -712,7 +712,7 @@
   });
 
   const pdfIcon = `<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/></svg>`;
-  const DATE_NOTE = { printed: "Date printed on the document", filed: "Date the environmental document was filed with the State Clearinghouse", file: "No date is printed; this is the PDF's creation date", undated: "The document carries no date", unverified: "Not yet checked against the document" };
+  const DATE_NOTE = { printed: "Date printed on the document", filed: "Date the environmental document was filed with the State Clearinghouse", file: "No date is printed; this is the PDF's creation date", undated: "The document carries no date", unverified: "Not yet checked against the document", inferred: "No date is printed; inferred from related documents", cited: "Date as cited in a later document" };
   const docDate = t => DOC_DATES[t] || ["", "unverified"];
   const dateChip = t => {
     const [dt, src] = docDate(t);

@@ -54,9 +54,9 @@ const REACH_NOTES = {
   "FIV04": { gap: true, text: "Shortridge Ave to San Fernando St. A raised crossing is planned at San Fernando.", src: SRC.mp2026 },
   "FIV05": { gap: true, text: "San Fernando St to Whitton Ave. A raised crossing is planned at Whitton.", src: SRC.mp2026 },
   "FIV06": { gap: true, text: "Whitton Ave to San Antonio St. Part of the William–Whitton stretch the City once planned to buy for $1.5M. Soil tests in 2015 found lead and arsenic.", src: SRC.psa2023 },
-  "FIV07": { gap: true, text: "San Antonio St to Peach Ct / 24th St. A diagonal two-way bike crossing is planned at 24th St.", src: SRC.mp2026 },
-  "FIV08": { gap: true, text: "Peach Ct / 24th St to 23rd St.", src: SRC.mp2026 },
-  "FIV09": { gap: true, text: "23rd St to William St, the entrance to the rail-corridor section. A curb bulb-out, a two-way cycle track and a possible railway-themed plaza are planned.", src: SRC.mp2026 },
+  "FIV07": { gap: true, text: "San Antonio St to Peach Ct / 24th St. The 2026 master plan shows a diagonal two-way bike crossing at 24th St. The 2022 feasibility study proposed curb extensions, a bike crosswalk and flashing beacons at San Antonio St; its crossing treatments at nine locations were estimated at $237,000.", src: SRC.mp2026 },
+  "FIV08": { gap: true, text: "Peach Ct / 24th St to 23rd St. A private owner holds part of the old rail right-of-way here, leaving at most about 26 ft for the trail. The 2022 feasibility study would cross 24th St at a right angle on widened sidewalks.", src: SRC.feas2022 },
+  "FIV09": { gap: true, text: "23rd St to William St, the entrance to the rail-corridor section. The 2026 master plan shows a curb bulb-out, a two-way cycle track and a possible railway-themed plaza. The 2022 feasibility study priced two ways around the William/23rd triangle: a two-way cycle track (about $355K, 16 parking spaces lost) or a 16-ft sidewalk (about $455K, 9 spaces).", src: SRC.mp2026 },
   "FIV10": { text: "William St to I-280: the only open piece, a widened sidewalk along S. 22nd St built around 2006 by KB Home with its Autumn Terrace housing. The master plan would add a bike boulevard and wayfinding signs.", src: SRC.nip2006 },
   "FIV11b": { gap: true, text: "Under I-280, on Caltrans land. The City planned to seek a recreation easement.", src: SRC.atp2018 },
   "FIV11a": { gap: true, text: "I-280 to Story Rd, across Coyote Creek on the 1922 Western Pacific trestle. City-owned since about December 2011, beside the unremediated Story Road Landfill. On hold since July 2026.", src: SRC.mp2026 },
@@ -112,11 +112,11 @@ const TIMELINE = [
   { d: "2020-06", cat: "fund", t: "Measure B awards $4.14M", x: "VTA awards $4.14M in 2016 Measure B money for environmental clearance and design. By October 2026, $890,000 had been allocated and $119,182 spent.", s: [["City memo (2023)", SRC.bkf2023], ["VTA Measure B tracker", SRC.measureB]] },
   { d: "2020-06-18", cat: "fund", t: "$83,000 for a feasibility study", x: "The State Coastal Conservancy grants $83,000, matched by about $166,000 from the City, to plan 1.4 miles from Story Rd to Whitton Ave.", s: [["Coastal Conservancy", SRC.scc2020], ["CEQA 2020060577", "https://ceqanet.lci.ca.gov/2020060577/2"]] },
   { d: "2020-09-01", cat: "fund", t: "A second, $34M grant bid", x: "The Council backs an application of up to $34.0M for 1.9 miles from Story Rd to Julian St, with an itemized estimate. No award was ever announced.", s: [["City memo (2020)", SRC.atp2020], ["Mayor's memo", SRC.mayor2020]] },
-  { d: "2021-03", cat: "rail", t: "Fire burns the trestle", x: "A fire near the old Jungle site destroys three of the trestle's support bents.", s: [["City trestle summary", SRC.trestle2026], ["Mercury News", "https://www.mercurynews.com/2021/03/23/fire-near-former-site-of-the-jungle-homeless-encampment-damages-train-trestle/"]] },
+  { d: "2021-03", cat: "rail", t: "Fire burns the trestle", x: "A fire near the old Jungle site badly damages the trestle. GHD later found charred piles, braces, caps and girders under spans 1–4, with collapsed braces in span 4, plus damage from a smaller fire in span 13.", s: [["Structural Evaluation, p.10", SRC.structural], ["Mercury News", "https://www.mercurynews.com/2021/03/23/fire-near-former-site-of-the-jungle-homeless-encampment-damages-train-trestle/"]] },
   { d: "2022-06", cat: "rail", t: "VTA offers the corridor for free", x: "Because cleanup will be costly, VTA's board agrees to give the City the old railway parcels at no cost, plus a trail easement. The City had planned to pay $1.5M for part of it.", s: [["City memo (2023), p.2", SRC.psa2023]] },
-  { d: "2022-08-30", cat: "plan", t: "Feasibility study finished", x: "RRM Design Group picks a preferred alignment from Story Rd to Whitton Ave and flags the trestle crossing for more study.", s: [["Feasibility study", SRC.feas2022]] },
+  { d: "2022-08-30", cat: "plan", t: "Feasibility study finished", x: "RRM Design Group picks a preferred route for the 1.5 miles from Story Rd to Whitton Ave and leaves the creek-crossing method for later. Its rough estimate is $14.8–19.7M ($9.1–12.1M construction plus $5.7–7.6M soft costs), including $5–7M of soil cleanup.", s: [["Feasibility study, PDF p.94", SRC.feas2022], ["Soil cleanup, PDF p.36", SRC.feas2022]] },
   { d: "2023-06", cat: "rail", t: "Trestle \"in danger of imminent failure\"", x: "A draft structural report prompts the City to close the Coyote Creek Trail beneath the trestle, from Olinder Dog Park to Story Rd. Staff warn it could take one to three years; the path under the trestle has since reopened.", s: [["Keep Coyote Creek Beautiful", SRC.kccb]] },
-  { d: "2023-08-02", cat: "plan", t: "Three ways to cross the creek, priced", x: "Four studies find the trestle eligible for the national and state historic registers. Construction estimates: retrofit it for $7.42M, replace it with a steel truss for $7.69M, or stabilize it and build a new bridge alongside for $6.91M.", s: [["Bridge Type Selection Report", SRC.bts], ["Historic Resources Evaluation", SRC.hre], ["Structural Evaluation", SRC.structural]] },
+  { d: "2023-08-02", cat: "plan", t: "Three ways to cross the creek, priced", x: "Four studies find the trestle eligible for the national and state historic registers. The Bridge Type Selection Report estimates construction at $7.42M to retrofit it for the trail, $7.69M to replace it with a steel truss, or $6.91M to stabilize it and build a new bridge alongside. GHD's structural evaluation calls a collapse-prevention retrofit with no trail use the most feasible way to keep it, and finds a repair in kind for trail use likely not feasible.", s: [["Bridge Type Selection Report", SRC.bts], ["Historic Resources Evaluation", SRC.hre], ["Structural Evaluation, pp.3, 16", SRC.structural], ["Standards review", SRC.soi]] },
   { d: "2023-09-12", cat: "rail", t: "Council accepts the VTA corridor for $0", x: "The Council unanimously approves taking 11 parcels from VTA at no cost, plus a trail easement beside the BART station. Soil cleanup is estimated at more than $5M; the target opening is 2031.", s: [["City memo", SRC.psa2023], ["San José Spotlight", SRC.spot2023]] },
   { d: "2023-10-31", cat: "fund", t: "Designers hired (up to $2.5M)", x: "The Council approves a master agreement with BKF Engineers through 2028 for planning, environmental review and design.", s: [["City memo", SRC.bkf2023]] },
   { d: "2024-02-08", cat: "fund", t: "Open Space Authority pledges $500,000", x: "The City, the County and the Open Space Authority have each pledged $500,000 toward the corridor, subject to their boards.", s: [["Open Space Authority", SRC.osa2024]] },
@@ -143,12 +143,14 @@ const PROJECTS = [
 const PM_EST = [
   { name: "2018 grant bid: Story Rd → Whitton Ave", sub: "City estimate", mi: 1.4, cost: 33.61, note: "$33.61M for 1.4 mi", src: SRC.atp2018 },
   { name: "2020 grant bid: Story Rd → Julian St", sub: "City estimate, itemized", mi: 1.9, cost: 34.03, note: "$34.03M for 1.9 mi, incl. trestle bridge and soil cleanup", src: SRC.atp2020 },
+  { name: "2022 feasibility study: Story Rd → Whitton Ave", sub: "consultant estimate, high end", mi: 1.5, cost: 19.7, note: "$14.8–19.7M for about 1.5 mi, incl. creek crossing and soil cleanup; no dollar-year stated", src: SRC.feas2022 },
   { name: "Coyote Creek Trail, 2021–25", sub: "benchmark (built)", mi: 3.48, cost: 28.11, note: "Four San José creek-trail projects, $28.1M for 3.48 mi", src: SRC.coyote },
 ];
 const PRESETS = [
   { label: "Coyote Creek average", pm: 28.11 / 3.48 },
   { label: "2020 City estimate", pm: 34.03 / 1.9 },
   { label: "2018 City estimate", pm: 33.61 / 1.4 },
+  { label: "2022 study, high end", pm: 19.7 / 1.5 },
 ];
 const DEFAULT_PM = 34.03 / 1.9;
 const EST_EXTRAS = [];
@@ -182,9 +184,9 @@ const DELIVERY = [
 const OFFICIAL_EST = {
   head: ["Option", "", "Construction estimate (2023 $)", "Notes"],
   rows: [
-    ["1", "Retrofit the trestle with new steel supports", null, 7.419, "47 months; keeps the historic structure"],
-    ["2", "Demolish it; build a steel truss bridge", null, 7.69, "57 months; needs an EIR. City staff's pick in March 2026"],
-    ["3", "Stabilize it; build a new bridge alongside", null, 6.91, "47 months; backed by Save Our Trails. Highest staff cost"],
+    ["1", "Retrofit the trestle with new steel supports", null, 7.419, "47 months; keeps the historic structure. Partly meets the historic Standards (2023 review)"],
+    ["2", "Demolish it; build a steel truss bridge", null, 7.69, "57 months; needs an EIR. Fails the historic Standards (2023 review). City staff's pick in March 2026"],
+    ["3", "Stabilize it; build a new bridge alongside", null, 6.91, "47 months; meets the historic Standards (2023 review). Backed by Save Our Trails. Highest staff cost"],
   ],
 };
 
@@ -292,12 +294,14 @@ const OUTCOMES = {
   "2018-07-31": [["Funded", "bad", "No. It ranked below the funding line; construction planned for 2023–25 never started."]],
   "2020-06": [["Progress", "warn", "Six years later, $890K of the $4.14M has been allocated and about $119K spent."]],
   "2020-09-01": [["Funded", "unk", "No award has been found. Construction was to finish by 2026; the master plan is still under way."]],
+  "2022-08-30": [["Built", "bad", "No construction has followed. The trestle segment went on hold in July 2026, and the master plan now covers only 22nd St to Santa Clara St."]],
   "2023-06": [["Estimate", "warn", "Staff warned of a one-to-three-year closure. The path under the trestle has reopened, but the trestle itself hasn't been repaired."]],
   "2023-09-12": [
     ["Completed", "pend", "The transfer was still pending in 2026."],
     ["Schedule", "bad", "The City first expected Council action on William–Whitton by January 2019."],
   ],
   "2025-07": [["Progress", "pend", "Due spring 2027, now summer 2027, and narrowed to 22nd St–Santa Clara St."]],
+  "2026-03-04": [["Historic review", "warn", "The City's 2023 Standards review found demolition does not comply and can't be mitigated; stabilizing the trestle and building a new bridge beside it complies."]],
   "2026-07-09": [["Progress", "pend", "Segment 1 has no restart date. The trestle stays in place, unrepaired."]],
   "2031": [["Target", "bad", "Missed in advance: the trestle segment is on hold and the BART station has slipped to 2039."]],
 };

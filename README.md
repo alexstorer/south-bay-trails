@@ -12,6 +12,7 @@ Interactive maps, timelines and cost trackers for the creek and rail trails of S
 | Silver Creek Trail (Lower & Upper) | `trails/silver-creek/` | 7.0 mi | 2.6 mi | 4.3 mi |
 | Penitencia Creek Trail | `trails/penitencia-creek/` | 4.9 mi | 4.2 mi | 0.7 mi |
 | Five Wounds Trail | `trails/five-wounds/` | 2.3 mi | 0.7 mi | 1.7 mi |
+| Three Creeks Trail | `trails/three-creeks/` | 3.4 mi | 1.2 mi | 2.2 mi |
 
 The landing page (`index.html`, `hub.js`, `hub.css`) maps every trail and links to each page. Each trail page has the same sections: an intro story map in three chapters, a map of every reach, a scrolling timeline whose map redraws the trail as it stood on each date, costs and on-time/on-budget scorecards, a gap-cost calculator, documents and plan sheets pinned to the stretch they cover, news, quotes and photos.
 
@@ -36,7 +37,7 @@ trails/<slug>/img/schematics/   plan-sheet images cut from source PDFs
 
 ## Updating
 
-1. **Geometry.** `python3 scripts/reaches_gis.py <slug>` for Guadalupe, Silver Creek, Penitencia and Five Wounds; `scripts/reaches_coyote-creek.py` and `scripts/reaches_los-gatos-creek.py` for the other two (each has `--offline`). They print what changed since the last run.
+1. **Geometry.** `python3 scripts/reaches_gis.py <slug>` for Guadalupe, Silver Creek, Penitencia, Five Wounds and Three Creeks; `scripts/reaches_coyote-creek.py` and `scripts/reaches_los-gatos-creek.py` for the other two (each has `--offline`). They print what changed since the last run.
 2. **Content.** Edit `trails/<slug>/data/data.js` and `geo.js`. `TIMELINE` dates double as keys for `EVENT_GEO` and `OUTCOMES`; document titles are keys for `DOC_GEO` and `DOC_DATES`.
 3. **Plan sheets.** `FIG_OUT=trails/<slug>/img/schematics python3 scripts/make_figure.py file.pdf PAGE key [--crop x0 y0 x1 y1]`, then add to `SCHEMATICS` and `SCH_GROUPS`.
 4. **Validate.** `node scripts/check_data.js trails/<slug>` must print `OK`.

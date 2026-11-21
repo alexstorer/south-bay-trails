@@ -23,6 +23,11 @@ const BUILT = {
 // Plan sheets and location maps extracted from primary documents.
 const MP_DOC = SJ_DOC + "20455/636687587009930000";   // 2011 Master Plan, Montague Expwy to Watson Park
 const MP = "2011 Master Plan (Callander Associates)";
+const P72_DOC = SJ_DOC + "20473/636687592679070000";  // 1972 Coyote Creek Park masterplan (Ribera & Sue)
+const P72 = "Coyote Creek Park Masterplan (Ribera & Sue), July 1972";
+const FS04_DOC = SJ_DOC + "20445/636687586985570000"; // 2004 feasibility study, Story Rd to Watson Park
+const SLC_DOC = SJ_DOC + "20453/636687587003200000";  // 2008 master plan, Story Rd to Lower Silver Creek
+const SLC = "Story Rd to Lower Silver Creek Master Plan (Callander Associates, 2008)";
 const SCHEMATICS = [
   // Northern gap: how the 2011 master plan proposes to thread the trail through
   { k: "mp-network", t: "Trail network map: the Montague–Watson Park gap in context", d: MP + ", Figure 1", r: R("COY05.1", "COY06.1"), src: MP_DOC },
@@ -32,7 +37,8 @@ const SCHEMATICS = [
   { k: "mp-charcot", t: "Planned undercrossing at Charcot Avenue", d: MP + ", Figure 15", r: ["COY05.1", "COY05.2"], src: MP_DOC, short: "Planned undercrossing" },
   { k: "mp-880", t: "Perspective sketch: the trail underneath I-880", d: MP + ", Figure 17", r: ["COY05.2"], src: MP_DOC, short: "Rendering" },
   { k: "mp-brokaw", t: "Planned undercrossing at Brokaw Road", d: MP + ", Figure 18", r: ["COY05.2", "COY05.3"], src: MP_DOC, short: "Planned undercrossing" },
-  { k: "ps-brokaw", t: "95% plans: Brokaw Rd to Union Pacific Railroad, project key", d: "City of San José construction plans (Project 7356)", r: ["COY05.3"], src: SJ_DOC + "20435/636687586968530000", short: "95% plans" },
+  { k: "ps-brokaw", t: "95% plans: Brokaw Rd to Union Pacific Railroad, project key", d: "City of San José construction plans, Sept 2017 (Project 7356)", r: ["COY05.3"], src: SJ_DOC + "20435/636687586968530000", short: "95% plans" },
+  { k: "orchard-site", t: "Orchard Park site: trail alignment inside the 100-ft riparian setback", d: "Orchard Park & Coyote Creek Trail master plan report (Environmental Foresight), Oct 2013", r: ["COY05.4"], src: SJ_DOC + "20451/636687586999770000", short: "Site plan" },
   { k: "mp-oakland", t: "Planned bridge and undercrossing at Oakland Road", d: MP + ", Figure 22", r: ["COY05.4", "COY05.5"], src: MP_DOC, short: "Planned bridge" },
   { k: "mp-nottinghill", t: "Planned bridge near Notting Hill Drive", d: MP + ", Figure 23", r: ["COY05.5"], src: MP_DOC, short: "Planned bridge" },
   { k: "fact-flea", t: "Fact sheet: the isolated Berryessa Rd–Mercado Way stub", d: "City of San José fact sheet", r: ["COY05.6"], src: SJ_DOC + "20497/636687596865630000", short: "Fact sheet" },
@@ -41,7 +47,13 @@ const SCHEMATICS = [
   { k: "mp-mabury", t: "As planned in 2011: undercrossing at Mabury Road", d: MP + ", Figure 33", r: ["COY05.8"], src: MP_DOC, short: "2011 plan" },
   { k: "mab2023", t: "Location map: Mabury Rd to Empire St (Project 8087)", d: "City of San José Council memo, 2023", r: ["COY05.8", "COY06"], src: SRC.memoMabury2023, short: "Location map" },
   { k: "mp-101", t: "As planned in 2011: undercrossing at Highway 101 and Watson Park", d: MP + ", Figure 34", r: ["COY06"], src: MP_DOC, short: "2011 plan" },
+  { k: "nes-vicinity", t: "Vicinity map: the three reaches from SR 237 to Story Rd (9.6 mi)", d: "Natural Environment Study (H. T. Harvey & Associates), Sept 2011, Figure 1", r: R("COY04", "COY10"), src: SJ_DOC + "37687/636809083118600000", short: "Vicinity map" },
   // Downtown
+  { k: "fs04-key", t: "Segment key map: Story Rd to Watson Park in six segments", d: "Feasibility study (Callander Associates), June 2004", r: R("COY06-D", "COY10"), src: FS04_DOC, short: "Key map" },
+  { k: "fs04-sheet3", t: "Trail alignment map: Roosevelt Park and San José High to Watson Park", d: "Feasibility study (Callander Associates), sheet 3 of 4, Feb 2004", r: ["COY06-D", "COY06.1", "COY07"], src: FS04_DOC, short: "Alignment map" },
+  { k: "slc-costs", t: "Estimate of costs: $8.55M for Story Rd to Lower Silver Creek, by reach", d: SLC + ", Figure 21", r: R("COY06-D", "COY10"), src: SLC_DOC, short: "Cost estimate" },
+  { k: "slc-boardwalk", t: "Planned boardwalk beside San José High School", d: SLC + ", Figures 18–19", r: ["COY07"], src: SLC_DOC, short: "Planned boardwalk" },
+  { k: "rp-bridge", t: "Proposed pedestrian bridge over Coyote Creek at Roosevelt Park", d: "Roosevelt Park Master Plan Amendment, final draft (Catalyst), Dec 2003", r: ["COY07"], src: SJ_DOC + "20449/636687586996500000", short: "Bridge proposal" },
   { k: "martha-a", t: "Martha St pedestrian bridge, Alternative A", d: "Feasibility study, Callander Associates, 2004–05", r: ["COY08"], src: SJ_DOC + "20447/636687586989470000", short: "Bridge study" },
   { k: "martha-elev", t: "Martha St pedestrian bridge, elevation across the creek", d: "Feasibility study, Callander Associates, 2005", r: ["COY08"], src: SJ_DOC + "20447/636687586989470000", short: "Bridge elevation" },
   { k: "map-wp", t: "Trail map: William St to Phelan Ave (2022)", d: "City of San José trail map", r: R("COY08", "COY11"), src: SJ_DOC + "85452/637872622937800000", short: "Trail map" },
@@ -60,35 +72,44 @@ const SCHEMATICS = [
   { k: "ridgeN", t: "Coyote Creek Parkway North: William St to Metcalf Park", d: "Bay Area Ridge Trail Council, 2025", r: R("COY08", "COY22A"), src: "https://ridgetrail.org/wp-content/uploads/2017/07/Santa-Clara_Coyote-Creek-Parkway-North_2025.pdf" },
   { k: "ridgeS", t: "Coyote Creek Parkway South: Metcalf Park to Morgan Hill", d: "Bay Area Ridge Trail Council, 2020", r: ["PARKWAY"], src: "https://ridgetrail.org/wp-content/uploads/2017/07/2020_SantaClara_CoyoteCreekParkwaySouth.pdf" },
   // The road not taken
-  { k: "hist-1", t: "\"Coyote Creek Park\" long-range master plan: William St to the golf course", d: "Historic plan (undated), City overview map, Section 1. Swim and boating lagoons, an equestrian center and a train ride.", r: R("COY08", "COY15"), src: SJ_DOC + "20481/636687592691270000", short: "Historic plan" },
-  { k: "hist-2", t: "\"Coyote Creek Park\" long-range master plan: Hellyer to the percolation ponds", d: "Historic plan (undated), City overview map, Section 2", r: R("COY16", "COY22A"), src: SJ_DOC + "20483/636687592694070000", short: "Historic plan" },
-  { k: "hist-3", t: "\"Coyote Creek Park\" long-range master plan: Coyote Valley to Anderson Reservoir", d: "Historic plan (undated), City overview map, Section 3", r: ["PARKWAY"], src: SJ_DOC + "20485/636687592697500000", short: "Historic plan" },
+  { k: "park72-areas", t: "1972 Coyote Creek Park masterplan: the 10 study areas, Kelley Park to Burnett–Cochran Rd", d: P72, r: R("COY08", "PARKWAY"), src: P72_DOC, short: "1972 park plan" },
+  { k: "park72-costs", t: "1972 summary cost estimate: $32.6M for the whole park, by study area", d: P72 + ". 1971 construction dollars", r: R("COY08", "PARKWAY"), src: P72_DOC, short: "Cost estimate" },
+  { k: "hist-1", t: "\"Coyote Creek Park\" long-range master plan: William St to the golf course", d: "Overview map, Section 1, of the Coyote Creek Park masterplan (Ribera & Sue), c. 1972 (inferred; the sheet is undated). Swim and boating lagoons, an equestrian center and a train ride.", r: R("COY08", "COY15"), src: SJ_DOC + "20481/636687592691270000", short: "Historic plan" },
+  { k: "hist-2", t: "\"Coyote Creek Park\" long-range master plan: Hellyer to the percolation ponds", d: "Overview map, Section 2, of the Coyote Creek Park masterplan (Ribera & Sue), c. 1972 (inferred; the sheet is undated).", r: R("COY16", "COY22A"), src: SJ_DOC + "20483/636687592694070000", short: "Historic plan" },
+  { k: "hist-3", t: "\"Coyote Creek Park\" long-range master plan: Coyote Valley to Anderson Reservoir", d: "Overview map, Section 3, of the Coyote Creek Park masterplan (Ribera & Sue), c. 1972 (inferred; the sheet is undated).", r: ["PARKWAY"], src: SJ_DOC + "20485/636687592697500000", short: "Historic plan" },
 ];
 // Groupings shown as sections in the plan-sheet atlas
 const SCH_GROUPS = [
-  ["The northern gap, as planned", ["mp-network","mp-costs","mp-montague","mp-reach12","mp-charcot","mp-880","mp-brokaw","ps-brokaw","mp-oakland","mp-nottinghill","fact-flea","mp-berryessa","bart-alignment","mp-mabury","mab2023","mp-101"]],
-  ["Downtown & Kelley Park", ["martha-a","martha-elev","map-wp","william","ps-6324","story","ps-story90","phelan"]],
+  ["The northern gap, as planned", ["mp-network","mp-costs","mp-montague","mp-reach12","mp-charcot","mp-880","mp-brokaw","ps-brokaw","orchard-site","mp-oakland","mp-nottinghill","fact-flea","mp-berryessa","bart-alignment","mp-mabury","mab2023","mp-101","nes-vicinity"]],
+  ["Downtown & Kelley Park", ["fs04-key","fs04-sheet3","slc-costs","slc-boardwalk","rp-bridge","martha-a","martha-elev","map-wp","william","ps-6324","story","ps-story90","phelan"]],
   ["South San José & the county parkway", ["map-tully","sing-plan","sing-elev","map-yb","map-237","county-guide","ridgeN","ridgeS"]],
-  ["The road not taken: an earlier \"Coyote Creek Park\"", ["hist-1","hist-2","hist-3"]],
+  ["The road not taken: an earlier \"Coyote Creek Park\"", ["park72-areas","park72-costs","hist-1","hist-2","hist-3"]],
 ];
 
 // Per-event extras, keyed by the event's date string in TIMELINE.
 //   r: reaches to highlight · pt: point to mark · ph: photo file names · sch: plan sheet key
 const EVENT_GEO = {
+  "1972-07": { r: R("COY08", "PARKWAY"), sch: ["park72-areas", "park72-costs"] },
   "1990": { r: COUNTY, ph: ["Kluft-photo-2019-06-16-Coyote-Creek-Trail-Lakes.jpg"], sch: "ridgeS" },
   "2004-03-09": { r: CITY },
-  "2005-03": { r: R("COY12", "COY14") },
+  "2003-12": { r: ["COY07"], sch: "rp-bridge" },
+  "2004-06-07": { r: R("COY06-D", "COY10"), sch: ["fs04-key", "fs04-sheet3"] },
+  "2005-03-08": { r: ["COY12", "COY13"] },
   "2007-03-20": { r: COUNTY, ph: ["Ducks at Cottonwood Lake in Hellyer County Park.jpg"], sch: "county-guide" },
   "2008": { r: R("COY03", "COY06") },
+  "2008-06-17": { r: R("COY06-D", "COY10"), sch: ["slc-costs", "slc-boardwalk"] },
   "2009-08-15": { r: ["COY13", "COY14"], sch: ["map-tully", "map-237"], ph: ["Kluft-photo-2019-06-16-Coyote-Creek-Trail-Tully-trailhead.jpg", "Coyote_Creek_under_highway_237.jpg"] },
   "2011-09-13": { r: R("COY05.1", "COY06.1"), sch: ["mp-costs", "mp-880", "mp-berryessa"] },
   "2005-12-22": { r: ["COY08"], sch: ["martha-a", "martha-elev"] },
   "2015-09": { r: ["COY15A"], sch: ["sing-elev"] },
+  "2011-11": { r: R("COY04", "COY10"), sch: "nes-vicinity" },
+  "2013-10": { r: ["COY05.4"], sch: "orchard-site" },
   "2012": { pt: TRESTLE, w: "Senter Rd trestle area" },
   "2015-10": { r: ["COY05.8", "COY06"] },
   "2016-05": { r: CITY },
   "2017-02-21": { pt: [37.3185, -121.8478], r: R("COY11", "COY13") },
   "2017-06-15": { r: FLOOD_REACH, ph: ["Coyote_Creek_aerial.jpg"] },
+  "2017-09": { r: ["COY05.3"], sch: "ps-brokaw" },
   "2017-08-29": { r: ["COY11", "COY12"] },
   "2019-12-23": { r: ["COY09", "COY10"] },
   "2020-06": { r: NORTH_GAP, ph: ["Berryessa station from Marbury Road, March 2018.JPG"], sch: ["bart-alignment"] },
@@ -123,22 +144,22 @@ const EVENT_GEO = {
 // Where each document applies (null = not location-specific). Keyed by document title in DOCS.
 const DOC_GEO = {
   "Coyote Creek Trail Master Plan (low-res, ~6 MB)": CITY,
-  "Coyote Creek Trail Master Plan (hi-res, ~32 MB)": CITY,
+  "Coyote Creek Park Masterplan, July 1972 (hi-res, ~32 MB)": R("COY08", "PARKWAY"),
   "Master Plan: Montague Expwy to Watson Park": R("COY05.1", "COY06.1"),
-  "Master Plan: Hwy 101 to Story Rd": R("COY06", "COY10"),
-  "Master Plan: Phelan Ave to Tully Rd": ["COY12"],
-  "Master Plan: through Orchard Park": ["COY05.3", "COY05.4"],
+  "Master Plan: Story Rd to Lower Silver Creek (2008)": R("COY06-D", "COY10"),
+  "Master Plan: Los Lagos Golf Course to Phelan Ave (2005)": ["COY12", "COY13"],
+  "Master Plan: through Orchard Park": ["COY05.4"],
   "Master Plan Amendment: Roosevelt Park": ["COY07", "COY07.1"],
-  "Feasibility Study: Hwy 101 to Story Rd": R("COY06", "COY10"),
+  "Feasibility Study: Hwy 101 to Story Rd": R("COY06-D", "COY10"),
   "Feasibility Study: Martha St Pedestrian Bridge": ["COY08"],
   "Alignment Plan: Berryessa BART to Santa Clara St BRT": R("COY05.7", "COY07"),
   "Preliminary Engineering: Singleton Crossing (CH2M, 2015)": ["COY15A"],
   "San José Trail Program Strategic Plan (2016)": null,
   "90% Plans: Story Rd to Phelan Ave (38 MB)": ["COY11"],
-  "35% Plans: Brokaw Rd to UPRR / Orchard Park (11 MB)": ["COY05.3"],
+  "35% Plans: Brokaw Rd to UPRR (June 2016, 11 MB)": ["COY05.3"],
   "95% Plans: Brokaw Rd to UPRR (18 MB)": ["COY05.3"],
   "100% Plans: Hwy 280 (Selma Olinder) to Story Rd": ["COY09", "COY10"],
-  "Overview Map: Section 1 (historic Coyote Creek Park plan)": R("COY08", "COY15"), "Overview Map: Section 2 (historic Coyote Creek Park plan)": R("COY16", "COY22A"), "Overview Map: Section 3 (historic Coyote Creek Park plan)": ["PARKWAY"],
+  "Overview Map: Section 1 (Coyote Creek Park masterplan, c. 1972)": R("COY08", "COY15"), "Overview Map: Section 2 (Coyote Creek Park masterplan, c. 1972)": R("COY16", "COY22A"), "Overview Map: Section 3 (Coyote Creek Park masterplan, c. 1972)": ["PARKWAY"],
   "Reach map: William St to Phelan Ave": R("COY08", "COY11"),
   "Reach map: Hwy 237 Bikeway to Montague": ["COY03", "COY04"],
   "Reach map: Tully Rd to Yerba Buena": R("COY13", "COY15"),
@@ -150,8 +171,8 @@ const DOC_GEO = {
   "CEQA: Master Plan Public Project PP09-218 (2011)": R("COY05.1", "COY06.1"),
   "CEQA: Story Rd to Phelan Ave (2014)": ["COY11"],
   "CEQA: Valley Water Flood Protection Project (2023)": FLOOD_REACH,
-  "Natural Environment Study": null,
-  "Biological Assessment / NES": null,
+  "Natural Environment Study: SR 237 to Story Rd (2011)": R("COY04", "COY10"),
+  "Biological Assessment / Essential Fish Habitat Assessment (2011)": R("COY04", "COY10"),
   "Mabury–Empire rebid & contingency (Feb 2025)": ["COY05.8", "COY06"],
   "Mabury–Empire contract award (2023)": ["COY05.8", "COY06"],
   "Phelan–Tully contract award (Nov 2023)": ["COY12"],
@@ -173,8 +194,18 @@ const REACH_ENDS = {
 
 // Document dates. src: "printed" = on the title page / memo header; "filed" = CEQA filing
 // (from the State Clearinghouse number); "file" = PDF creation date (no date printed);
+// "inferred" = no date printed; dated from a companion document.
 // "unverified" = not yet checked against the document itself.
 const DOC_DATES = {
+  "Coyote Creek Park Masterplan, July 1972 (hi-res, ~32 MB)": ["1972-07", "printed"],
+  "Master Plan: Story Rd to Lower Silver Creek (2008)": ["2008-06-20", "printed"],
+  "Master Plan: Los Lagos Golf Course to Phelan Ave (2005)": ["2005-03-21", "printed"],
+  "Master Plan: through Orchard Park": ["2013-10", "printed"],
+  "Master Plan Amendment: Roosevelt Park": ["2003-12", "printed"],
+  "Feasibility Study: Hwy 101 to Story Rd": ["2004-06-07", "printed"],
+  "35% Plans: Brokaw Rd to UPRR (June 2016, 11 MB)": ["2016-06-14", "printed"],
+  "Natural Environment Study: SR 237 to Story Rd (2011)": ["2011-09-16", "printed"],
+  "Biological Assessment / Essential Fish Habitat Assessment (2011)": ["2011-11", "printed"],
   "Master Plan: Montague Expwy to Watson Park": ["2011-09", "printed"],
   "Feasibility Study: Martha St Pedestrian Bridge": ["2005-12-22", "printed"],
   "Alignment Plan: Berryessa BART to Santa Clara St BRT": ["2015-05", "file"],
@@ -183,9 +214,9 @@ const DOC_DATES = {
   "90% Plans: Story Rd to Phelan Ave (38 MB)": ["2014-12", "printed"],
   "95% Plans: Brokaw Rd to UPRR (18 MB)": ["2017-09", "printed"],
   "100% Plans: Hwy 280 (Selma Olinder) to Story Rd": ["2018-05-02", "printed"],
-  "Overview Map: Section 1 (historic Coyote Creek Park plan)": ["undated", "undated"],
-  "Overview Map: Section 2 (historic Coyote Creek Park plan)": ["undated", "undated"],
-  "Overview Map: Section 3 (historic Coyote Creek Park plan)": ["undated", "undated"],
+  "Overview Map: Section 1 (Coyote Creek Park masterplan, c. 1972)": ["1972", "inferred"],
+  "Overview Map: Section 2 (Coyote Creek Park masterplan, c. 1972)": ["1972", "inferred"],
+  "Overview Map: Section 3 (Coyote Creek Park masterplan, c. 1972)": ["1972", "inferred"],
   "Reach map: William St to Phelan Ave": ["2022-04-29", "file"],
   "Reach map: Hwy 237 Bikeway to Montague": ["2017-01", "file"],
   "Reach map: Tully Rd to Yerba Buena": ["2009-07", "file"],

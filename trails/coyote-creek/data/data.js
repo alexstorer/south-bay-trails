@@ -34,7 +34,7 @@ const REACH_NOTES = {
   "COY04": { text: "About 1.4 miles of gravel path from the Hwy 237 Bikeway to Montague Expressway, on Valley Water land." },
   "COY05.1": { gap: true, text: "Master planned in 2011 (Montague to Watson Park plan: 4.1 mi, 5 bridges, 10 undercrossings). Part of a $6.876M VTA Measure B design award (2020).", src: SRC.measureB2024 },
   "COY05.2": { gap: true, text: "Planned. Included in the Measure B design request for Montague to Brokaw (1.35 mi).", src: SRC.measureB2024 },
-  "COY05.3": { gap: true, text: "Brokaw Rd to Orchard Park reached 95% design by 2019, with undercrossings at Ridder Park Dr and the Union Pacific railroad; railroad-crossing permitting held it up.", src: "https://sanjose.legistar.com/View.ashx?GUID=4EBD45E4-3ED4-4F6C-9103-F91BE00BA19F&ID=7864882&M=F" },
+  "COY05.3": { gap: true, text: "Brokaw Rd to the Union Pacific Railroad (Project 7356): 35% plans in June 2016 and 95% plans in Sept 2017, with undercrossings at Ridder Park Dr and the railroad. Railroad-crossing permitting held it up.", src: "https://sanjose.legistar.com/View.ashx?GUID=4EBD45E4-3ED4-4F6C-9103-F91BE00BA19F&ID=7864882&M=F" },
   "COY05.5": { gap: true, text: "Planned. In the Measure B design request (Old Oakland Rd to Berryessa, 1.20 mi).", src: SRC.measureB2024 },
   "COY05.7": { gap: true, text: "Planned; no construction funding identified." },
   "COY05.8": { text: "Project 8087 (Mabury Rd to Empire St). Opened April 2025; ribbon cutting Dec 12, 2025. Total project cost $13.72M including a steel bridge over the creek and a US-101 undercrossing.", src: SRC.memoMabury2025 },
@@ -75,20 +75,27 @@ const LANDMARKS = [
 
 // Timeline. cat: plan | build | fund | flood | camp
 const TIMELINE = [
+  { d: "1972-07", cat: "plan", t: "Coyote Creek Park masterplan", x: "Ribera & Sue's preliminary masterplan for the City and County proposes a 2,400-acre creek park from William Street Park to Anderson Dam, with bicycle and hiking trails along its full length. Ultimate development was estimated at $32.6M in 1971 dollars.", s: [["1972 masterplan (PDF)", SJ_DOC + "20473/636687592679070000"]] },
   { d: "1990", cat: "plan", t: "South reach joins the Bay Area Ridge Trail", x: "The county's Coyote Creek Parkway segment is designated part of the regional Ridge Trail.", s: [["Coastal Conservancy staff report", SRC.sccSingleton]] },
+  { d: "2003-12", cat: "plan", t: "Roosevelt Park plan proposes a creek bridge", x: "A final-draft amendment to the Roosevelt Park Master Plan, prepared for the Redevelopment Agency, proposes a 200-ft pedestrian bridge over Coyote Creek and a trail extension to San Jose Academy, costed at $3.43M. A bridge in the 1994 park plan had never been built.", s: [["Master plan amendment (PDF)", SJ_DOC + "20449/636687586996500000"]] },
   { d: "2004-03-09", cat: "fund", t: "Council seeks state money to close the gaps", x: "A $140,000 Caltrans environmental-justice grant funds a feasibility study for one continuous paved trail from Alviso to Morgan Hill.", s: [["Metro Silicon Valley", "https://www.metroactive.com/papers/metro/04.21.04/coyote-0417.html"]] },
-  { d: "2005-03", cat: "plan", t: "First Coyote Creek Trail Master Plan approved", x: "Covers about 2.5 miles from Los Lagos Golf Course to Phelan Ave. A Mitigated Negative Declaration for the plan was adopted in September 2008.", s: [["CEQAnet SCH 2005012065", "https://ceqanet.lci.ca.gov/2005012065"]] },
+  { d: "2004-06-07", cat: "plan", t: "Feasibility study: Story Rd to Watson Park", x: "Callander Associates maps a 3.1-mile route in six segments, with on-street links between William St and Santa Clara St and a boardwalk beside San José High School. Estimated cost: $6.66M (2004 dollars).", s: [["Feasibility study (PDF)", SJ_DOC + "20445/636687586985570000"]] },
+  { d: "2005-03-08", cat: "plan", t: "Council approves Los Lagos–Phelan Ave master plan", x: "The plan covers about 2.5 miles from Los Lagos Golf Course north across Tully Rd to Phelan Ave, estimated at $1.87M to build. Its Mitigated Negative Declaration drew no public comments.", s: [["Master plan (PDF)", SJ_DOC + "20457/636687587012730000"], ["CEQAnet SCH 2005012065", "https://ceqanet.lci.ca.gov/2005012065"]] },
   { d: "2007-03-20", cat: "plan", t: "County approves Coyote Creek Parkway master plan", x: "The Board of Supervisors adopts the Parkway Integrated Natural Resources Management Plan and Master Plan.", s: [["Santa Clara County Parks", "https://www.sccgov.org/sites/parks/PlansProjects/Pages/coyote-creek-plan.aspx"]] },
   { d: "2005-12-22", cat: "plan", t: "Martha St bridge feasibility study", x: "A study for a pedestrian and bicycle bridge linking the Spartan-Keyes neighborhood to the newly built Selma Olinder Park. It compared alternatives estimated at $1.36M–$3.40M (2004–05 dollars).", s: [["Feasibility study (PDF)", SJ_DOC + "20447/636687586989470000"]] },
   { d: "2008", cat: "fund", t: "Federal earmark obligated", x: "A SAFETEA-LU earmark is obligated \"for various Coyote Creek Trails from Highway 237 to Highway 101.\" Its last dollars went to the 2021 William–Story segment.", s: [["Council memo (William–Story)", SRC.memoWilliamStory]] },
+  { d: "2008-06-17", cat: "plan", t: "Council approves Story Rd–Lower Silver Creek plan", x: "The 3-mile plan runs from Story Rd through Selma Olinder and Roosevelt parks to a new bridge at the Lower Silver Creek confluence, with a Mitigated Negative Declaration. Estimated cost: $8.55M.", s: [["Master plan (PDF)", SJ_DOC + "20453/636687587003200000"]] },
   { d: "2009-08-15", cat: "build", t: "Tully Rd segment opens", x: "About 1.2 miles south from Tully Rd opens with a Ridge Trail dedication. The northern reach (Hwy 237–Montague) is designated a National Recreation Trail the same year.", s: [["Bay Area Parks", "https://www.rhorii.com/bayareaparks/CoyoteCreekTrail/CoyCrkTrlNew.html"], ["NRT listing", "https://www.nrtapplication.org/trails/coyote-creek-trail"]] },
   { d: "2011-09-13", cat: "plan", t: "Council approves Montague-to-Watson Park master plan", x: "A 4.1-mile plan for the northern gap calling for 5 bridges and 10 undercrossings. The plan estimated construction at $25.7M in 2010 dollars, before design, contingency or inflation. This reach is still mostly unbuilt in 2026.", s: [["CEQAnet SCH 2011052011", "https://ceqanet.lci.ca.gov/2011052011"]] },
+  { d: "2011-11", cat: "plan", t: "Federal environmental studies for SR 237–Story Rd", x: "For the 9.6-mile federal-aid extension, a Natural Environment Study (Sept 2011) and a Biological Assessment (Nov 2011) find the trail may affect, but is not likely to adversely affect, steelhead and Chinook salmon. Mitigation calls for at least 2.07 acres of riparian restoration.", s: [["Natural Environment Study (PDF)", SJ_DOC + "37687/636809083118600000"], ["Biological Assessment (PDF)", SJ_DOC + "20433/636687586965230000"]] },
   { d: "2012", cat: "plan", t: "City buys the Senter Rd rail trestle", x: "The 250-foot, 1922 trestle over Coyote Creek is acquired for the future Five Wounds Trail connection.", s: [["San José Spotlight", "https://sanjosespotlight.com/san-jose-residents-rally-to-save-railroad-trestle/"]] },
+  { d: "2013-10", cat: "plan", t: "Orchard Park plan includes a trail segment", x: "The Parks & Recreation Commission approves plans for a one-acre park on a 16-acre housing site at Old Oakland Rd. The developer is to build a 10-ft trail along the creek.", s: [["Master plan report (PDF)", SJ_DOC + "20451/636687586999770000"]] },
   { d: "2015-09", cat: "plan", t: "Engineering study for a permanent Singleton bridge", x: "CH2M priced a permanent bridge plus stream restoration at Singleton Rd at $5.4M–$7.9M, depending on the design (2013 cost data, 35% contingency). The City built an interim flatcar bridge in 2021 instead.", s: [["Preliminary Engineering Study (PDF)", SJ_DOC + "20459/636687587018200000"]] },
   { d: "2015-10", cat: "fund", t: "$5.256M state ATP grant for Mabury–Empire", x: "MTC's 2015 Regional Active Transportation Program recommends funding for the bridge and US-101 undercrossing segment, with a $927,600 local match.", s: [["Council memo 2019", SRC.memoMabury2019]] },
   { d: "2016-05", cat: "plan", t: "Trail Strategic Plan: 100 miles by 2022", x: "The plan lists \"Complete Coyote Creek Trail\" as an action item, and admits that at the current pace the network goal \"will not be met until 2035.\"", s: [["Strategic Plan (PDF)", SRC.strategic2016]] },
   { d: "2017-02-21", cat: "flood", t: "Coyote Creek floods", x: "With Anderson Reservoir above capacity, the creek floods Rock Springs and surrounding neighborhoods: about 14,000 evacuated and roughly $73M in damage.", s: [["KQED", "https://www.kqed.org/news/11612712/the-san-jose-flood-what-went-wrong-and-how-the-city-plans-to-fix-it"], ["SPUR", "https://www.spur.org/news/2018-05-31/after-coyote-creek-san-jose-ready-future-floods"]] },
   { d: "2017-06-15", cat: "flood", t: "Valley Water expands its flood project", x: "The board extends the Coyote Creek Flood Protection Project 2.9 miles upstream to Tully Rd. The full project was then estimated at $500M–$1B.", s: [["Valley Water release", "https://valleywater.org/news-events/news-releases/water-district-approves-expediting-and-extending-flood-protection-project"]] },
+  { d: "2017-09", cat: "plan", t: "Brokaw–UPRR plans reach 95%", x: "Plans for the short Brokaw Rd–Union Pacific Railroad segment (Project 7356), with undercrossings at Ridder Park Dr and the railroad, go from 35% in June 2016 to 95% in September 2017. The segment is still unbuilt in 2026.", s: [["95% plans (PDF)", SJ_DOC + "20435/636687586968530000"], ["35% plans (PDF)", SJ_DOC + "20439/636687586974130000"]] },
   { d: "2017-08-29", cat: "fund", t: "State housing grant pays for trail", x: "A $14.98M Affordable Housing & Sustainable Communities grant (shared with an affordable-housing project on Senter Rd) includes $5.31M for the trail from Story Rd to Tully Rd.", s: [["Council memo (Story–Phelan)", SRC.memoStoryPhelan]] },
   { d: "2019-12-23", cat: "build", t: "Bids rejected for William–Story", x: "All bids are rejected; the segment is re-bid in September 2020.", s: [["Council memo", SRC.memoWilliamStory]] },
   { d: "2020-06", cat: "fund", t: "VTA Measure B: $6.876M for northern design", x: "Design-only funding for Montague–Brokaw, Old Oakland–Berryessa, Empire–Santa Clara and the Singleton crossing. Construction money is not included.", s: [["Council memo Dec 2024", SRC.measureB2024]] },
@@ -132,7 +139,7 @@ const PROJECTS = [
 // Remaining mainline gaps (City GIS, Nov 2026).
 const GAPS = [
   { name: "Montague Expwy → Brokaw Rd", ids: ["COY05.1","COY05.2"], mi: 1.44, status: "Planned", hard: "Valley Water land; under-crossings at Charcot & Brokaw" },
-  { name: "Brokaw Rd → UPRR", ids: ["COY05.3"], mi: 0.22, status: "Design", hard: "95% design (2019); railroad permitting" },
+  { name: "Brokaw Rd → UPRR", ids: ["COY05.3"], mi: 0.22, status: "Design", hard: "95% design (Sept 2017); railroad permitting" },
   { name: "Old Oakland Rd → Chessington Dr", ids: ["COY05.5"], mi: 1.03, status: "Planned", hard: "Orchard Park; Measure B design request" },
   { name: "Berryessa Rd → Mabury Rd", ids: ["COY05.7"], mi: 0.58, status: "Planned", hard: "No funding identified" },
   { name: "Watson Park → Julian St", ids: ["COY06-D","COY06.1"], mi: 0.45, status: "Design", hard: "35% design underway (Measure B $765K)" },
@@ -143,10 +150,10 @@ const GAPS = [
 const DOCS = [
   { g: "Master plans & studies", items: [
     ["Coyote Creek Trail Master Plan (low-res, ~6 MB)", SJ_DOC + "20475/636687592682200000"],
-    ["Coyote Creek Trail Master Plan (hi-res, ~32 MB)", SJ_DOC + "20473/636687592679070000"],
+    ["Coyote Creek Park Masterplan, July 1972 (hi-res, ~32 MB)", SJ_DOC + "20473/636687592679070000"],
     ["Master Plan: Montague Expwy to Watson Park", SJ_DOC + "20455/636687587009930000"],
-    ["Master Plan: Hwy 101 to Story Rd", SJ_DOC + "20453/636687587003200000"],
-    ["Master Plan: Phelan Ave to Tully Rd", SJ_DOC + "20457/636687587012730000"],
+    ["Master Plan: Story Rd to Lower Silver Creek (2008)", SJ_DOC + "20453/636687587003200000"],
+    ["Master Plan: Los Lagos Golf Course to Phelan Ave (2005)", SJ_DOC + "20457/636687587012730000"],
     ["Master Plan: through Orchard Park", SJ_DOC + "20451/636687586999770000"],
     ["Master Plan Amendment: Roosevelt Park", SJ_DOC + "20449/636687586996500000"],
     ["Feasibility Study: Hwy 101 to Story Rd", SJ_DOC + "20445/636687586985570000"],
@@ -157,14 +164,14 @@ const DOCS = [
   ]},
   { g: "Design plans (schematics)", items: [
     ["90% Plans: Story Rd to Phelan Ave (38 MB)", SJ_DOC + "20441/636687586978070000"],
-    ["35% Plans: Brokaw Rd to UPRR / Orchard Park (11 MB)", SJ_DOC + "20439/636687586974130000"],
+    ["35% Plans: Brokaw Rd to UPRR (June 2016, 11 MB)", SJ_DOC + "20439/636687586974130000"],
     ["95% Plans: Brokaw Rd to UPRR (18 MB)", SJ_DOC + "20435/636687586968530000"],
     ["100% Plans: Hwy 280 (Selma Olinder) to Story Rd", SJ_DOC + "37689/636809087405070000"],
   ]},
   { g: "Reach maps & fact sheet", items: [
-    ["Overview Map: Section 1 (historic Coyote Creek Park plan)", SJ_DOC + "20481/636687592691270000"],
-    ["Overview Map: Section 2 (historic Coyote Creek Park plan)", SJ_DOC + "20483/636687592694070000"],
-    ["Overview Map: Section 3 (historic Coyote Creek Park plan)", SJ_DOC + "20485/636687592697500000"],
+    ["Overview Map: Section 1 (Coyote Creek Park masterplan, c. 1972)", SJ_DOC + "20481/636687592691270000"],
+    ["Overview Map: Section 2 (Coyote Creek Park masterplan, c. 1972)", SJ_DOC + "20483/636687592694070000"],
+    ["Overview Map: Section 3 (Coyote Creek Park masterplan, c. 1972)", SJ_DOC + "20485/636687592697500000"],
     ["Reach map: William St to Phelan Ave", SJ_DOC + "85452/637872622937800000"],
     ["Reach map: Hwy 237 Bikeway to Montague", SJ_DOC + "20495/636687595949370000"],
     ["Reach map: Tully Rd to Yerba Buena", SJ_DOC + "20469/636687592672800000"],
@@ -178,8 +185,8 @@ const DOCS = [
     ["CEQA: Master Plan Public Project PP09-218 (2011)", "https://ceqanet.lci.ca.gov/2011052011"],
     ["CEQA: Story Rd to Phelan Ave (2014)", "https://ceqanet.lci.ca.gov/2014102029"],
     ["CEQA: Valley Water Flood Protection Project (2023)", "https://ceqanet.lci.ca.gov/2023110513/2"],
-    ["Natural Environment Study", SJ_DOC + "37687/636809083118600000"],
-    ["Biological Assessment / NES", SJ_DOC + "20433/636687586965230000"],
+    ["Natural Environment Study: SR 237 to Story Rd (2011)", SJ_DOC + "37687/636809083118600000"],
+    ["Biological Assessment / Essential Fish Habitat Assessment (2011)", SJ_DOC + "20433/636687586965230000"],
   ]},
   { g: "Council & committee memos", items: [
     ["Mabury–Empire rebid & contingency (Feb 2025)", SRC.memoMabury2025],
@@ -269,6 +276,21 @@ const PHOTOS = [
 // Scorecards: did it get done, on time, on budget? Keyed by TIMELINE date.
 // s: good | warn | bad | unk (not reported) | pend (still in progress)
 const OUTCOMES = {
+  "1972-07": [
+    ["Trail", "good", "The full-length trail it proposed now runs without a break from William Street Park to near Anderson Reservoir (2026)."],
+  ],
+  "2005-03-08": [
+    ["Completed", "good", "Yes, in two pieces: Tully Rd south opened in Aug 2009, and Phelan Ave–Tully Rd in May 2025, 20 years after approval."],
+  ],
+  "2008-06-17": [
+    ["Completed", "warn", "Partly. Story Rd to William St opened in 2021; William St to the Lower Silver Creek confluence is still unbuilt in 2026."],
+  ],
+  "2013-10": [
+    ["Completed", "good", "The City's trail GIS shows the segment between the railroad and Old Oakland Rd as open. Its opening year isn't documented."],
+  ],
+  "2017-09": [
+    ["Completed", "bad", "Not built. Nine years after 95% design the segment is still a gap; railroad permitting held it up."],
+  ],
   "2004-03-09": [
     ["Promise", "warn", "Improvements were promised \"by spring 2005\". The Kelley Park section opened in Nov 2021, 16 years later."],
   ],
