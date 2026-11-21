@@ -13,7 +13,18 @@ const BUILT = {
   SCL17: { y: 1990, approx: true }, SCU01: { y: 2000, approx: true },
 };
 
+const MP07 = "Lower Silver Creek Trail Master Plan (Callander Associates, 2007)";
 const SCHEMATICS = [
+  { k: "mp-keymap", t: "The 2007 plan's eight reaches, Coyote Creek to Lake Cunningham", d: MP07 + ", Fig. 11", r: LOWER, src: SRC.mpOrig, short: "Reach map" },
+  { k: "mp-101-bridge", t: "The planned bridge over Hwy 101: a 175-ft span with long ramps", d: MP07 + ", Figs. 16–17", r: ["SCL02", "SCL03"], src: SRC.mpOrig, short: "Bridge plan" },
+  { k: "is-101-sim", t: "Simulation of the Hwy 101 bridge from the Julian St on-ramp", d: "Initial Study (CH2M Hill, 2007), Fig. 2", r: ["SCL02", "SCL03"], src: SRC.isTrail, short: "Simulation" },
+  { k: "mp-sheet-a", t: "Alignment A: Coyote Creek, Watson Park, Wooster Ave and Hwy 101", d: MP07 + ", Fig. 37", r: ["SCL01", "SCL02", "SCL03"], src: SRC.mpOrig, short: "Alignment" },
+  { k: "mp-sheet-b", t: "Alignment B: King Rd, McKee Rd and Checkers Dr", d: MP07 + ", Fig. 38", r: ["SCL04", "SCL05", "SCL06"], src: SRC.mpOrig, short: "Alignment" },
+  { k: "mp-sheet-c", t: "Alignment C: Alum Rock Ave to the Kammerer bridge, Mayfair", d: MP07 + ", Fig. 39", r: ["SCL07", "SCL08", "SCL09"], src: SRC.mpOrig, short: "Alignment" },
+  { k: "mp-sheet-d", t: "Alignment D: Jackson Ave, I-680 and the Dobern bridge", d: MP07 + ", Fig. 40", r: ["SCL10", "SCL11B", "SCL11A", "SCL12"], src: SRC.mpOrig, short: "Alignment" },
+  { k: "mp-sheet-e", t: "Alignment E: the PG&E corridor across Story Rd", d: MP07 + ", Fig. 41", r: ["SCL12", "SCL13", "SCL14"], src: SRC.mpOrig, short: "Alignment" },
+  { k: "mp-sheet-f", t: "Alignment F: Silverstone Pl to Ocala Ave and Capitol Expwy", d: MP07 + ", Fig. 42", r: ["SCL15", "SCL16"], src: SRC.mpOrig, short: "Alignment" },
+  { k: "mp-sheet-g", t: "Alignment G: Cunningham Ave to Lake Cunningham", d: MP07 + ", Fig. 43", r: ["SCL16", "SCL17"], src: SRC.mpOrig, short: "Alignment" },
   { k: "city-lsc-map", t: "City trail map: Lower Silver Creek, Coyote Creek to Lake Cunningham", d: "City of San José Trail Program map", r: LOWER, src: SRC.cityMap, short: "Trail map" },
   { k: "city-upper-map", t: "City trail map: Silver Creek Valley and Upper Silver Creek", d: "City of San José Trail Program map", r: UPPER, src: SRC.cityUpperMap, short: "Trail map" },
   { k: "vw-reaches", t: "Valley Water's flood project, Reaches 1–6, with the old 1% flood zone", d: "Valley Water board attachment, 2015", r: R("SCL01", "SCL16"), src: SRC.vwReachMap, short: "Reach map" },
@@ -26,6 +37,7 @@ const SCHEMATICS = [
 ];
 const SCH_GROUPS = [
   ["Trail maps", ["city-lsc-map", "city-upper-map"]],
+  ["The 2007 trail master plan", ["mp-keymap", "mp-101-bridge", "is-101-sim", "mp-sheet-a", "mp-sheet-b", "mp-sheet-c", "mp-sheet-d", "mp-sheet-e", "mp-sheet-f", "mp-sheet-g"]],
   ["The flood project", ["vw-reaches", "vw-r4-6-map", "cip-r4-6", "vw-funding", "vw-5c-cost", "vw-jackson-photo"]],
   ["Lake Cunningham", ["cip-1969"]],
 ];
@@ -40,7 +52,7 @@ const EVENT_GEO = {
   "2003-01": { r: LOWER },
   "2004": { r: R("SCL01", "SCL07"), ph: ["Miguelita or Lower Silver Creek at 101.jpg"] },
   "2005": { r: R("SCL07", "SCL10"), pt: DOBERN },
-  "2007-12-04": { r: LOWER, sch: "city-lsc-map" },
+  "2007-12-04": { r: LOWER, sch: ["mp-keymap", "mp-101-bridge", "is-101-sim"] },
   "2009-04-16": { r: FLOOD46, sch: "vw-funding" },
   "2010-08-24": { r: R("SCL10", "SCL12"), sch: "vw-r4-6-map" },
   "2012-04-24": { r: ["SCL13", "SCL14"], sch: "vw-5c-cost" },
@@ -64,7 +76,8 @@ const EVENT_GEO = {
 };
 
 const DOC_GEO = {
-  "Lower Silver Creek Trail Master Plan (2007)": LOWER,
+  "Lower Silver Creek Trail Master Plan (Callander Associates, 2007)": LOWER,
+  "Lower Silver Creek Trail Initial Study (CH2M Hill, 2007)": LOWER,
   "City map: Lower Silver Creek Trail": LOWER,
   "City map: Silver Creek Valley & Upper Silver Creek trails": UPPER,
   "Valley Water: flood project reach map (2015)": R("SCL01", "SCL16"),
@@ -101,7 +114,8 @@ const REACH_ENDS = {
 };
 
 const DOC_DATES = {
-  "Lower Silver Creek Trail Master Plan (2007)": ["2007-12-10", "printed"],
+  "Lower Silver Creek Trail Master Plan (Callander Associates, 2007)": ["2007-12-10", "printed"],
+  "Lower Silver Creek Trail Initial Study (CH2M Hill, 2007)": ["2007-06", "printed"],
   "City map: Lower Silver Creek Trail": ["2006-11", "file"],
   "City map: Silver Creek Valley & Upper Silver Creek trails": ["2008-02", "file"],
   "Valley Water: flood project reach map (2015)": ["2015-09", "file"],

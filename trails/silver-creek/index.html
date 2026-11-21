@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,500;9..144,700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
-<link rel="stylesheet" href="../../styles.css?v=202611210035">
+<link rel="stylesheet" href="../../styles.css?v=202611210037">
 <script>try{const t=localStorage.getItem('sbt-theme');if(t)document.documentElement.dataset.theme=t}catch(e){}</script>
 </head>
 <body>
@@ -128,7 +128,7 @@
       <figure class="card chart-card">
         <figcaption><h3>Cost per mile on other trails</h3><span class="muted">$M / mile · hatched = benchmark</span></figcaption>
         <div class="bars" id="perMileBars"></div>
-        <p class="footnote">No Silver Creek trail segment has both a published length and cost, so the calculator below borrows from San José's other creek trails.</p>
+        <p class="footnote">The 2007 plan's average is low because most reaches reuse levee roads and sidewalks; the Hwy 101 reach is more than eight times as expensive per mile. No built segment has a published cost.</p>
       </figure>
     </div>
 
@@ -146,10 +146,10 @@
     <div class="card mp-card">
       <div class="mp-head">
         <div>
-          <h3>The flood project the trail would ride on</h3>
-          <p class="muted">Valley Water rebuilt Lower Silver Creek in stages from 1993 to 2020, with federal stimulus and state money for the upper reaches. The flood reaches listed below came to more than <strong>$100 million</strong> in contracts; the 2021 capital plan puts the total for Reaches 4–6 at $102M. The 2007 trail plan was designed to run on the levee roads these projects built.</p>
+          <h3>The City's 2007 estimate, reach by reach</h3>
+          <p class="muted">The trail master plan priced eight reaches at <strong>$13.6 million</strong> in 2007 dollars, mostly on levee roads Valley Water was building with more than $100 million of flood work. It put the cheap upstream reaches first. The downstream end, with a 765-ft bridge over Hwy 101, was last at $7.27M, and none of it has been built.</p>
         </div>
-        <button class="mp-thumb" data-sch="vw-reaches" aria-label="View the reach map"><img src="img/schematics/vw-reaches_thumb.jpg" alt="Valley Water map of flood project reaches"><span>View the reach map</span></button>
+        <button class="mp-thumb" data-sch="mp-keymap" aria-label="View the reach map"><img src="img/schematics/mp-keymap_thumb.jpg" alt="Trail reach key map from the 2007 master plan"><span>View the reach map</span></button>
       </div>
       <div class="table-scroll"><table id="mpTable"></table></div>
     </div>
@@ -158,7 +158,7 @@
       <div class="est-head">
         <div>
           <h3>Estimate the cost of closing the gaps</h3>
-          <p class="muted">The 2007 plan's cost chapter isn't available online, and the City hasn't published a newer estimate. This calculator applies a cost-per-mile assumption to the unbuilt reaches.</p>
+          <p class="muted">The City's only estimate is the 2007 plan's $13.6M, in 2007 dollars. This calculator applies a cost-per-mile assumption, in today's dollars, to the unbuilt reaches.</p>
         </div>
         <div class="est-total"><span class="est-label">Estimated cost</span><span class="est-num" id="estNum">$0M</span><span class="muted" id="estSub"></span></div>
       </div>
@@ -191,10 +191,10 @@
       </div>
       <div class="docs-col">
         <h3 class="sub first">Plan sheets &amp; location maps</h3>
-        <p class="muted small">9 figures from City trail maps and Valley Water's flood-project documents. Click one to enlarge it, or hover over it to find it on the map.</p>
+        <p class="muted small">19 figures from the 2007 trail master plan, City trail maps and Valley Water's flood-project documents. Click one to enlarge it, or hover over it to find it on the map.</p>
         <div class="sch-grid" id="schGrid"></div>
         <div id="docGrid"></div>
-        <p class="footnote">The 2007 master plan is a 146-page, 24 MB PDF on <span class="code">sanjoseca.gov</span>, which blocks scripted downloads; only its first pages could be read for this page.</p>
+        <p class="footnote">Large City PDFs such as the 146-page master plan are on <span class="code">sanjoseca.gov</span>, which may block downloads that don't come from a regular web browser.</p>
       </div>
     </div>
     <h3 class="sub">Interactive maps &amp; open data</h3>
@@ -247,10 +247,10 @@
 <div class="tooltip" id="tooltip" role="tooltip" hidden></div>
 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
-<script src="../../data/hub.js?v=202611210035"></script>
-<script src="data/reaches.js?v=202611210035"></script>
-<script src="data/data.js?v=202611210035"></script>
-<script src="data/geo.js?v=202611210035"></script>
-<script src="../../app.js?v=202611210035"></script>
+<script src="../../data/hub.js?v=202611210037"></script>
+<script src="data/reaches.js?v=202611210037"></script>
+<script src="data/data.js?v=202611210037"></script>
+<script src="data/geo.js?v=202611210037"></script>
+<script src="../../app.js?v=202611210037"></script>
 </body>
 </html>

@@ -9,6 +9,7 @@ const SRC = {
   gis: "https://data.sanjoseca.gov/dataset/trail-reach",
   mp2007: "https://web.archive.org/web/20260715232629/https://www.sanjoseca.gov/home/showpublisheddocument/20669/636687969371700000",
   mpOrig: "https://www.sanjoseca.gov/home/showpublisheddocument/20669/636687969371700000",
+  isTrail: "https://www.sanjoseca.gov/home/showpublisheddocument/20667/636687969367170000",
   ceqaTrail: "https://ceqanet.lci.ca.gov/2007072056",
   ceqaFlood: "https://ceqanet.lci.ca.gov/2000102034",
   cityMap: "https://web.archive.org/web/20260715223115/https://www.sanjoseca.gov/home/showpublisheddocument/20673/636687969377330000",
@@ -110,7 +111,7 @@ const TIMELINE = [
   { d: "2003-01", cat: "plan", t: "City and Valley Water agree to share creek land for trails", x: "A Collaborative Action Plan supports trails on water-district land.", s: [["Council memo (2018)", SRC.dobern2018]] },
   { d: "2004", cat: "flood", t: "Coyote Creek to Lausett Ave rebuilt", x: "Reaches 1–2 ($14.7M) and Reach 3 phase 1 ($10.4M) are finished, creating 20-ft levee roads the trail plan later proposes to use.", s: [["Valley Water project list", SRC.vwList], ["Shimmick", SRC.shimmick]] },
   { d: "2005", cat: "flood", t: "Lausett Ave to I-680; the Dobern bridge", x: "Reach 3 phase 2 is finished for $6.4M, and the City and Valley Water build a pedestrian bridge at Dobern Ave.", s: [["Valley Water project list", SRC.vwList], ["Valley Water memo 16-0342", SRC.m16_0342]] },
-  { d: "2007-12-04", cat: "plan", t: "Council adopts the trail master plan", x: "Callander Associates' plan lays out eight reaches from Coyote Creek to Lake Cunningham, mostly on Valley Water's new levee roads, with a new bridge over Hwy 101.", s: [["Master plan (archived, partial)", SRC.mp2007], ["CEQA 2007072056", SRC.ceqaTrail]] },
+  { d: "2007-12-04", cat: "plan", t: "Council adopts the trail master plan", x: "Callander Associates' plan lays out eight reaches from Coyote Creek to Lake Cunningham, mostly on Valley Water's new levee roads, with a 765-ft bridge over Hwy 101. Its reach estimates add up to $13.6M in 2007 dollars, more than half of it for the Hwy 101 reach. It builds from the Lake Cunningham end first and leaves the bridge for last.", s: [["Master plan (2007)", SRC.mpOrig], ["Initial Study (2007)", SRC.isTrail], ["CEQA 2007072056", SRC.ceqaTrail]] },
   { d: "2009-04-16", cat: "fund", t: "Federal stimulus for the upper reaches", x: "USDA announces stimulus money through NRCS for Reaches 4–6; the district eventually receives $20.2M.", s: [["Valley Water memo 15-0343", SRC.m15_0343], ["Valley Water memo 17-0245", SRC.m17_0245]] },
   { d: "2010-08-24", cat: "flood", t: "$26M contract: I-680 to Story Rd", x: "R&L Brosamer wins Reaches 4–5B: about a mile of channel with culverts at Jackson Ave and Capitol Expwy and a new Lyndale Ave footbridge.", s: [["Valley Water memo 17-0245", SRC.m17_0245]] },
   { d: "2012-04-24", cat: "flood", t: "$18M contract: Story Rd to Moss Point Dr", x: "Proven Management wins Reaches 5C–6A, including the Story Rd box culvert.", s: [["Valley Water memo 17-0741", SRC.m17_0741]] },
@@ -139,10 +140,13 @@ const PROJECTS = [
   { name: "Dobern → Foxdale trail (Reach VI)", id: "SJ #7215", year: 2014, mi: null, kind: "spent through FY13–14", cost: 0.231, contract: null, funding: "Park Trust Fund", src: SRC.ptf2015, note: "$152,137 in FY13–14 plus $79,231 earlier" },
 ];
 const PM_EST = [
+  { name: "2007 trail master plan", sub: "City plan, 2007 $", mi: 4.88, cost: 13.615, note: "$13.6M for 4.88 mi, all eight reaches", src: SRC.mpOrig },
+  { name: "Plan Reach 1, with Hwy 101 bridge", sub: "City plan, 2007 $", mi: 0.77, cost: 7.27, note: "Coyote Creek to N. King Rd: $7.27M for 0.77 mi", src: SRC.mpOrig },
   { name: "Penitencia Creek Reach 1B", sub: "benchmark (built 2017)", mi: 0.38, cost: 2.364, note: "Boardwalk trail, Noble Ave to Dorel Dr", src: "../penitencia-creek/" },
   { name: "Coyote Creek Trail, 2021–25", sub: "benchmark (built)", mi: 3.48, cost: 28.11, note: "Four San José creek-trail projects", src: "../coyote-creek/" },
 ];
 const PRESETS = [
+  { label: "2007 plan average (2007 $)", pm: 13.615 / 4.88 },
   { label: "Penitencia Reach 1B", pm: 2.364 / 0.38 },
   { label: "Coyote Creek average", pm: 28.11 / 3.48 },
   { label: "Bridge-heavy (Coyote's Mabury–Empire)", pm: 13.72 / 0.58 },
@@ -151,8 +155,8 @@ const DEFAULT_PM = 28.11 / 3.48;
 const EST_EXTRAS = [];
 
 const GAPS = [
-  { name: "Coyote Creek → Hwy 101", ids: ["SCL01","SCL02"], mi: 0.34, status: "Planned", hard: "Meets the Coyote Creek and Five Wounds trails" },
-  { name: "Hwy 101 → Alum Rock Ave", ids: ["SCL03","SCL04","SCL05","SCL06"], mi: 1.52, status: "Planned", hard: "Needs a bridge over Hwy 101; creek in a box culvert along King Rd" },
+  { name: "Coyote Creek → Hwy 101", ids: ["SCL01","SCL02"], mi: 0.34, status: "Planned", hard: "Meets the Coyote Creek and Five Wounds trails; Wooster ramp rebuild" },
+  { name: "Hwy 101 → Alum Rock Ave", ids: ["SCL03","SCL04","SCL05","SCL06"], mi: 1.52, status: "Planned", hard: "765-ft bridge over Hwy 101 (2007 plan: $7.27M with Reach 1); sidewalks along King Rd" },
   { name: "Alum Rock Ave → Jackson Ave", ids: ["SCL07","SCL08","SCL09","SCL10"], mi: 1.18, status: "Design", hard: "Levee roads exist; permits stuck on \"jurisdictional ambiguity\"" },
   { name: "Jackson Ave → Dobern bridge", ids: ["SCL11B"], mi: 0.23, status: "Planned", hard: "Room reserved in the flood project" },
   { name: "Brenford Dr → Foxdale Dr", ids: ["SCL14"], mi: 0.34, status: "Planned", hard: "On-street for now" },
@@ -176,26 +180,26 @@ const DELIVERY = [
   ["City share: trail walls at Dobern", "–", "Paid 2018", "good", "$258K (2016)", "$373K (+45%)", "bad", SRC.dobern2018],
   ["The trail itself (2007 master plan)", "Coyote Creek → Lake Cunningham", "~1.7 mi open; permits 2026–28; no construction money", "bad", "Not recovered", "–", "unk", SRC.te2026],
 ];
-// The flood project the trail is supposed to ride on.
+// The 2007 trail master plan's estimate by reach (2007 dollars, incl. contingency and soft costs).
 const OFFICIAL_EST = {
-  head: ["Reach", "", "Cost", "Built"],
+  head: ["Plan reach", "", "Estimate (2007 $)", "City GIS reaches · priority"],
   rows: [
-    ["2A", "McKee/King intersection", null, 0.19, "1993"],
-    ["1–2", "Coyote Creek → McKee Rd", null, 14.67, "2002–04"],
-    ["3 (ph. 1)", "McKee Rd → Lausett Ave", null, 10.41, "2004"],
-    ["3 (ph. 2)", "Lausett Ave → I-680", null, 6.37, "2005"],
-    ["3", "Alum Rock Ave → Lausett Ave", null, 9.81, "2006"],
-    ["4–5B", "I-680 → Story Rd (final contract)", null, 28.81, "2010–13"],
-    ["5C–6A", "Story Rd → Moss Point Dr (final contract)", null, 20.95, "2012–15"],
-    ["6B", "Moss Point Dr → Cunningham Ave", null, 13.0, "2014–18"],
-    ["–", "Dobern bridge crossing", null, 3.25, "2016–17"],
-    ["–", "Lake Cunningham flood-basin certification (total project)", null, 11.84, "2018–19"],
+    ["1", "Coyote Creek → N. King Rd (Hwy 101 bridge)", null, 7.27, "SCL01–03 · last"],
+    ["2", "N. King Rd → McKee Rd", null, 0.714, "SCL04 · 7th"],
+    ["3", "McKee Rd → Alum Rock Ave", null, 1.048, "SCL05–06 · 6th"],
+    ["4", "Alum Rock Ave → Kammerer Ave", null, 1.147, "SCL07–09 · 5th"],
+    ["5", "Kammerer Ave → Bambi Ln (Dobern)", null, 0.70, "SCL10, 11B, 11A · 4th"],
+    ["6", "Dobern bridge → Foxdale Dr", null, 0.517, "SCL12–14 · 2nd"],
+    ["7", "Foxdale Dr → Ocala Ave", null, 1.938, "SCL15 · first"],
+    ["8", "Ocala Ave → Lake Cunningham", null, 0.281, "SCL16–17 · 3rd"],
   ],
+  total: ["4.88 mi", "$13.6M (sum of reaches)"],
 };
 
 const DOCS = [
   { g: "Plans & maps", items: [
-    ["Lower Silver Creek Trail Master Plan (2007)", SRC.mpOrig],
+    ["Lower Silver Creek Trail Master Plan (Callander Associates, 2007)", SRC.mpOrig],
+    ["Lower Silver Creek Trail Initial Study (CH2M Hill, 2007)", SRC.isTrail],
     ["City map: Lower Silver Creek Trail", SRC.cityMap],
     ["City map: Silver Creek Valley & Upper Silver Creek trails", SRC.cityUpperMap],
     ["Valley Water: flood project reach map (2015)", SRC.vwReachMap],
@@ -277,7 +281,7 @@ const PHOTOS = [
 const OUTCOMES = {
   "2007-12-04": [
     ["Completed", "bad", "Mostly not. Nineteen years later about 1.7 miles are open on Lower Silver Creek, none of it downstream of Jackson Ave."],
-    ["Budget", "unk", "The plan's cost chapter is in a part of the document we couldn't retrieve."],
+    ["Budget", "unk", "$13.6M in 2007 dollars across eight reaches (the plan prints no grand total). Only the cheapest upstream reaches have been built."],
   ],
   "2012-04-24": [
     ["Schedule", "bad", "A year late (November 2015 instead of 2014) because of defective floodwall piles."],
