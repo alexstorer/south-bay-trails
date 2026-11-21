@@ -69,6 +69,7 @@ const SRC = {
   vtaSR17: "https://www.vta.org/sites/default/files/2025-01/FS-SR17-ENG-122424.pdf",
   ridge17: "https://ridgetrail.org/highway17/",
   spotlightSweeps: "https://sanjosespotlight.com/silicon-valley-water-agency-flops-on-outreach-ahead-of-sweeps/",
+  r5plan: "https://www.sanjoseca.gov/Home/Components/FacilityDirectory/FacilityDirectory/2999/2058",
   merc2007: "https://www.mercurynews.com/2007/10/20/los-gatos-creek-trail-opens-new-section-in-san-jose/",
   sjiTrestle: "https://www.sanjoseinside.com/news/after-years-long-preservation-battle-san-jose-finally-tears-down-willow-glen-trestle/",
   coyote: "https://alexstorer.github.io/coyote-creek-trail/",
@@ -77,10 +78,10 @@ const SRC = {
 // Extra context attached to reaches (keyed by reach ID: City GIS REACHIDs, or this site's IDs for
 // the county and Los Gatos pieces).
 const REACH_NOTES = {
-  "LGC01": { gap: true, text: "Park Ave to the Guadalupe River (\"Reach 5d\"). The creek runs through box culverts under Park Ave and Montgomery St. VTA estimated $9.2M in 2017 dollars. Most of it is tied to Google's Downtown West agreement, which has been on hold since April 2023.", src: SRC.envision },
+  "LGC01": { gap: true, text: "Park Ave to the Guadalupe River (\"Reach 5D/E\"). The creek runs through box culverts under Park Ave and Montgomery St, so the 2008 plan crosses Park Ave at the signal, cuts through private parking lots and needs to buy 170 S. Autumn St, then follows Autumn St to Santa Clara St ($1.26M). VTA estimated $9.2M in 2017 dollars. Most of it is tied to Google's Downtown West agreement, which has been on hold since April 2023.", src: SRC.envision },
   "LGC01A": { gap: true, text: "Santa Clara St to the San Fernando St light-rail line, on the east bank. Shown as \"in design\" in City GIS; the 2006–08 Reach 5 environmental review put the trail here.", src: "https://ceqanet.lci.ca.gov/2006092004" },
-  "LGC02": { gap: true, text: "An undercrossing beneath W. San Carlos St and the Caltrain bridge to Park Ave (\"Reach 5b/c\"). Design has sat at 90% since 2019. The City's 2018 construction estimate was $4.68M; regional funding plans list construction money as \"Later.\"", src: SRC.ch2m2018 },
-  "LGC03": { text: "San Carlos St (Dupont St stairs) to Auzerais Ave, past Del Monte Park. Probably opened in early 2009. In 2018 the City counted 173 users a day here, against 1,072 at Hamilton Ave in Campbell.", src: SRC.trails1819 },
+  "LGC02": { gap: true, text: "An undercrossing beneath W. San Carlos St and the Caltrain bridge to Park Ave (\"Reach 5B/C\"): 5% ramps, 8 ft of clearance under about 48 trains a day. The 2008 plan priced 5B at $2.40M and 5C, past the fire training center, at $1.84M. Design has sat at 90% since 2019. The City's 2018 construction estimate was $4.68M; regional funding plans list construction money as \"Later.\"", src: SRC.ch2m2018 },
+  "LGC03": { text: "San Carlos St (Dupont St stairs) to Auzerais Ave, past Del Monte Park. Built by the adjacent housing developer as a condition of approval (\"Reach 5A\"), probably opened in early 2009. In 2018 the City counted 173 users a day here, against 1,072 at Hamilton Ave in Campbell.", src: SRC.trails1819 },
   "LGC04": { text: "Lonus St to Auzerais Ave, under I-280. Dedicated October 20, 2007; the City spent about 10 years assembling roughly $4M for it.", src: SRC.horii5 },
   "LGC04A": { text: "Bridge link from Gregory St on the east bank. The 1985 master plan proposed a \"bridge crossing to Gregory Street.\"", src: SRC.mp1985 },
   "LGC04-1": { gap: true, text: "A short link from the Lonus St trailhead to the Three Creeks bridge (opened January 2021). In design since 2022; meanwhile riders use 130 ft of Lonus St.", src: SRC.te2022 },
@@ -152,8 +153,8 @@ const TIMELINE = [
   { d: "2002-10-29", cat: "plan", t: "Master plan for Los Gatos Creek County Park", x: "County Parks, Campbell and the water district plan the 147-acre park. The cost table includes $1.75M to renovate and widen the trail, with no schedule.", s: [["2002 Master Plan (archived PDF)", SRC.lgcpMP]] },
   { d: "2004-05", cat: "plan", t: "Reach 4 plan keeps the Willow Glen trestle", x: "The City approves an environmental document for the trail from Coe Ave to Auzerais Ave that would reuse the 1922 Western Pacific rail trestle over the creek.", s: [["2014 comment letter quoting it", "https://www.wgtrestle.org/3CrksTrail_IS-MND_1st-LLA-comments.pdf"]] },
   { d: "2007-10-20", cat: "build", t: "Lonus St to Auzerais Ave opens under I-280", x: "A half-mile stretch links Willow Glen toward downtown. The City spent 10 years assembling about $4 million for it.", s: [["Mercury News", SRC.merc2007], ["Bay Area Back Pages", SRC.horii5]] },
-  { d: "2008-06", cat: "plan", t: "Reach 5 Master Plan: Auzerais Ave to Santa Clara St", x: "Environmental review began in 2006 for a trail along both banks to Santa Clara St, with two undercrossings and a light-rail crossing. A Negative Declaration was filed in April 2008.", s: [["CEQA 2006092004", "https://ceqanet.lci.ca.gov/2006092004/2"], ["VTA BART 4(f) report", SRC.bart4f]] },
-  { d: "2009-01-29", cat: "build", t: "San Carlos St to Auzerais Ave finished", x: "The Mercury News reports another San José segment finished, probably the short stretch past the future Del Monte Park. The article is paywalled, so the segment isn't confirmed.", s: [["Mercury News (headline)", "https://www.mercurynews.com/2009/01/29/new-segment-of-los-gatos-creek-trail-finished-in-san-jose/"]] },
+  { d: "2008-06-17", cat: "plan", t: "Reach 5 Master Plan: the last mile, $5.9M", x: "The Council adopts Callander Associates' plan for Auzerais Ave to Santa Clara St, priced at $5.86M. It drops an undercrossing at Santa Clara St because it would raise flood levels, rejects running the trail through the Park Ave culvert, and, after the CPUC and VTA refuse a path through the San Fernando light-rail station, sends it along Autumn St. The key piece, an undercrossing beneath San Carlos St and the railroad, can't be built until the fire training center moves.", s: [["Reach 5 Master Plan (2008)", SRC.r5plan], ["CEQA 2006092004", "https://ceqanet.lci.ca.gov/2006092004/2"]] },
+  { d: "2009-01-29", cat: "build", t: "San Carlos St to Auzerais Ave finished", x: "The Mercury News reports another San José segment finished. The 2008 Reach 5 plan says the stretch from Auzerais Ave to Old San Carlos St was built by the neighboring housing developer as a condition of approval.", s: [["Mercury News (headline)", "https://www.mercurynews.com/2009/01/29/new-segment-of-los-gatos-creek-trail-finished-in-san-jose/"]] },
   { d: "2009-10-20", cat: "flood", t: "Lenihan Dam outlet rebuilt", x: "Valley Water replaces the dam's buckling outlet pipe with a new 2,000-ft tunnel, raising release capacity from 70 to 410 cfs. It cost $39 million.", s: [["Valley Water fact sheet", SRC.vwLexFacts], ["ENR", "https://www.enr.com/articles/33228-lenihan-dam-outlet-modifications"]] },
   { d: "2010-12-21", cat: "build", t: "New Roberts Rd bridge and trail undercrossing", x: "Los Gatos replaces its 1918 Roberts Rd bridge. Art reliefs line the walls where the trail passes underneath.", s: [["Town annual report FY2009/10", SRC.lgAnnual0910]] },
   { d: "2011", cat: "plan", t: "San José buys the Willow Glen trestle", x: "The City acquires the 1922 rail trestle over Los Gatos Creek for the Three Creeks Trail, which will connect at Lonus St.", s: [["San José Inside", SRC.sjiTrestle]] },
@@ -208,6 +209,7 @@ const PROJECTS = [
 // Per-mile estimates and benchmarks shown beside the built projects (not money spent).
 const PM_EST = [
   { name: "San Carlos St undercrossing", sub: "City estimate, 2018", mi: 0.27, cost: 4.683, note: "$4.683M construction ÷ 0.27 mi (Reach 5b/c)", src: SRC.ch2m2018 },
+  { name: "Reach 5 Master Plan (2008)", sub: "City plan, 2008 $", mi: 1.0, cost: 5.857, note: "$5.86M for the \"mile-long\" Auzerais–Santa Clara segment", src: SRC.r5plan },
   { name: "Park Ave → Santa Clara St", sub: "VTA estimate, 2017 $", mi: 0.56, cost: 9.2, note: "$9.2M ÷ 0.56 mi (Reach 5d, LGC01 + LGC01A)", src: SRC.envision },
   { name: "Coyote Creek Trail, 2021–25", sub: "benchmark", mi: 3.48, cost: 28.11, note: "Four San José creek-trail projects, $28.1M for 3.48 mi", src: SRC.coyote },
 ];
@@ -215,6 +217,7 @@ const PM_EST = [
 const PRESETS = [
   { label: "1985 plan, 1985 $", pm: 2.2094 / 3.5 },
   { label: "Coyote Creek average", pm: 28.11 / 3.48 },
+  { label: "Reach 5 plan (2008)", pm: 5.857 / 1.0 },
   { label: "Lonus–Auzerais (2007)", pm: 4.0 / 0.49 },
   { label: "Diridon estimate (2017 $)", pm: 9.2 / 0.56 },
   { label: "San Carlos undercrossing (2018)", pm: 4.683 / 0.27 },
@@ -275,6 +278,7 @@ const DOCS = [
     ["Hwy 9 trailhead connector: bridge options", SRC.lgBridgeOptions],
     ["Hwy 9 trailhead connector: final plans, 79 sheets (37 MB)", SRC.lgFinalPlans],
     ["Downtown West Development Agreement, with trail exhibits (large)", SRC.dwDA],
+    ["Los Gatos Creek Trail Reach 5 Master Plan (Callander Associates, 2008)", SRC.r5plan],
   ]},
   { g: "Trail & park maps", items: [
     ["County Parks: Los Gatos Creek Trail map, part 1 (north)", "https://web.archive.org/web/20240227233135/https://parks.sccgov.org/sites/g/files/exjcpb961/files/396244los_gatos_creek_part1.pdf"],
@@ -438,8 +442,9 @@ const OUTCOMES = {
   "2002-10-29": [
     ["Completed", "unk", "The $1.75M trail renovation had no schedule, and no record shows it was carried out as a project."],
   ],
-  "2008-06": [
-    ["Completed", "bad", "Not built. The San Carlos undercrossing reached 90% design in 2019 and is unfunded; Park Ave to Santa Clara St hasn't been designed."],
+  "2008-06-17": [
+    ["Completed", "bad", "Not built. The plan assumed construction in 2012–14. The San Carlos undercrossing reached 90% design in 2019 and is unfunded; Park Ave to Santa Clara St hasn't been designed."],
+    ["Budget", "warn", "$5.86M in 2008 dollars for the whole mile. By 2017–18 the City and VTA put the undercrossing alone at $4.68M and Park Ave–Santa Clara St at $9.2M."],
   ],
   "2012-11-07": [
     ["Budget", "warn", "Both priced options came in over the $1.694M budget."],

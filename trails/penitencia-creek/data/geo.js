@@ -16,7 +16,14 @@ const BUILT = {
 };
 
 const PSR = "Valley Water planning study (2022)";
+const MP77 = "County master plan (Royston, Hanamoto, Beck & Abey, July 1977)";
 const SCHEMATICS = [
+  { k: "mp77-west", t: "1977 plan: King Rd past the flea market to Coyote Creek", d: MP77 + ", master plan sheet", r: R("PEN01A", "PEN02B"), src: SRC.county1977, short: "1977 plan" },
+  { k: "mp77-middle", t: "1977 plan: Summerdale to King Rd, with new lakes and a future city park", d: MP77 + ", master plan sheet", r: R("PEN03", "PEN08"), src: SRC.county1977, short: "1977 plan" },
+  { k: "mp77-east", t: "1977 plan: Alum Rock Park to Summerdale, the percolation ponds reshaped as lakes", d: MP77 + ", master plan sheet", r: R("PEN08", "PEN13"), src: SRC.county1977, short: "1977 plan" },
+  { k: "mp77-concept", t: "1977 park concept: natural, transition and activity zones", d: MP77 + ", concept plan", r: WHOLE, src: SRC.county1977, short: "Concept" },
+  { k: "mp77-ponds", t: "1977 section: three lakes joined by cascades where the ponds are", d: MP77 + ", Reach 2", r: PONDS, src: SRC.county1977, short: "Section" },
+  { k: "mp77-reach4", t: "1977 section: a bike trail and a four-acre lake beside Penitencia Creek Rd", d: MP77 + ", Reach 4", r: ["PEN07", "PEN08"], src: SRC.county1977, short: "Section" },
   { k: "ridge-map", t: "Bay Area Ridge Trail map: Berryessa BART to Alum Rock Park", d: "Bay Area Ridge Trail Council, 2019", r: WHOLE, src: SRC.ridgeMap, short: "Trail map" },
   { k: "psr-reaches", t: "Valley Water's flood-project reaches along the creek", d: PSR + ", Fig. 2-5", r: R("PEN01A", "PEN12"), src: SRC.psr, short: "Reach map" },
   { k: "psr-openspace", t: "Public open space along the creek corridor", d: PSR + ", Fig. 2-1", r: WHOLE, src: SRC.psr, short: "Open space" },
@@ -31,6 +38,7 @@ const SCHEMATICS = [
 ];
 const SCH_GROUPS = [
   ["The whole creek", ["ridge-map", "psr-reaches", "psr-openspace"]],
+  ["The 1977 plan: a park chain with a chain of lakes", ["mp77-concept", "mp77-west", "mp77-middle", "mp77-east", "mp77-ponds", "mp77-reach4"]],
   ["Flood protection and the trail", ["vw-flood", "vw-phases", "psr-cost"]],
   ["Downstream: BART and the missing link", ["psr-confluence", "vta-connector", "psr-king"]],
   ["Upstream: the county park and Alum Rock", ["psr-capitol", "reach1b-map"]],
@@ -40,7 +48,9 @@ const EVENT_GEO = {
   "1911": { pt: ALUM_ROCK, w: "Alum Rock Park", ph: ["Alum Rock Park - panoramio.jpg"] },
   "1973-10": { pt: ALUM_ROCK, w: "Alum Rock Park", ph: ["Alum Rock Park Bridge.jpg"] },
   "1974": { w: "East foothills (off the trail)" },
-  "1977": { r: COUNTY },
+  "1918": { r: WHOLE },
+  "1975": { r: WHOLE },
+  "1977-07-18": { r: WHOLE, sch: ["mp77-middle", "mp77-ponds"] },
   "1982": { r: LOWER, sch: "vw-flood" },
   "1995-11": { r: WHOLE },
   "2001-12-13": { r: PONDS },
@@ -74,7 +84,7 @@ const EVENT_GEO = {
 };
 
 const DOC_GEO = {
-  "County Penitencia Creek Park Master Plan (1977)": COUNTY,
+  "County Penitencia Creek Park Master Plan (Royston, Hanamoto, Beck & Abey, 1977)": WHOLE,
   "SFEI historical ecology of Upper Penitencia Creek (2012)": WHOLE,
   "SFEI resilient landscape vision (2018)": R("PEN01A", "PEN12"),
   "Valley Water flood project planning study (2022)": R("PEN01A", "PEN12"),
@@ -109,7 +119,7 @@ const REACH_ENDS = {
 };
 
 const DOC_DATES = {
-  "County Penitencia Creek Park Master Plan (1977)": ["1977-07", "unverified"],
+  "County Penitencia Creek Park Master Plan (Royston, Hanamoto, Beck & Abey, 1977)": ["1977-07-18", "printed"],
   "SFEI historical ecology of Upper Penitencia Creek (2012)": ["2012-06", "printed"],
   "SFEI resilient landscape vision (2018)": ["2018-12-14", "file"],
   "Valley Water flood project planning study (2022)": ["2022", "file"],

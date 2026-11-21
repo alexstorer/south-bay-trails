@@ -87,7 +87,9 @@ const TIMELINE = [
   { d: "1911", cat: "flood", t: "Floods end the Alum Rock railroad", x: "The Alum Rock Steam Railroad, which carried visitors up the canyon to the springs from 1890, is destroyed by floods.", s: [["Coastal Conservancy staff report (2013)", SRC.scc2013]] },
   { d: "1973-10", cat: "plan", t: "Alum Rock Park's creek trail becomes a National Recreation Trail", x: "The 2.5-mile Penitencia Creek Trail inside Alum Rock Park, upstream of this page's trail, is designated a National Recreation Trail.", s: [["National Recreation Trails database", SRC.nrt]] },
   { d: "1974", cat: "flood", t: "Penitencia Water Treatment Plant opens", x: "Valley Water's plant in the foothills, up to 40 million gallons a day, gives the creek corridor much of its water infrastructure.", s: [["Valley Water", SRC.vwWTP]] },
-  { d: "1977", cat: "plan", t: "City, County and water district agree on a creek park chain", x: "A cooperative agreement sets out a chain of parks and trail along the creek, and the County adopts its Penitencia Creek Park master plan.", s: [["Coastal Conservancy (2008)", SRC.scc2008], ["County master plan, July 1977", SRC.county1977]] },
+  { d: "1918", cat: "plan", t: "\"One of the showplaces of the County\"", x: "Supervisor Henry Ayer urges the County to buy land along Penitencia Creek. War, the 1931 courthouse fire and his death in 1935 end the idea; agencies keep proposing a park after that.", s: [["County master plan (1977), p.3", SRC.county1977]] },
+  { d: "1975", cat: "fund", t: "$3.5 million to buy creek land", x: "After a 1974 study finds Berryessa and Alum Rock among the county's most park-poor areas, supervisors set aside $3.5M, including land along Penitencia Creek, and hire planners in 1976.", s: [["County master plan (1977), p.1", SRC.county1977]] },
+  { d: "1977-07-18", cat: "plan", t: "A master plan for a four-mile creek park", x: "Royston, Hanamoto, Beck & Abey's plan for the County lays out seven reaches from Alum Rock Park to Coyote Creek: 12 miles of bike, walking and horse trails and a 21-acre \"chain of lakes\" made partly from the percolation ponds. It's priced at $3.31M in 1977 dollars, before land. City, County and water district had agreed in 1977 to develop the park chain together.", s: [["County master plan (1977)", SRC.county1977], ["Coastal Conservancy (2008)", SRC.scc2008]] },
   { d: "1982", cat: "flood", t: "A decade of floods", x: "The creek floods in 1978, 1980, 1982, 1983, 1986, 1995 and 1998; it can't carry even a 10-year storm. The 1982 flood does $1–2 million in damage.", s: [["Valley Water project page", SRC.vwE4], ["Valley Water fact sheet", SRC.vwShell]] },
   { d: "1995-11", cat: "plan", t: "Countywide plan maps a Ridge Trail route", x: "The County's Trails Master Plan names the Penitencia corridor as a Bay Area Ridge Trail route.", s: [["Coastal Conservancy (2013)", SRC.scc2013]] },
   { d: "2001-12-13", cat: "plan", t: "Plan for the percolation ponds stretch", x: "A master plan for Piedmont Rd to Noble Ave adds trail, picnic sites and bridges over the recharge-pond spillways on a 26-acre site.", s: [["CEQA 2001122052", "https://ceqanet.lci.ca.gov/2001122052"]] },
@@ -126,6 +128,7 @@ const PROJECTS = [
 ];
 const PM_EST = [
   { name: "Reach 1B budget in 2013", sub: "planned", mi: 0.38, cost: 1.49, note: "$1.49M budget at grant time", src: SRC.scc2013 },
+  { name: "1977 master plan, 1977 $", sub: "County estimate", mi: 4.0, cost: 3.314, note: "$3.31M for four miles of creek park, incl. 25% contingency, no land", src: SRC.county1977 },
   { name: "Coyote Creek Trail, 2021–25", sub: "benchmark (built)", mi: 3.48, cost: 28.11, note: "Four San José creek-trail projects", src: "../coyote-creek/" },
 ];
 const PRESETS = [
@@ -164,7 +167,7 @@ const OFFICIAL_EST = {
 
 const DOCS = [
   { g: "Plans & studies", items: [
-    ["County Penitencia Creek Park Master Plan (1977)", SRC.county1977],
+    ["County Penitencia Creek Park Master Plan (Royston, Hanamoto, Beck & Abey, 1977)", SRC.county1977],
     ["SFEI historical ecology of Upper Penitencia Creek (2012)", SRC.sfei2012],
     ["SFEI resilient landscape vision (2018)", SRC.sfei2018],
     ["Valley Water flood project planning study (2022)", SRC.psr],
@@ -252,6 +255,10 @@ const PHOTOS = [
 ];
 
 const OUTCOMES = {
+  "1977-07-18": [
+    ["Completed", "warn", "Partly. The trail runs most of the four miles, but the Coyote Creek and Alum Rock ends are still missing almost 50 years later."],
+    ["Budget", "unk", "$3.31M in 1977 dollars ($2.65M plus 25% contingency), not counting land. No total of actual spending exists."],
+  ],
   "2013-10-03": [
     ["Completed", "good", "Yes, in 2017."],
     ["Schedule", "bad", "About three years late: two bid rounds were cancelled over permits, PG&E poles and a bid protest."],

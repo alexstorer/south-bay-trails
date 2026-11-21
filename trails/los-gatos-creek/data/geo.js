@@ -23,8 +23,18 @@ const BUILT = {
 
 // Plan sheets and location maps extracted from primary documents.
 const MP85 = "1985 Master Plan (Royston Hanamoto Alley & Abey)";
+const R5 = "Reach 5 Master Plan (Callander Associates, 2008)";
 const SCHEMATICS = [
   // Downtown and Diridon
+  { k: "r5-location", t: "The last mile: Reach 5 from Auzerais Ave to the Guadalupe River", d: R5 + ", Fig. 3", r: ["LGC01", "LGC01A", "LGC02", "LGC03"], src: SRC.r5plan, short: "Location map" },
+  { k: "r5-alts-south", t: "Alternatives studied: Auzerais Ave to Park Ave", d: R5 + ", Fig. 12A", r: ["LGC02", "LGC03"], src: SRC.r5plan, short: "Alternatives" },
+  { k: "r5-alts-north", t: "Alternatives studied: Park Ave to Santa Clara St", d: R5 + ", Fig. 12B", r: ["LGC01", "LGC01A"], src: SRC.r5plan, short: "Alternatives" },
+  { k: "r5-sancarlos", t: "The undercrossing beneath W. San Carlos St and the railroad", d: R5 + ", Fig. 22", r: ["LGC02", "LGC03"], src: SRC.r5plan, short: "Undercrossing plan" },
+  { k: "r5-section", t: "Section through the railroad undercrossing: 8 ft clearance, 5% ramps", d: R5 + ", Fig. 18", r: ["LGC02", "LGC03"], src: SRC.r5plan, short: "Section" },
+  { k: "r5-sheet-d", t: "Alignment: Park Ave to San Fernando St and Autumn St", d: R5 + ", Fig. 32", r: ["LGC01"], src: SRC.r5plan, short: "Alignment" },
+  { k: "r5-sheet-e", t: "Alignment: Santa Clara St and Guadalupe River Park", d: R5 + ", Fig. 33", r: ["LGC01", "LGC01A"], src: SRC.r5plan, short: "Alignment" },
+  { k: "r5-lrt", t: "Ramp to the San Fernando light-rail station", d: R5 + ", Fig. 28", r: ["LGC01A"], src: SRC.r5plan, short: "Ramp" },
+  { k: "r5-cost", t: "Reach 5 cost summary: $5,857,000 by sub-reach", d: R5 + ", cost estimate", r: ["LGC01", "LGC01A", "LGC02", "LGC03"], src: SRC.r5plan, short: "Cost table" },
   { k: "dw-triggers", t: "Downtown West: where Google's creek-trail segments and parks would be built, and what triggers each", d: "Downtown West Development Agreement, Exhibit E3.2 (2021)", r: DOWNTOWN, src: SRC.dwDA, short: "Trigger map" },
   { k: "mp85-r5", t: "1985 plan: Park Ave to the Guadalupe River", d: MP85 + ", Reach 5", r: ["LGC01"], src: SRC.mp1985, short: "1985 plan" },
   { k: "mp85-r4", t: "1985 plan: Lincoln Ave to Park Ave", d: MP85 + ", Reach 4", r: ["LGC02", "LGC03", "LGC04", "LGC04-1"], src: SRC.mp1985, short: "1985 plan" },
@@ -51,6 +61,7 @@ const SCHEMATICS = [
 // Groupings shown as sections in the plan-sheet atlas
 const SCH_GROUPS = [
   ["Downtown & Diridon: the unbuilt north end", ["dw-triggers", "mp85-r5", "mp85-r4", "mp85-cost"]],
+  ["The 2008 Reach 5 Master Plan", ["r5-location", "r5-alts-south", "r5-alts-north", "r5-sancarlos", "r5-section", "r5-sheet-d", "r5-sheet-e", "r5-lrt", "r5-cost"]],
   ["Willow Glen: the Meridian–Lincoln gap", ["mp85-r3", "ames-gap", "mp85-r2", "mp85-r1"]],
   ["Campbell & Los Gatos Creek County Park", ["county-north", "lgcp-existing", "lgcp-plan"]],
   ["Vasona, Los Gatos & Lexington", ["county-south", "vasona-map", "vasona-2012", "hwy9-prelim", "hwy9-bridge", "hwy9-key", "lexington-guide", "sr17-map"]],
@@ -77,7 +88,7 @@ const EVENT_GEO = {
   "2002-10-29": { r: ["CAM2", "LGCP"], sch: "lgcp-plan" },
   "2004-05": { r: ["LGC04", "LGC04-1"], pt: TRESTLE },
   "2007-10-20": { r: ["LGC04", "LGC04A"], sch: "mp85-r4" },
-  "2008-06": { r: ["LGC01", "LGC01A", "LGC02", "LGC03"] },
+  "2008-06-17": { r: ["LGC01", "LGC01A", "LGC02", "LGC03"], sch: ["r5-location", "r5-sancarlos", "r5-cost"] },
   "2009-01-29": { r: ["LGC03"], ph: ["North end of the Los Gatos Creek Trail.jpg"] },
   "2009-10-20": { pt: LEX_DAM, w: "Lenihan Dam", ph: ["LosGatosCreekTrailAndWaterPipeOct07.JPG"] },
   "2010-12-21": { r: ["LG1"], pt: [37.2326, -121.9741] },
@@ -136,6 +147,7 @@ const DOC_GEO = {
   "Hwy 9 trailhead connector: bridge options": ["LG1", "LG2"],
   "Hwy 9 trailhead connector: final plans, 79 sheets (37 MB)": ["LG1", "LG2"],
   "Downtown West Development Agreement, with trail exhibits (large)": DOWNTOWN,
+  "Los Gatos Creek Trail Reach 5 Master Plan (Callander Associates, 2008)": ["LGC01", "LGC01A", "LGC02", "LGC03"],
   "County Parks: Los Gatos Creek Trail map, part 1 (north)": R("LGC06", "LGCP"),
   "County Parks: Los Gatos Creek Trail map, part 2 (south)": R("LGCP", "LG3"),
   "County Parks: Los Gatos Creek County Park map": ["LGCP"],
@@ -211,6 +223,7 @@ const DOC_DATES = {
   "Larry Ames: tour of the Meridian–Lincoln gap (2025)": ["2025-07-13", "printed"],
   "Hwy 9 trailhead connector: final plans, 79 sheets (37 MB)": ["2022-12-01", "printed"],
   "Downtown West Development Agreement, with trail exhibits (large)": ["2021-05-18", "printed"],
+  "Los Gatos Creek Trail Reach 5 Master Plan (Callander Associates, 2008)": ["2008-06-20", "printed"],
   "County Parks: Los Gatos Creek Trail map, part 1 (north)": ["2003", "file"],
   "County Parks: Los Gatos Creek Trail map, part 2 (south)": ["2003", "file"],
   "County Parks: Los Gatos Creek County Park map": ["2003", "file"],
